@@ -1,0 +1,62 @@
+fmod FUNBLOCKS-SYNTAX is
+  protecting QID-LIST .
+  sorts Token Bubble NeTokenList .
+  op token : Qid -> Token
+       [special
+          (id-hook Bubble        (1 1)
+           op-hook qidSymbol     (<Qids> : ~> Qid))] .
+
+  op bubble : QidList -> Bubble
+       [special
+          (id-hook Bubble        (1 -1)
+           op-hook qidListSymbol (__ : QidList QidList ~> QidList)
+           op-hook qidSymbol     (<Qids> : ~> Qid)
+           id-hook Exclude       (.))] .
+
+  op neTokenList : QidList -> NeTokenList
+       [special
+          (id-hook Bubble        (1 -1)
+           op-hook qidListSymbol (__ : QidList QidList ~> QidList)
+           op-hook qidSymbol     (<Qids> : ~> Qid)
+           id-hook Exclude       (->))] .
+
+  --- sorts Decl DeclList PreModule Input Command .
+  --- subsort Decl < DeclList .
+  --- subsorts PreModule Command < Input .
+
+  sorts Term Func Var Const State Rule Expr  .
+  subsorts Const Var Func < Term .
+  subsort Term State Rule < Expr .
+
+  --- dist(point($x1, $y1), point($x2, $y2))
+      --- => sqrt(add(sub($x1, $x2), sub($y1, $y2)))
+
+  op init_ : Bubble -> State .
+
+  op case_=>_ : Bubble Bubble -> Rule .
+
+  op _(_) : Token Bubble -> Func .
+  
+  op $_ : Token -> Var .
+
+endfm
+
+--- reduce in META-LEVEL :
+---   metaParse(upModule('FUNBLOCKS-SYNTAX, false),
+---             'case 'f '=> 'g, anyType) .
+---
+--- reduce in META-LEVEL :
+---   metaParse(upModule('FUNBLOCKS-SYNTAX, false),
+---             'init 'area 'r , anyType) .
+---
+--- reduce in META-LEVEL :
+---   metaParse(upModule('FUNBLOCKS-SYNTAX, false),
+---     'f '`( 'a '`) , anyType) .
+---
+--- reduce in META-LEVEL :
+---   metaParse(upModule('FUNBLOCKS-SYNTAX, false),
+---     'case 'f '`( '$ 'x '`) '=> 'a , anyType) .
+---
+--- reduce in META-LEVEL :
+---   metaParse(upModule('FUNBLOCKS-SYNTAX, false),
+---     '$ 'x , anyType) .

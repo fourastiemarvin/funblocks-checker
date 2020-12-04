@@ -1,0 +1,60 @@
+load file.maude
+
+fmod MAYBE{X :: TRIV} is
+  sort Maybe{X} .
+  subsort X$Elt < Maybe{X} .
+  op null : -> Maybe{X} .
+endfm
+
+view Oid from TRIV to CONFIGURATION is
+  sort Elt to Oid .
+endv
+
+mod MY-COPY-FILE is
+  inc STD-STREAM .
+  inc FILE .
+  pr MAYBE{Oid} .
+
+  op myClass : -> Cid .
+  op myObj : -> Oid .
+  ops in:_ out:_ : Maybe{Oid} -> Attribute .
+  ops inFile:_ outFile:_ : String -> Attribute .
+
+  op run : String -> Configuration .
+  vars Text Original Copy : String .
+  vars FHIn FHOut : Oid .
+  var  Attrs : AttributeSet .
+
+  eq run(Original)
+   = <>
+     < myObj : myClass | in: null, inFile: Original >
+     openFile(fileManager, myObj, Original, "r") .    ---open source file
+
+  rl < myObj : myClass | in: null, Attrs >
+     openedFile(myObj, fileManager, FHIn)
+  => < myObj : myClass | in: FHIn, Attrs >
+     getLine(FHIn, myObj) .             --- read line when file opened
+
+  rl < myObj : myClass | in: FHIn, Attrs >
+     gotLine(myObj, FHIn, Text)
+  => < myObj : myClass | in: FHIn, Attrs >
+     if Text == ""
+     --- if no text left: close file
+     then closeFile(FHIn, myObj)
+     --- write when gotLine message received
+     else write(stdout, myObj, Text)
+     fi .
+
+  rl < myObj : myClass | in: FHIn, Attrs >
+     wrote(myObj, stdout)
+  => < myObj : myClass | in: FHIn, Attrs >
+     getLine(FHIn, myObj) . --- read when file written
+
+  rl < myObj : myClass | in: FHIn, Attrs >
+     closedFile(myObj, FHIn)
+  => none .   --- finish when file is closed
+endm
+
+erew run("in.txt") .
+--- erew run("in.txt", "out.maude") .
+--- load out.maude .

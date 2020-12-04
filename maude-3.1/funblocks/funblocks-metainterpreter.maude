@@ -1,0 +1,89 @@
+load maybe.maude
+load funblocks.maude
+load funblocks-syntax.maude
+load file.maude
+load metaInterpreter.maude
+
+view Oid from TRIV to CONFIGURATION is
+  sort Elt to Oid .
+endv
+
+view Module from TRIV to META-MODULE is
+  sort Elt to Module .
+endv
+
+mod FUNBLOCKS-META-INTERPRETER is
+  pr FUNBLOCKS .
+  inc STD-STREAM .
+  inc LEXICAL .
+  inc MAYBE{Oid} * (op maybe to null) .
+  inc MAYBE{Qid} * (op maybe to null) .
+  inc MAYBE{Module} * (op maybe to null) .
+  inc META-INTERPRETER .
+
+  vars O O' MI Y : Oid .
+  var  Atts : AttributeSet .
+  var  QIL : QidList .
+  var  Str : String .
+  vars T T' : Term .
+  vars Ty Ty' : Type .
+  var  N : Nat .
+  var  RP? : [ResultPair] .
+  var  M : Module .
+  var  M? : Maybe{Module} .
+  vars QI? : Maybe{Qid} .
+  vars QI MN : Qid .
+  var  EqS : EquationSet .
+
+  sort FunBlocks .
+  subsort FunBlocks < Cid .
+  op FunBlocks : -> FunBlocks .
+  op mi:_ : Maybe{Oid} -> Attribute [prec 20 gather (&)] .    ---- meta-interpreter
+  op mn:_ : Maybe{Qid} -> Attribute [prec 20 gather (&)] .    ---- default module name
+  op in:_ : QidList -> Attribute [prec 20 gather (&)] .       ---- accumulated input
+  op st:_ : Nat -> Attribute [prec 20 gather (&)] .           ---- state
+
+  op processInput : Oid Term -> Msg .
+  op pendingBubbles : Oid Term -> Msg .
+  op parsedEquations : Oid EquationSet -> Msg .
+  op processReduce : Oid [ResultPair] -> Msg .
+
+  op o : -> Oid .
+  op funblocks : -> Configuration .
+
+  eq funblocks
+   = <>
+     < o : FunBlocks | mi: null, mn: null, in: nil, st: 0 >
+     write(stdout, o, "'\n\t FunBlocks Execution Environment\n")
+     createInterpreter(interpreterManager, o, none) .
+
+  rl < O : FunBlocks | mi: null, st: 0, Atts >
+     wrote(O, O')
+     createdInterpreter(O, Y, MI)
+  => < O : FunBlocks | mi: MI, st: 1, Atts >
+     insertModule(MI, O, upModule('FUNBLOCKS-SYNTAX, true)) .
+
+  rl < O : FunBlocks | mi: MI, st: 1, Atts >
+     insertedModule(O, O')
+  => < O : FunBlocks | mi: MI, st: 2, Atts >
+     getLine(stdin, O, "funblocks> ") .
+
+  rl < O : FunBlocks | mi: MI, in: QIL, st: 2, Atts >
+     gotLine(O, O', Str)
+  => if tokenize(Str) == 'quit or tokenize(Str) == 'q
+     then < O : FunBlocks | mi: MI, in: nil, st: 3, Atts >
+          write(stdout, o, "goodbye\n")
+          quit(MI, O)
+     else < O : FunBlocks | mi: MI, in: QIL, st: 2, Atts >
+          getLine(stdin, O, "funblocks> ")
+     fi .
+     --- else < O : FunBlocks | mi: MI, in: QIL tokenize(Str), st: 4, Atts >
+
+  --- rl < O : FunBlocks | mi: MI, st: 3, Atts >
+  ---    wrote(O, O')
+  ---    bye(O, MI)
+  --- => none .
+
+  endm
+
+erew funblocks .

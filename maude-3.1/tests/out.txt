@@ -1,0 +1,26 @@
+load file
+
+mod HELLO is
+  including STD-STREAM .
+
+  op myClass : -> Cid .
+  op myObj : -> Oid .
+  op run : -> Configuration .
+
+  var O : Oid .
+  var A : AttributeSet .
+  var S : String .
+  var C : Char .
+
+  eq run
+    = <>
+      < myObj : myClass | none > .
+      --- getLine(stdin, myObj, "?")
+      --- openFile(fileManager, myObj, "foo.txt", "r") .
+
+  rl < myObj : myClass | none >
+  => < myObj : myClass | none >
+      write(stdout, myObj, "hello world") .
+endm
+
+erew run .

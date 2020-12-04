@@ -1,0 +1,71 @@
+fmod FUNBLOCKS is
+  protecting META-LEVEL .
+
+  vars T T1 T2 : Term .
+  vars TL TL' : TermList .
+  var TY : Type .
+  var M : Module .
+  var R : Rule .
+  var  QI : Qid .
+
+  var  I : Import .
+  vars IL : ImportList .
+  --- var  S : Sort .
+  --- vars SS : SortSet .
+  --- var  SsS : SubsortDeclSet .
+  --- var  OD : OpDecl .
+  --- var  ODS : OpDeclSet .
+  --- vars EqS EqS' : EquationSet .
+  var RS : RuleSet .
+
+op processModule : Term ~> Module .
+--- eq processModule(T) = solveBubbles(T, extractSignature(T)) .
+eq processModule(T) = extractSignature(T) .
+
+op extractSignature : Term ~> Module .
+op extractSignature : Term Module ~> Module .
+eq extractSignature(T)
+ = extractSignature(T,
+    mod 'FUNRULES is nil sorts none . none none none none none endm) .
+
+eq extractSignature('case_=>_['bubble[T1], 'bubble[T2]], M)
+ = addRules(M, (rl downTerm(T1, 'error) => downTerm(T2, 'error) [none] .)) .
+eq extractSignature(T, M) = M [owise] .
+
+--- TODO: use solveBubble to browse to var, const, ...
+--- op solveBubbles : Term Module ~> Module .
+--- op solveBubblesAux : Term Module ~> RuleSet .
+---
+--- eq solveBubbles(T, M)
+---  = addRules(M, solveBubblesAux(T, M)) .
+--- eq solveBubblesAux('case_=>_[T1,T2], M)
+---  = (rl getTerm(processTerm(T1, M)) => getTerm(processTerm(T2, M)) [none] .) .
+---
+--- op processTerm : Term Module ~> ResultPair .
+--- eq processTerm('bubble[T], M)
+---  = metaParse(M, downTerm(T, nil), anyType) .
+
+op addRules : Module Rule -> Module .
+eq addRules(mod 'FUNRULES is IL sorts none . none none none none RS endm, R)
+ = mod 'FUNRULES is IL sorts none . none none none none RS R endm .
+
+endfm
+
+--- TODO: add sort? ; deal with init ; parse const/var...
+
+--- TESTS
+
+--- reduce in FUNBLOCKS :
+---     processModule(
+---       getTerm(metaParse(upModule('FUNBLOCKS-SYNTAX, false),
+---        'case 'f '=> 'g, anyType)
+---        )) .
+
+--- reduce in FUNBLOCKS :
+---    extractSignature(
+---      getTerm(metaParse(upModule('FUNBLOCKS-SYNTAX, false),
+---       'case 'f '=> 'g, anyType)
+---       )) .
+
+--- reduce in FUNBLOCKS :
+---   addRules(mod 'FUNRULES is nil sorts none . none none none none none endm, rl 'f => 'g ) .
