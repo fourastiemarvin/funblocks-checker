@@ -24,7 +24,7 @@ fmod FUNBLOCKS-SYNTAX is
   --- subsort Decl < DeclList .
   --- subsorts PreModule Command < Input .
 
-  sorts Term Func Var Const State Rule Expr  .
+  sorts Term Func Var Const State Rule Expr Input Command  .
   subsorts Const Var Func < Term .
   subsort Term State Rule < Expr .
 
@@ -36,7 +36,7 @@ fmod FUNBLOCKS-SYNTAX is
   op case_=>_ : Bubble Bubble -> Rule .
 
   op _(_) : Token Bubble -> Func .
-  
+
   op $_ : Token -> Var .
 
 endfm

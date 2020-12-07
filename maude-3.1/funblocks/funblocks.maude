@@ -10,12 +10,14 @@ fmod FUNBLOCKS is
 
   var  I : Import .
   vars IL : ImportList .
-  --- var  S : Sort .
-  --- vars SS : SortSet .
-  --- var  SsS : SubsortDeclSet .
-  --- var  OD : OpDecl .
-  --- var  ODS : OpDeclSet .
-  --- vars EqS EqS' : EquationSet .
+  var  S : Sort .
+  vars SS : SortSet .
+  var  SsS : SubsortDeclSet .
+  var  OD : OpDecl .
+  var  ODS : OpDeclSet .
+  var VS : VariableSet .
+  var  MbS : MembAxSet .
+  vars EqS EqS' : EquationSet .
   var RS : RuleSet .
 
 op processModule : Term ~> Module .
@@ -47,13 +49,15 @@ eq extractSignature(T, M) = M [owise] .
 
 op addRules : Module Rule -> Module .
 eq addRules(mod 'FUNRULES is IL sorts none . none none none none RS endm, R)
- = mod 'FUNRULES is IL sorts none . none none none none RS R endm .
+ = mod 'FUNRULES is IL sorts none . none none none none (RS R) endm .
 
 endfm
 
 --- TODO: add sort? ; deal with init ; parse const/var...
 
 --- TESTS
+
+--- load funblocks-syntax.maude
 
 --- reduce in FUNBLOCKS :
 ---     processModule(
@@ -68,4 +72,4 @@ endfm
 ---       )) .
 
 --- reduce in FUNBLOCKS :
----   addRules(mod 'FUNRULES is nil sorts none . none none none none none endm, rl 'f => 'g ) .
+---   addRules(mod 'FUNRULES is nil sorts none . none none none none none endm, (rl 'f '=> 'g [none]) ) .
