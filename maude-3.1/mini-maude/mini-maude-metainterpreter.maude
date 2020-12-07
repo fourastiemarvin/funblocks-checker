@@ -189,8 +189,8 @@ endm
 --- eof
 
 --- set trace on .
-set print conceal on .
-print conceal fmod_is____endfm .
+--- set print conceal on .
+--- print conceal fmod_is____endfm .
 
 erew minimaude .
 
@@ -201,7 +201,7 @@ erew minimaude .
 ---    eq s s s 0 = 0 .
 --- endfm
 
-reduce s s s s 0 .
+--- reduce s s s s 0 .
 ---
 --- fmod NAT3+ is
 ---    including NAT3 .

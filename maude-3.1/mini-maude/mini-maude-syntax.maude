@@ -49,8 +49,8 @@
     --- op noop : -> Decl .
 
     --- reduce command
-    --- op reduce_. : Bubble -> Command .
-    op redu_. : Bubble -> Command .
+    op reduce_. : Bubble -> Command .
+    --- op redu_. : Bubble -> Command .
   endfm
 
 ***(
