@@ -98,6 +98,26 @@ fmod MINI-MAUDE is
    = fmod QI is IL sorts SS . SsS ODS MbS (EqS EqS') endfm .
 endfm
 
+load mini-maude-syntax.maude
+
+reduce in MINI-MAUDE :
+ processModule(
+  getTerm(metaParse(upModule(
+  'MINI-MAUDE-SYNTAX, false),
+  'fmod 'NAT3 'is 'sort 'Nat3 '. 'op 's_ ': 'Nat3
+  '-> 'Nat3 '. 'op '0 ': '-> 'Nat3 '. 'eq 's 's 's '0 '= '0 '.
+  'endfm,
+  'PreModule))) .
+
+  --- reduce in MINI-MAUDE :
+  ---  processModule(
+  ---   getTerm(metaParse(upModule(
+  ---   'MINI-MAUDE-SYNTAX, false),
+  ---   'fmod 'NAT3 'is 'sort 'Nat3 '.
+  ---   'eq 's 's 's '0 '= '0 '.
+  ---   'endfm,
+  ---   'PreModule))) .
+
 ***(
 endfm
 eof

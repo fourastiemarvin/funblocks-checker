@@ -24,22 +24,50 @@ fmod FUNBLOCKS-SYNTAX is
   --- subsort Decl < DeclList .
   --- subsorts PreModule Command < Input .
 
-  sorts Term Func Var Const State Rule Expr Input Command  .
-  subsorts Const Var Func < Term .
-  subsort Term State Rule < Expr .
+  --- sorts Term Func Var Const State Rule RuleList Expr Input Command  .
+  --- subsorts Const Var Func < Term .
+  --- subsort Term State Rule < Expr .
+  --- subsort Rule < RuleList .
+
+  sorts Decl DeclList PreModule Input Command .
+  subsort Decl < DeclList .
+  subsort PreModule Command < Input .
 
   --- dist(point($x1, $y1), point($x2, $y2))
       --- => sqrt(add(sub($x1, $x2), sub($y1, $y2)))
 
-  op init_ : Bubble -> State .
+  --- op init_ : Bubble -> State .
+  ---
+  --- op case_=>_ : Bubble Bubble -> Rule .
+  ---
+  --- op _(_) : Token Bubble -> Func .
+  ---
+  --- op $_ : Token -> Var .
+  ---
+  --- op __ : RuleList RuleList -> RuleList [assoc gather(e E)] .
 
-  op case_=>_ : Bubble Bubble -> Rule .
+  --- op including_. : Token -> Decl .
 
-  op _(_) : Token Bubble -> Func .
+  --- sort declaration
+  --- op sort_. : Token -> Decl .
 
-  op $_ : Token -> Var .
+  --- operator declaration
+  --- op op_: ->_. : Token Token -> Decl .
+  --- op op_:_->_. : Token NeTokenList Token -> Decl .
+
+  --- equation declaration
+  --- op eq_=_. : Bubble Bubble -> Decl .
+
+  op case_=>_ : Bubble Bubble -> Decl .
+  --- op case_=>_ : Token Token -> Decl .
+
+  --- op fmod_is_endfm : Token DeclList -> PreModule .
+  op __ : DeclList DeclList -> DeclList [assoc gather(e E)] .
 
 endfm
+
+--- red in META-LEVEL :
+---   getRls(upModule('FUNBLOCKS-SYNTAX, false)) .
 
 --- reduce in META-LEVEL :
 ---   metaParse(upModule('FUNBLOCKS-SYNTAX, false),

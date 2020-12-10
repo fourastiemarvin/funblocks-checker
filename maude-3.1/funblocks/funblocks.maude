@@ -1,13 +1,17 @@
 fmod FUNBLOCKS is
   protecting META-LEVEL .
+  --- including VENDING-MACHINE-SIGNATURE .
 
-  vars T T1 T2 : Term .
-  vars TL TL' : TermList .
-  var TY : Type .
-  var M : Module .
+  vars T T1 T2 T3 : Term . --- terms for declaration (module, eq,...)
+  vars TL TL' : TermList . --- to get the list of tokens
+  var  QI : Qid .        ---Qid used in solveBubbles to interprete parsed input
+  var  QIL : QidList .
+  var  F : Qid .        --- used in conditions of which parsed input we compute
+  var  M : Module .  --- Module we currently building
   var R : Rule .
-  var  QI : Qid .
 
+  --- the following ones are used to build the module containing imports,
+  --- sorts, op, axioms and equation
   var  I : Import .
   vars IL : ImportList .
   var  S : Sort .
@@ -15,60 +19,54 @@ fmod FUNBLOCKS is
   var  SsS : SubsortDeclSet .
   var  OD : OpDecl .
   var  ODS : OpDeclSet .
-  var VS : VariableSet .
   var  MbS : MembAxSet .
   vars EqS EqS' : EquationSet .
-  var RS : RuleSet .
+  var RlS : RuleSet .
 
-op processModule : Term ~> Module .
---- eq processModule(T) = solveBubbles(T, extractSignature(T)) .
-eq processModule(T) = extractSignature(T) .
+  --- "root" function who parse the entire input T
+  op processModule : Term ~> SModule .
+  eq processModule(T)
+   = solveBubbles(T,
+        mod 'FUNRULES is nil sorts none . none none none none none endm ) .
 
-op extractSignature : Term ~> Module .
-op extractSignature : Term Module ~> Module .
-eq extractSignature(T)
- = extractSignature(T,
-    mod 'FUNRULES is nil sorts none . none none none none none endm) .
+  op solveBubbles : Term SModule ~> SModule .
+  eq solveBubbles('case_=>_[T1, T2], M)
+  --- eq solveBubbles(T)
+   --- = getTerm(processTerm(T1, M)) .
+   = addRule(rl getTerm(processTerm(T1, M)) => getTerm(processTerm(T2, M)) [none] .) .
 
-eq extractSignature('case_=>_['bubble[T1], 'bubble[T2]], M)
- = addRules(M, (rl downTerm(T1, 'error) => downTerm(T2, 'error) [none] .)) .
-eq extractSignature(T, M) = M [owise] .
+ op processTerm : Term SModule ~> ResultPair .
+ eq processTerm('bubble[T], M)
+   = metaParse(M, downTerm(T, nil), anyType) .
 
---- TODO: use solveBubble to browse to var, const, ...
---- op solveBubbles : Term Module ~> Module .
---- op solveBubblesAux : Term Module ~> RuleSet .
----
---- eq solveBubbles(T, M)
----  = addRules(M, solveBubblesAux(T, M)) .
---- eq solveBubblesAux('case_=>_[T1,T2], M)
----  = (rl getTerm(processTerm(T1, M)) => getTerm(processTerm(T2, M)) [none] .) .
----
---- op processTerm : Term Module ~> ResultPair .
---- eq processTerm('bubble[T], M)
----  = metaParse(M, downTerm(T, nil), anyType) .
-
-op addRules : Module Rule -> Module .
-eq addRules(mod 'FUNRULES is IL sorts none . none none none none RS endm, R)
- = mod 'FUNRULES is IL sorts none . none none none none (RS R) endm .
+  op addRule : Rule ~> SModule .
+  eq addRule(R)
+   = mod 'FUNRULES is nil sorts none . none none none none R endm .
+  --- op showRules : Qid -> SModule .
+  --- eq showRules('TEST)
+  ---  = mod Qid is nil sorts none . none none none none rl 'T1 => 'T2 . endm .
 
 endfm
 
---- TODO: add sort? ; deal with init ; parse const/var...
-
 --- TESTS
 
---- load funblocks-syntax.maude
+load funblocks-syntax.maude
+--- load vending-machine.maude
+
+reduce in FUNBLOCKS :
+    --- processModule(rl 'M:haah => 'M:Marking [none] .) .
+    --- addRule(rl 'M:type => 'M:type [none] .) .
+    --- upModule('FUNRULES, false) .
+    --- solveBubbles('case 'f '=> 'g,
+    ---   mod 'FUNRULES is nil sorts none . none none none none none endm ) .
+    metaParse(upModule('FUNBLOCKS-SYNTAX, false),
+          downTerm('case 'f '=> 'g, nil), anyType) .
 
 --- reduce in FUNBLOCKS :
----     processModule(
----       getTerm(metaParse(upModule('FUNBLOCKS-SYNTAX, false),
----        'case 'f '=> 'g, anyType)
----        )) .
-
---- reduce in FUNBLOCKS :
----    extractSignature(
+---    processModule(
 ---      getTerm(metaParse(upModule('FUNBLOCKS-SYNTAX, false),
 ---       'case 'f '=> 'g, anyType)
+---           --- ) .
 ---       )) .
 
 --- reduce in FUNBLOCKS :
