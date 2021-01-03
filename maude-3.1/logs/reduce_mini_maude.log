@@ -1,0 +1,336 @@
+minimaude> reduce s s s s 0 .
+*********** rule
+rl < O : MiniMaude | Atts,mi: MI,in: QIL,st: 2 > gotLine(O, O', Str) => if tokenize(Str) == 'q or
+    tokenize(Str) == 'quit then (quit(MI, O) write(stdout, o, "goodbye\n")) < O : MiniMaude | mi:
+    MI,in: nil,Atts,st: 3 > else < O : MiniMaude | mi: MI,in: (QIL tokenize(Str)),Atts,st: 4 >
+    parseTerm(MI, O, 'MINI-MAUDE-SYNTAX, none, QIL tokenize(Str), 'Input) fi .
+O --> o
+Atts --> mn: 'NAT3
+MI --> interpreter(0)
+QIL --> (nil).TypeList
+O' --> stdin
+Str --> "reduce s s s s 0 .\n"
+< o : MiniMaude | mi: interpreter(0),mn: 'NAT3,in: nil,st: 2 > gotLine(o, stdin,
+    "reduce s s s s 0 .\n")
+--->
+if tokenize("reduce s s s s 0 .\n") == 'q or tokenize("reduce s s s s 0 .\n") == 'quit then (quit(
+    interpreter(0), o) write(stdout, o, "goodbye\n")) < o : MiniMaude | mi: interpreter(0),in: nil,
+    mn: 'NAT3,st: 3 > else < o : MiniMaude | mi: interpreter(0),in: (nil tokenize(
+    "reduce s s s s 0 .\n")),mn: 'NAT3,st: 4 > parseTerm(interpreter(0), o, 'MINI-MAUDE-SYNTAX,
+    none, nil tokenize("reduce s s s s 0 .\n"), 'Input) fi
+*********** equation
+(built-in equation for symbol tokenize)
+tokenize("reduce s s s s 0 .\n")
+--->
+'reduce 's 's 's 's '0 '.
+*********** equation
+(built-in equation for symbol _==_)
+'reduce 's 's 's 's '0 '. == 'q
+--->
+false
+*********** equation
+(built-in equation for symbol _==_)
+'reduce 's 's 's 's '0 '. == 'quit
+--->
+false
+*********** equation
+eq A:Bool or B:Bool = A:Bool and B:Bool xor A:Bool xor B:Bool .
+A:Bool --> false
+B:Bool --> false
+false or false
+--->
+false and false xor false xor false
+*********** equation
+eq false and A:Bool = false .
+A:Bool --> false
+false and false
+--->
+false
+*********** equation
+eq false xor A:Bool = A:Bool .
+A:Bool --> false
+false xor false
+--->
+false
+*********** equation
+eq false xor A:Bool = A:Bool .
+A:Bool --> false
+false xor false
+--->
+false
+*********** equation
+(built-in equation for symbol if_then_else_fi)
+if false then (quit(interpreter(0), o) write(stdout, o, "goodbye\n")) < o : MiniMaude | mi:
+    interpreter(0),in: nil,mn: 'NAT3,st: 3 > else < o : MiniMaude | mi: interpreter(0),in: (nil
+    'reduce 's 's 's 's '0 '.),mn: 'NAT3,st: 4 > parseTerm(interpreter(0), o, 'MINI-MAUDE-SYNTAX,
+    none, nil 'reduce 's 's 's 's '0 '., 'Input) fi
+--->
+< o : MiniMaude | mi: interpreter(0),in: (nil 'reduce 's 's 's 's '0 '.),mn: 'NAT3,st: 4 >
+    parseTerm(interpreter(0), o, 'MINI-MAUDE-SYNTAX, none, nil 'reduce 's 's 's 's '0 '., 'Input)
+*********** rule
+rl < O : MiniMaude | Atts,mi: MI,in: QIL,st: 4 > parsedTerm(O, MI, {T,Ty}) => processInput(O, T) < O
+    : MiniMaude | mi: MI,in: nil,Atts,st: 6 > .
+O --> o
+Atts --> mn: 'NAT3
+MI --> interpreter(0)
+QIL --> 'reduce 's 's 's 's '0 '.
+T --> 'reduce_.['bubble['__[''s.Qid,''s.Qid,''s.Qid,''s.Qid,''0.Qid]]]
+Ty --> 'Command
+< o : MiniMaude | mi: interpreter(0),mn: 'NAT3,in: ('reduce 's 's 's 's '0 '.),st: 4 > parsedTerm(o,
+    interpreter(0), {'reduce_.['bubble['__[''s.Qid,''s.Qid,''s.Qid,''s.Qid,''0.Qid]]],'Command})
+--->
+processInput(o, 'reduce_.['bubble['__[''s.Qid,''s.Qid,''s.Qid,''s.Qid,''0.Qid]]]) < o : MiniMaude |
+    mi: interpreter(0),in: nil,mn: 'NAT3,st: 6 >
+*********** rule
+rl processInput(O, 'reduce_.['bubble[T]]) < O : MiniMaude | Atts,mi: MI,mn: MN,st: 6 > => < O :
+    MiniMaude | mi: MI,mn: MN,Atts,st: 11 > parseTerm(MI, O, MN, none, downTerm(T, nil), anyType) .
+O --> o
+T --> '__[''s.Qid,''s.Qid,''s.Qid,''s.Qid,''0.Qid]
+Atts --> in: nil
+MI --> interpreter(0)
+MN --> 'NAT3
+<> processInput(o, 'reduce_.['bubble['__[''s.Qid,''s.Qid,''s.Qid,''s.Qid,''0.Qid]]]) < o : MiniMaude
+    | mi: interpreter(0),mn: 'NAT3,in: nil,st: 6 >
+--->
+<> < o : MiniMaude | mi: interpreter(0),mn: 'NAT3,in: nil,st: 11 > parseTerm(interpreter(0), o,
+    'NAT3, none, downTerm('__[''s.Qid,''s.Qid,''s.Qid,''s.Qid,''0.Qid], nil), anyType)
+*********** equation
+(built-in equation for symbol downTerm)
+downTerm('__[''s.Qid,''s.Qid,''s.Qid,''s.Qid,''0.Qid], (nil).TypeList)
+--->
+'s 's 's 's '0
+*********** rule
+rl < O : MiniMaude | Atts,mi: MI,mn: MN,st: 11 > parsedTerm(O, MI, {T,Ty}) => < O : MiniMaude | mi:
+    MI,mn: MN,Atts,st: 12 > reduceTerm(MI, O, MN, T) .
+O --> o
+Atts --> in: nil
+MI --> interpreter(0)
+MN --> 'NAT3
+T --> 's_['s_['s_['s_['0.Nat3]]]]
+Ty --> 'Nat3
+< o : MiniMaude | mi: interpreter(0),mn: 'NAT3,in: nil,st: 11 > parsedTerm(o, interpreter(0), {'s_[
+    's_['s_['s_['0.Nat3]]]],'Nat3})
+--->
+< o : MiniMaude | mi: interpreter(0),mn: 'NAT3,in: nil,st: 12 > reduceTerm(interpreter(0), o, 'NAT3,
+    's_['s_['s_['s_['0.Nat3]]]])
+*********** equation
+eq s s s 0 = 0 .
+empty substitution
+s s s 0
+--->
+0
+*********** rule
+rl < O : MiniMaude | Atts,mi: MI,mn: MN,st: 12 > reducedTerm(O, MI, N, T, Ty) => (reducedTerm(O, MI,
+    N, T, Ty) printTerm(MI, O, MN, none, T, mixfix flat format number rat)) < O : MiniMaude | mi:
+    MI,mn: MN,Atts,st: 13 > .
+O --> o
+Atts --> in: nil
+MI --> interpreter(0)
+MN --> 'NAT3
+N --> 1
+T --> 's_['0.Nat3]
+Ty --> 'Nat3
+< o : MiniMaude | mi: interpreter(0),mn: 'NAT3,in: nil,st: 12 > reducedTerm(o, interpreter(0), 1,
+    's_['0.Nat3], 'Nat3)
+--->
+(reducedTerm(o, interpreter(0), 1, 's_['0.Nat3], 'Nat3) printTerm(interpreter(0), o, 'NAT3, none,
+    's_['0.Nat3], mixfix flat format number rat)) < o : MiniMaude | mi: interpreter(0),mn: 'NAT3,in:
+    nil,st: 13 >
+*********** rule
+rl < O : MiniMaude | Atts,mi: MI,st: 13 > printedTerm(O, MI, QIL) reducedTerm(O, MI, N, T, Ty) => <
+    O : MiniMaude | mi: MI,Atts,st: 5 > write(stdout, o, "result " + string(Ty) + ": " +
+minimaude> reduce s s s s 0 .
+*********** rule
+rl < O : MiniMaude | Atts,mi: MI,in: QIL,st: 2 > gotLine(O, O', Str) => if tokenize(Str) == 'q or
+    tokenize(Str) == 'quit then (quit(MI, O) write(stdout, o, "goodbye\n")) < O : MiniMaude | mi:
+    MI,in: nil,Atts,st: 3 > else < O : MiniMaude | mi: MI,in: (QIL tokenize(Str)),Atts,st: 4 >
+    parseTerm(MI, O, 'MINI-MAUDE-SYNTAX, none, QIL tokenize(Str), 'Input) fi .
+O --> o
+Atts --> mn: 'NAT3
+MI --> interpreter(0)
+QIL --> (nil).TypeList
+O' --> stdin
+Str --> "reduce s s s s 0 .\n"
+< o : MiniMaude | mi: interpreter(0),mn: 'NAT3,in: nil,st: 2 > gotLine(o, stdin,
+    "reduce s s s s 0 .\n")
+--->
+if tokenize("reduce s s s s 0 .\n") == 'q or tokenize("reduce s s s s 0 .\n") == 'quit then (quit(
+    interpreter(0), o) write(stdout, o, "goodbye\n")) < o : MiniMaude | mi: interpreter(0),in: nil,
+    mn: 'NAT3,st: 3 > else < o : MiniMaude | mi: interpreter(0),in: (nil tokenize(
+    "reduce s s s s 0 .\n")),mn: 'NAT3,st: 4 > parseTerm(interpreter(0), o, 'MINI-MAUDE-SYNTAX,
+    none, nil tokenize("reduce s s s s 0 .\n"), 'Input) fi
+*********** equation
+(built-in equation for symbol tokenize)
+tokenize("reduce s s s s 0 .\n")
+--->
+'reduce 's 's 's 's '0 '.
+*********** equation
+(built-in equation for symbol _==_)
+'reduce 's 's 's 's '0 '. == 'q
+--->
+false
+*********** equation
+(built-in equation for symbol _==_)
+'reduce 's 's 's 's '0 '. == 'quit
+--->
+false
+*********** equation
+eq A:Bool or B:Bool = A:Bool and B:Bool xor A:Bool xor B:Bool .
+A:Bool --> false
+B:Bool --> false
+false or false
+--->
+false and false xor false xor false
+*********** equation
+eq false and A:Bool = false .
+A:Bool --> false
+false and false
+--->
+false
+*********** equation
+eq false xor A:Bool = A:Bool .
+A:Bool --> false
+false xor false
+--->
+false
+*********** equation
+eq false xor A:Bool = A:Bool .
+A:Bool --> false
+false xor false
+--->
+false
+*********** equation
+(built-in equation for symbol if_then_else_fi)
+if false then (quit(interpreter(0), o) write(stdout, o, "goodbye\n")) < o : MiniMaude | mi:
+    interpreter(0),in: nil,mn: 'NAT3,st: 3 > else < o : MiniMaude | mi: interpreter(0),in: (nil
+    'reduce 's 's 's 's '0 '.),mn: 'NAT3,st: 4 > parseTerm(interpreter(0), o, 'MINI-MAUDE-SYNTAX,
+    none, nil 'reduce 's 's 's 's '0 '., 'Input) fi
+--->
+< o : MiniMaude | mi: interpreter(0),in: (nil 'reduce 's 's 's 's '0 '.),mn: 'NAT3,st: 4 >
+    parseTerm(interpreter(0), o, 'MINI-MAUDE-SYNTAX, none, nil 'reduce 's 's 's 's '0 '., 'Input)
+*********** rule
+rl < O : MiniMaude | Atts,mi: MI,in: QIL,st: 4 > parsedTerm(O, MI, {T,Ty}) => processInput(O, T) < O
+    : MiniMaude | mi: MI,in: nil,Atts,st: 6 > .
+O --> o
+Atts --> mn: 'NAT3
+MI --> interpreter(0)
+QIL --> 'reduce 's 's 's 's '0 '.
+T --> 'reduce_.['bubble['__[''s.Qid,''s.Qid,''s.Qid,''s.Qid,''0.Qid]]]
+Ty --> 'Command
+< o : MiniMaude | mi: interpreter(0),mn: 'NAT3,in: ('reduce 's 's 's 's '0 '.),st: 4 > parsedTerm(o,
+    interpreter(0), {'reduce_.['bubble['__[''s.Qid,''s.Qid,''s.Qid,''s.Qid,''0.Qid]]],'Command})
+--->
+processInput(o, 'reduce_.['bubble['__[''s.Qid,''s.Qid,''s.Qid,''s.Qid,''0.Qid]]]) < o : MiniMaude |
+    mi: interpreter(0),in: nil,mn: 'NAT3,st: 6 >
+*********** rule
+rl processInput(O, 'reduce_.['bubble[T]]) < O : MiniMaude | Atts,mi: MI,mn: MN,st: 6 > => < O :
+    MiniMaude | mi: MI,mn: MN,Atts,st: 11 > parseTerm(MI, O, MN, none, downTerm(T, nil), anyType) .
+O --> o
+T --> '__[''s.Qid,''s.Qid,''s.Qid,''s.Qid,''0.Qid]
+Atts --> in: nil
+MI --> interpreter(0)
+MN --> 'NAT3
+<> processInput(o, 'reduce_.['bubble['__[''s.Qid,''s.Qid,''s.Qid,''s.Qid,''0.Qid]]]) < o : MiniMaude
+    | mi: interpreter(0),mn: 'NAT3,in: nil,st: 6 >
+--->
+<> < o : MiniMaude | mi: interpreter(0),mn: 'NAT3,in: nil,st: 11 > parseTerm(interpreter(0), o,
+    'NAT3, none, downTerm('__[''s.Qid,''s.Qid,''s.Qid,''s.Qid,''0.Qid], nil), anyType)
+*********** equation
+(built-in equation for symbol downTerm)
+downTerm('__[''s.Qid,''s.Qid,''s.Qid,''s.Qid,''0.Qid], (nil).TypeList)
+--->
+'s 's 's 's '0
+*********** rule
+rl < O : MiniMaude | Atts,mi: MI,mn: MN,st: 11 > parsedTerm(O, MI, {T,Ty}) => < O : MiniMaude | mi:
+    MI,mn: MN,Atts,st: 12 > reduceTerm(MI, O, MN, T) .
+O --> o
+Atts --> in: nil
+MI --> interpreter(0)
+MN --> 'NAT3
+T --> 's_['s_['s_['s_['0.Nat3]]]]
+Ty --> 'Nat3
+< o : MiniMaude | mi: interpreter(0),mn: 'NAT3,in: nil,st: 11 > parsedTerm(o, interpreter(0), {'s_[
+    's_['s_['s_['0.Nat3]]]],'Nat3})
+--->
+< o : MiniMaude | mi: interpreter(0),mn: 'NAT3,in: nil,st: 12 > reduceTerm(interpreter(0), o, 'NAT3,
+    's_['s_['s_['s_['0.Nat3]]]])
+*********** equation
+eq s s s 0 = 0 .
+empty substitution
+s s s 0
+--->
+0
+*********** rule
+rl < O : MiniMaude | Atts,mi: MI,mn: MN,st: 12 > reducedTerm(O, MI, N, T, Ty) => (reducedTerm(O, MI,
+    N, T, Ty) printTerm(MI, O, MN, none, T, mixfix flat format number rat)) < O : MiniMaude | mi:
+    MI,mn: MN,Atts,st: 13 > .
+O --> o
+Atts --> in: nil
+MI --> interpreter(0)
+MN --> 'NAT3
+N --> 1
+T --> 's_['0.Nat3]
+Ty --> 'Nat3
+< o : MiniMaude | mi: interpreter(0),mn: 'NAT3,in: nil,st: 12 > reducedTerm(o, interpreter(0), 1,
+    's_['0.Nat3], 'Nat3)
+--->
+(reducedTerm(o, interpreter(0), 1, 's_['0.Nat3], 'Nat3) printTerm(interpreter(0), o, 'NAT3, none,
+    's_['0.Nat3], mixfix flat format number rat)) < o : MiniMaude | mi: interpreter(0),mn: 'NAT3,in:
+    nil,st: 13 >
+*********** rule
+rl < O : MiniMaude | Atts,mi: MI,st: 13 > printedTerm(O, MI, QIL) reducedTerm(O, MI, N, T, Ty) => <
+    O : MiniMaude | mi: MI,Atts,st: 5 > write(stdout, o, "result " + string(Ty) + ": " +
+    printTokens(QIL) + "\n") .
+O --> o
+Atts --> mn: 'NAT3,in: nil
+MI --> interpreter(0)
+QIL --> 's '0
+N --> 1
+T --> 's_['0.Nat3]
+Ty --> 'Nat3
+<> < o : MiniMaude | mi: interpreter(0),mn: 'NAT3,in: nil,st: 13 > printedTerm(o, interpreter(0), 's
+    '0) reducedTerm(o, interpreter(0), 1, 's_['0.Nat3], 'Nat3)
+--->
+<> < o : MiniMaude | mi: interpreter(0),(mn: 'NAT3,in: nil),st: 5 > write(stdout, o, "result " +
+    string('Nat3) + ": " + printTokens('s '0) + "\n")
+*********** equation
+(built-in equation for symbol string)
+string('Nat3)
+--->
+"Nat3"
+*********** equation
+(built-in equation for symbol _+_)
+"result " + "Nat3"
+--->
+"result Nat3"
+*********** equation
+(built-in equation for symbol _+_)
+"result Nat3" + ": "
+--->
+"result Nat3: "
+*********** equation
+(built-in equation for symbol printTokens)
+printTokens('s '0)
+--->
+"s 0"
+*********** equation
+(built-in equation for symbol _+_)
+"result Nat3: " + "s 0"
+--->
+"result Nat3: s 0"
+*********** equation
+(built-in equation for symbol _+_)
+"result Nat3: s 0" + "\n"
+--->
+"result Nat3: s 0\n"
+result Nat3: s 0
+*********** rule
+rl wrote(O, O') < O : MiniMaude | Atts,mi: MI,st: 5 > => < O : MiniMaude | mi: MI,Atts,st: 2 >
+    getLine(stdin, O, "minimaude> ") .
+O --> o
+O' --> stdout
+Atts --> mn: 'NAT3,in: nil
+MI --> interpreter(0)
+wrote(o, stdout) < o : MiniMaude | mi: interpreter(0),mn: 'NAT3,in: nil,st: 5 >
+--->
+< o : MiniMaude | mi: interpreter(0),(mn: 'NAT3,in: nil),st: 2 > getLine(stdin, o, "minimaude> ")

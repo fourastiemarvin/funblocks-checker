@@ -1,0 +1,309 @@
+erewrite in MINI-MAUDE-META-INTERPRETER : minimaude .
+*********** equation
+eq minimaude = <> (write(stdout, o, "'\n\t MiniMaude Execution Environment\n") createInterpreter(
+    interpreterManager, o, none)) < o : MiniMaude | mi: null,mn: null,in: nil,st: 0 > .
+empty substitution
+minimaude
+--->
+<> (write(stdout, o, "'\n\t MiniMaude Execution Environment\n") createInterpreter(
+    interpreterManager, o, none)) < o : MiniMaude | mi: null,mn: null,in: nil,st: 0 >
+'
+	 MiniMaude Execution Environment
+*********** rule
+rl wrote(O, O') < O : MiniMaude | Atts,mi: null,st: 0 > createdInterpreter(O, Y, MI) => < O :
+    MiniMaude | mi: MI,Atts,st: 1 > insertModule(MI, O, upModule('MINI-MAUDE-SYNTAX, true)) .
+O --> o
+O' --> stdout
+Atts --> mn: null,in: nil
+Y --> interpreterManager
+MI --> interpreter(0)
+<> wrote(o, stdout) < o : MiniMaude | mi: null,mn: null,in: nil,st: 0 > createdInterpreter(o,
+    interpreterManager, interpreter(0))
+--->
+<> < o : MiniMaude | mi: interpreter(0),(mn: null,in: nil),st: 1 > insertModule(interpreter(0), o,
+    upModule('MINI-MAUDE-SYNTAX, true))
+*********** equation
+(built-in equation for symbol upModule)
+upModule('MINI-MAUDE-SYNTAX, true)
+--->
+fmod 'MINI-MAUDE-SYNTAX is
+  nil
+  sorts 'Bool ; 'Zero ; 'NzNat ; 'Nat ; 'String ; 'Char ; 'FindResult ; 'Qid ; 'NeQidList ; 'QidList
+    ; 'Token ; 'Bubble ; 'NeTokenList ; 'Decl ; 'DeclList ; 'PreModule ; 'Input ; 'Command .
+  subsort 'Zero < 'Nat .
+  subsort 'NzNat < 'Nat .
+  subsort 'Char < 'String .
+  subsort 'Nat < 'FindResult .
+  subsort 'Qid < 'NeQidList .
+  subsort 'NeQidList < 'QidList .
+  subsort 'Decl < 'DeclList .
+  subsort 'PreModule < 'Input .
+  subsort 'Command < 'Input .
+  op 'if_then_else_fi : 'Bool 'Universal 'Universal -> 'Universal [poly(2 3 0) special(
+    id-hook('BranchSymbol, nil) 
+    term-hook('1, 'true.Bool) 
+    term-hook('2, 'false.Bool))] .
+  op '_==_ : 'Universal 'Universal -> 'Bool [poly(1 2) prec(51) special(
+    id-hook('EqualitySymbol, nil) 
+    term-hook('equalTerm, 'true.Bool) 
+    term-hook('notEqualTerm, 'false.Bool))] .
+  op '_=/=_ : 'Universal 'Universal -> 'Bool [poly(1 2) prec(51) special(
+    id-hook('EqualitySymbol, nil) 
+    term-hook('equalTerm, 'false.Bool) 
+    term-hook('notEqualTerm, 'true.Bool))] .
+  op 'true : nil -> 'Bool [ctor special(
+    id-hook('SystemTrue, nil))] .
+  op 'false : nil -> 'Bool [ctor special(
+    id-hook('SystemFalse, nil))] .
+  op '_and_ : 'Bool 'Bool -> 'Bool [prec(55) assoc comm] .
+  op '_or_ : 'Bool 'Bool -> 'Bool [prec(59) assoc comm] .
+  op '_xor_ : 'Bool 'Bool -> 'Bool [prec(57) assoc comm] .
+  op 'not_ : 'Bool -> 'Bool [prec(53)] .
+  op '_implies_ : 'Bool 'Bool -> 'Bool [prec(61) gather('e 'E)] .
+  op '0 : nil -> 'Zero [ctor] .
+  op 's_ : 'Nat -> 'NzNat [ctor special(
+    id-hook('SuccSymbol, nil) 
+    term-hook('zeroTerm, '0.Zero)) iter] .
+  op '_+_ : 'NzNat 'Nat -> 'NzNat [prec(33) special(
+    id-hook('ACU_NumberOpSymbol, '+) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat)) assoc comm] .
+  op '_+_ : 'Nat 'Nat -> 'Nat [prec(33) special(
+    id-hook('ACU_NumberOpSymbol, '+) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat)) assoc comm] .
+  op 'sd : 'Nat 'Nat -> 'Nat [special(
+    id-hook('CUI_NumberOpSymbol, 'sd) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat)) comm] .
+  op '_*_ : 'NzNat 'NzNat -> 'NzNat [prec(31) special(
+    id-hook('ACU_NumberOpSymbol, '*) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat)) assoc comm] .
+  op '_*_ : 'Nat 'Nat -> 'Nat [prec(31) special(
+    id-hook('ACU_NumberOpSymbol, '*) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat)) assoc comm] .
+  op '_quo_ : 'Nat 'NzNat -> 'Nat [prec(31) gather('E 'e) special(
+    id-hook('NumberOpSymbol, 'quo) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat))] .
+  op '_rem_ : 'Nat 'NzNat -> 'Nat [prec(31) gather('E 'e) special(
+    id-hook('NumberOpSymbol, 'rem) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat))] .
+  op '_^_ : 'Nat 'Nat -> 'Nat [prec(29) gather('E 'e) special(
+    id-hook('NumberOpSymbol, '^) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat))] .
+  op '_^_ : 'NzNat 'Nat -> 'NzNat [prec(29) gather('E 'e) special(
+    id-hook('NumberOpSymbol, '^) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat))] .
+  op 'modExp : '`[FindResult`] '`[FindResult`] '`[FindResult`] -> '`[FindResult`] [special(
+    id-hook('NumberOpSymbol, 'modExp) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat))] .
+  op 'gcd : 'NzNat 'Nat -> 'NzNat [special(
+    id-hook('ACU_NumberOpSymbol, 'gcd) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat)) assoc comm] .
+  op 'gcd : 'Nat 'Nat -> 'Nat [special(
+    id-hook('ACU_NumberOpSymbol, 'gcd) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat)) assoc comm] .
+  op 'lcm : 'NzNat 'NzNat -> 'NzNat [special(
+    id-hook('ACU_NumberOpSymbol, 'lcm) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat)) assoc comm] .
+  op 'lcm : 'Nat 'Nat -> 'Nat [special(
+    id-hook('ACU_NumberOpSymbol, 'lcm) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat)) assoc comm] .
+  op 'min : 'NzNat 'NzNat -> 'NzNat [special(
+    id-hook('ACU_NumberOpSymbol, 'min) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat)) assoc comm] .
+  op 'min : 'Nat 'Nat -> 'Nat [special(
+    id-hook('ACU_NumberOpSymbol, 'min) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat)) assoc comm] .
+  op 'max : 'NzNat 'Nat -> 'NzNat [special(
+    id-hook('ACU_NumberOpSymbol, 'max) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat)) assoc comm] .
+  op 'max : 'Nat 'Nat -> 'Nat [special(
+    id-hook('ACU_NumberOpSymbol, 'max) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat)) assoc comm] .
+  op '_xor_ : 'Nat 'Nat -> 'Nat [prec(55) special(
+    id-hook('ACU_NumberOpSymbol, 'xor) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat)) assoc comm] .
+  op '_&_ : 'Nat 'Nat -> 'Nat [prec(53) special(
+    id-hook('ACU_NumberOpSymbol, '&) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat)) assoc comm] .
+  op '_|_ : 'NzNat 'Nat -> 'NzNat [prec(57) special(
+    id-hook('ACU_NumberOpSymbol, '|) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat)) assoc comm] .
+  op '_|_ : 'Nat 'Nat -> 'Nat [prec(57) special(
+    id-hook('ACU_NumberOpSymbol, '|) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat)) assoc comm] .
+  op '_>>_ : 'Nat 'Nat -> 'Nat [prec(35) gather('E 'e) special(
+    id-hook('NumberOpSymbol, '>>) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat))] .
+  op '_<<_ : 'Nat 'Nat -> 'Nat [prec(35) gather('E 'e) special(
+    id-hook('NumberOpSymbol, '<<) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat))] .
+  op '_<_ : 'Nat 'Nat -> 'Bool [prec(37) special(
+    id-hook('NumberOpSymbol, '<) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat) 
+    term-hook('trueTerm, 'true.Bool) 
+    term-hook('falseTerm, 'false.Bool))] .
+  op '_<=_ : 'Nat 'Nat -> 'Bool [prec(37) special(
+    id-hook('NumberOpSymbol, '<=) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat) 
+    term-hook('trueTerm, 'true.Bool) 
+    term-hook('falseTerm, 'false.Bool))] .
+  op '_>_ : 'Nat 'Nat -> 'Bool [prec(37) special(
+    id-hook('NumberOpSymbol, '>) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat) 
+    term-hook('trueTerm, 'true.Bool) 
+    term-hook('falseTerm, 'false.Bool))] .
+  op '_>=_ : 'Nat 'Nat -> 'Bool [prec(37) special(
+    id-hook('NumberOpSymbol, '>=) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat) 
+    term-hook('trueTerm, 'true.Bool) 
+    term-hook('falseTerm, 'false.Bool))] .
+  op '_divides_ : 'NzNat 'Nat -> 'Bool [prec(51) special(
+    id-hook('NumberOpSymbol, 'divides) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat) 
+    term-hook('trueTerm, 'true.Bool) 
+    term-hook('falseTerm, 'false.Bool))] .
+  op '<Strings> : nil -> 'Char [special(
+    id-hook('StringSymbol, nil))] .
+  op '<Strings> : nil -> 'String [special(
+    id-hook('StringSymbol, nil))] .
+  op 'notFound : nil -> 'FindResult [ctor] .
+  op 'ascii : 'Char -> 'Nat [special(
+    id-hook('StringOpSymbol, 'ascii) 
+    op-hook('stringSymbol, '<Strings>, nil, 'Char) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat))] .
+  op 'char : '`[FindResult`] -> '`[String`] [special(
+    id-hook('StringOpSymbol, 'char) 
+    op-hook('stringSymbol, '<Strings>, nil, 'Char) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat))] .
+  op '_+_ : 'String 'String -> 'String [prec(33) gather('E 'e) special(
+    id-hook('StringOpSymbol, '+) 
+    op-hook('stringSymbol, '<Strings>, nil, 'Char))] .
+  op 'length : 'String -> 'Nat [special(
+    id-hook('StringOpSymbol, 'length) 
+    op-hook('stringSymbol, '<Strings>, nil, 'Char) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat))] .
+  op 'substr : 'String 'Nat 'Nat -> 'String [special(
+    id-hook('StringOpSymbol, 'substr) 
+    op-hook('stringSymbol, '<Strings>, nil, 'Char) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat))] .
+  op 'find : 'String 'String 'Nat -> 'FindResult [special(
+    id-hook('StringOpSymbol, 'find) 
+    op-hook('stringSymbol, '<Strings>, nil, 'Char) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat) 
+    term-hook('notFoundTerm, 'notFound.FindResult))] .
+  op 'rfind : 'String 'String 'Nat -> 'FindResult [special(
+    id-hook('StringOpSymbol, 'rfind) 
+    op-hook('stringSymbol, '<Strings>, nil, 'Char) 
+    op-hook('succSymbol, 's_, 'Nat, 'NzNat) 
+    term-hook('notFoundTerm, 'notFound.FindResult))] .
+  op '_<_ : 'String 'String -> 'Bool [prec(37) special(
+    id-hook('StringOpSymbol, '<) 
+    op-hook('stringSymbol, '<Strings>, nil, 'Char) 
+    term-hook('trueTerm, 'true.Bool) 
+    term-hook('falseTerm, 'false.Bool))] .
+  op '_<=_ : 'String 'String -> 'Bool [prec(37) special(
+    id-hook('StringOpSymbol, '<=) 
+    op-hook('stringSymbol, '<Strings>, nil, 'Char) 
+    term-hook('trueTerm, 'true.Bool) 
+    term-hook('falseTerm, 'false.Bool))] .
+  op '_>_ : 'String 'String -> 'Bool [prec(37) special(
+    id-hook('StringOpSymbol, '>) 
+    op-hook('stringSymbol, '<Strings>, nil, 'Char) 
+    term-hook('trueTerm, 'true.Bool) 
+    term-hook('falseTerm, 'false.Bool))] .
+  op '_>=_ : 'String 'String -> 'Bool [prec(37) special(
+    id-hook('StringOpSymbol, '>=) 
+    op-hook('stringSymbol, '<Strings>, nil, 'Char) 
+    term-hook('trueTerm, 'true.Bool) 
+    term-hook('falseTerm, 'false.Bool))] .
+  op 'upperCase : 'String -> 'String [special(
+    id-hook('StringOpSymbol, 'upperCase) 
+    op-hook('stringSymbol, '<Strings>, nil, 'Char))] .
+  op 'lowerCase : 'String -> 'String [special(
+    id-hook('StringOpSymbol, 'lowerCase) 
+    op-hook('stringSymbol, '<Strings>, nil, 'Char))] .
+  op '<Qids> : nil -> 'Qid [special(
+    id-hook('QuotedIdentifierSymbol, nil))] .
+  op 'string : 'Qid -> 'String [special(
+    id-hook('QuotedIdentifierOpSymbol, 'string) 
+    op-hook('quotedIdentifierSymbol, '<Qids>, nil, 'Qid) 
+    op-hook('stringSymbol, '<Strings>, nil, 'Char))] .
+  op 'qid : '`[String`] -> '`[QidList`] [special(
+    id-hook('QuotedIdentifierOpSymbol, 'qid) 
+    op-hook('quotedIdentifierSymbol, '<Qids>, nil, 'Qid) 
+    op-hook('stringSymbol, '<Strings>, nil, 'Char))] .
+  op 'nil : nil -> 'QidList [ctor] .
+  op '__ : 'QidList 'QidList -> 'QidList [ctor prec(25) id('nil.QidList) assoc] .
+  op '__ : 'NeQidList 'QidList -> 'NeQidList [ctor prec(25) id('nil.QidList) assoc] .
+  op '__ : 'QidList 'NeQidList -> 'NeQidList [ctor prec(25) id('nil.QidList) assoc] .
+  op 'append : 'QidList 'QidList -> 'QidList [none] .
+  op 'append : 'NeQidList 'QidList -> 'NeQidList [none] .
+  op 'append : 'QidList 'NeQidList -> 'NeQidList [none] .
+  op 'head : 'NeQidList -> 'Qid [none] .
+  op 'tail : 'NeQidList -> 'QidList [none] .
+  op 'last : 'NeQidList -> 'Qid [none] .
+  op 'front : 'NeQidList -> 'QidList [none] .
+  op 'occurs : 'Qid 'QidList -> 'Bool [none] .
+  op 'reverse : 'QidList -> 'QidList [none] .
+  op 'reverse : 'NeQidList -> 'NeQidList [none] .
+  op '$reverse : 'QidList 'QidList -> 'QidList [none] .
+  op 'size : 'QidList -> 'Nat [none] .
+  op 'size : 'NeQidList -> 'NzNat [none] .
+  op '$size : 'QidList 'Nat -> 'Nat [none] .
+  op 'token : 'Qid -> 'Token [special(
+    id-hook('Bubble, '1 '1) 
+    op-hook('qidSymbol, '<Qids>, nil, 'Qid))] .
+  op 'bubble : 'QidList -> 'Bubble [special(
+    id-hook('Bubble, '1 '-1) 
+    id-hook('Exclude, '.) 
+    op-hook('qidSymbol, '<Qids>, nil, 'Qid) 
+    op-hook('qidListSymbol, '__, 'QidList 'QidList, 'QidList))] .
+  op 'neTokenList : 'QidList -> 'NeTokenList [special(
+    id-hook('Bubble, '1 '-1) 
+    id-hook('Exclude, '->) 
+    op-hook('qidSymbol, '<Qids>, nil, 'Qid) 
+    op-hook('qidListSymbol, '__, 'QidList 'QidList, 'QidList))] .
+  op 'including_. : 'Token -> 'Decl [none] .
+  op 'sort_. : 'Token -> 'Decl [none] .
+  op 'op_:`->_. : 'Token 'Token -> 'Decl [none] .
+  op 'op_:_->_. : 'Token 'NeTokenList 'Token -> 'Decl [none] .
+  op 'eq_=_. : 'Bubble 'Bubble -> 'Decl [none] .
+  op 'fmod_is_endfm : 'Token 'DeclList -> 'PreModule [none] .
+  op '__ : 'DeclList 'DeclList -> 'DeclList [gather('e 'E) assoc] .
+  op 'reduce_. : 'Bubble -> 'Command [none] .
+  none
+  eq '_and_['true.Bool,'A:Bool] = 'A:Bool [none] .
+  eq '_and_['false.Bool,'A:Bool] = 'false.Bool [none] .
+  eq '_and_['A:Bool,'A:Bool] = 'A:Bool [none] .
+  eq '_xor_['false.Bool,'A:Bool] = 'A:Bool [none] .
+  eq '_xor_['A:Bool,'A:Bool] = 'false.Bool [none] .
+  eq '_and_['A:Bool,'_xor_['B:Bool,'C:Bool]] = '_xor_['_and_['A:Bool,'B:Bool],'_and_['A:Bool,
+    'C:Bool]] [none] .
+  eq 'not_['A:Bool] = '_xor_['true.Bool,'A:Bool] [none] .
+  eq '_or_['A:Bool,'B:Bool] = '_xor_['_and_['A:Bool,'B:Bool],'_xor_['A:Bool,'B:Bool]] [none] .
+  eq '_implies_['A:Bool,'B:Bool] = 'not_['_xor_['A:Bool,'_and_['A:Bool,'B:Bool]]] [none] .
+  eq 'append['A:QidList,'L:QidList] = '__['A:QidList,'L:QidList] [none] .
+  eq 'head['__['E:Qid,'L:QidList]] = 'E:Qid [none] .
+  eq 'tail['__['E:Qid,'L:QidList]] = 'L:QidList [none] .
+  eq 'last['__['L:QidList,'E:Qid]] = 'E:Qid [none] .
+  eq 'front['__['L:QidList,'E:Qid]] = 'L:QidList [none] .
+  eq 'occurs['E:Qid,'nil.QidList] = 'false.Bool [none] .
+  eq 'occurs['E:Qid,'__['E':Qid,'L:QidList]] = 'if_then_else_fi['_==_['E:Qid,'E':Qid],'true.Bool,
+    'occurs['E:Qid,'L:QidList]] [none] .
+  eq 'reverse['L:QidList] = '$reverse['L:QidList,'nil.QidList] [none] .
+  eq '$reverse['nil.QidList,'A:QidList] = 'A:QidList [none] .
+  eq '$reverse['__['E:Qid,'L:QidList],'A:QidList] = '$reverse['L:QidList,'__['E:Qid,'A:QidList]] [
+    none] .
+  eq 'size['L:QidList] = '$size['L:QidList,'0.Zero] [none] .
+  eq '$size['nil.QidList,'C:Nat] = 'C:Nat [none] .
+  eq '$size['__['E:Qid,'L:QidList],'C:Nat] = '$size['L:QidList,'_+_['C:Nat,'s_['0.Zero]]] [none] .
+endfm
+*********** rule
+rl insertedModule(O, O') < O : MiniMaude | Atts,mi: MI,st: 1 > => < O : MiniMaude | mi: MI,Atts,st:
+    2 > getLine(stdin, O, "minimaude> ") .
+O --> o
+O' --> interpreter(0)
+Atts --> mn: null,in: nil
+MI --> interpreter(0)
+insertedModule(o, interpreter(0)) < o : MiniMaude | mi: interpreter(0),mn: null,in: nil,st: 1 >
+--->
+< o : MiniMaude | mi: interpreter(0),(mn: null,in: nil),st: 2 > getLine(stdin, o, "minimaude> ")
