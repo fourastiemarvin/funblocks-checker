@@ -1,0 +1,94 @@
+load file.maude
+load maybe.maude
+load funblocks.maude
+load funblocks-syntax.maude
+load metaInterpreter.maude
+
+fmod MAYBE{X :: TRIV} is
+  sort Maybe{X} .
+  subsort X$Elt < Maybe{X} .
+  op null : -> Maybe{X} .
+endfm
+
+view Oid from TRIV to CONFIGURATION is
+  sort Elt to Oid .
+endv
+
+--- view Module from TRIV to META-MODULE is
+---   sort Elt to Module .
+--- endv
+
+mod FUN-TO-MAUDE is
+  inc FILE .
+  pr MAYBE{Oid} .
+  inc FUNBLOCKS .
+  inc LEXICAL .
+  inc STD-STREAM .
+
+  op myClass : -> Cid .
+  op myObj : -> Oid .
+  ops in:_ out:_ : Maybe{Oid} -> Attribute .
+  ops inFile:_ outFile:_ : String -> Attribute .
+
+  op run : String String -> Configuration .
+  vars Text Fun Maude : String .
+  vars FHIn FHOut : Oid .
+  var  Attrs : AttributeSet .
+
+  op parsedRule : Oid Rule -> Msg .
+
+  --- start: open input file on read mode
+  eq run(Fun, Maude)
+   = <>
+     < myObj : myClass | in: null, inFile: Fun, out: null, outFile: Maude >
+     --- insertModule(MI, myObj, upModule('FUNBLOCKS-SYNTAX, true))
+     openFile(fileManager, myObj, Fun, "r") .
+
+  --- when input file opened, open output file on write mode
+  rl < myObj : myClass | in: null, outFile: Maude, Attrs >
+     --- insertedModule(myObj, O)
+     openedFile(myObj, fileManager, FHIn)
+  => < myObj : myClass | in: FHIn, Attrs >
+     openFile(fileManager, myObj, Maude, "w") .
+
+  --- when output file opened, write the module decl in output file
+  rl < myObj : myClass | in: FHIn, out: null, Attrs >
+     openedFile(myObj, fileManager, FHOut)
+  => < myObj : myClass | in: FHIn, out: FHOut, Attrs >
+     write(FHOut, myObj, "mod FUN-RULES is \n sort Term . \n op f : -> Term . \n op g : -> Term .") .
+     --- getLine(FHIn, myObj) .
+
+  --- when module decl wrote, get line of input file
+  rl < myObj : myClass | in: FHIn, out: FHOut, Attrs >
+     wrote(myObj, FHOut)
+  => < myObj : myClass | in: FHIn, out: FHOut, Attrs >
+     getLine(FHIn, myObj) .
+
+  rl < myObj : myClass | in: FHIn, out: FHOut, Attrs >
+     gotLine(myObj, FHIn, Text)
+  => < myObj : myClass | in: FHIn, out: FHOut, Attrs >
+     if Text == ""
+     then closeFile(FHIn, myObj)
+          closeFile(FHOut, myObj)
+     else parsedRule(myObj,solveBubbles(
+            getTerm(metaParse(upModule('FUNBLOCKS-SYNTAX, false), tokenize(Text) , anyType))))
+     fi .
+
+  rl < myObj : myClass | in: FHIn, out: FHOut, Attrs >
+    parsedRule(myObj, solveBubbles(getTerm(noParse(0))))
+  => < myObj : myClass | in: FHIn, out: FHOut, Attrs >
+    write(stdout, myObj, "parse error \n") .
+
+  rl < myObj : myClass | in: FHIn, out: FHOut, Attrs >
+     wrote(myObj, stdout)
+  => < myObj : myClass | in: FHIn, out: FHOut, Attrs >
+     closeFile(FHIn, myObj)
+     closeFile(FHOut, myObj) .
+
+  rl < myObj : myClass | in: FHIn, out: FHOut, Attrs >
+     closedFile(myObj, FHIn)
+     closedFile(myObj, FHOut)
+  => none .
+endm
+
+erew run("test.txt", "res.maude") .

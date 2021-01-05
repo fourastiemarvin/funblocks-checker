@@ -2,6 +2,7 @@ fmod FUNBLOCKS is
   protecting META-LEVEL .
   --- including VENDING-MACHINE-SIGNATURE .
   --- including FUNBLOCKS-SYNTAX .
+  inc LEXICAL .
 
   vars T T1 T2 T3 : Term . --- terms for declaration (module, eq,...)
   vars TL TL' : TermList . --- to get the list of tokens
@@ -25,68 +26,43 @@ fmod FUNBLOCKS is
   var RlS : RuleSet .
 
   --- "root" function who parse the entire input T
-  op processModule : Term ~> SModule .
-  eq processModule(T)
-   = solveBubbles(T,
-        --- mod 'FUNRULES is nil sorts 'FUNBLOCKS-SYNTAX . none none none none none endm ) .
-        mod 'FUNRULES is nil sorts none . none none none none none endm ) .
-        --- FUNBLOCKS-SYNTAX ) .
-  op solveBubbles : Term SModule ~> SModule .
+  --- op processModule : Term ~> Decl .
+  --- eq processModule(T)
+  ---  = solveBubbles(T,
+  ---       mod 'FUNRULES is nil sorts none . none none none none none endm ) .
+
+  op solveBubbles : Term ~> Rule .
   op solveBubblesAux : Term ~> Term .
 
-  eq solveBubbles('case_=>_[T1, T2], M)
-   = addRule(rl getTerm(processTerm(solveBubblesAux(T1), M))
-        => getTerm(processTerm(solveBubblesAux(T2), M)) [none] .) .
-   --- = addRule(rl getTerm(processTerm(T1, upModule('FUNBLOCKS-SYNTAX, false))) => T2 [none] .) .
-   --- = addRule(rl getTerm(metaParse(upModule('FUNBLOCKS-SYNTAX, false),
-   ---    T1, anyType)) => T2 [none] .) .
-   --- = addRule(rl T1 => T2 [none] .) .
+  eq solveBubbles('case_=>_[T1, T2])
+   --- = rl getTerm(processTerm(solveBubblesAux(T1)))
+   ---      => getTerm(processTerm(solveBubblesAux(T2))) [none] . .
+
+  = rl getTerm(processTerm(T1)) => getTerm(processTerm(T2)) [none] . .
+
   eq solveBubblesAux('bubble['__[T1,T2]])
    = 'bubble[T2] .
 
- op processTerm : Term SModule ~> ResultPair .
- eq processTerm('bubble[T], M)
+
+ op processTerm : Term ~> ResultPair .
+ eq processTerm('bubble[T])
  --- eq processTerm(T, M)
   --- = metaParse(upModule('FUNBLOCKS-SYNTAX, false), downTerm(T, nil), anyType) .
   = metaParse(upModule('FUNBLOCKS-SYNTAX, false), T, anyType) .
   --- = metaParse(M, downTerm(T, nil), anyType) .
   --- = metaParse(M, T, anyType) .
 
-  op addRule : Rule ~> SModule .
-  eq addRule(R)
-   --- = mod 'FUNRULES is nil sorts 'FUNBLOCKS-SYNTAX . none none none none R endm .
-   = mod 'FUNRULES is nil sorts none . none none none none R endm .
-  --- op showRules : Qid -> SModule .
-  --- eq showRules('TEST)
-  ---  = mod Qid is nil sorts none . none none none none rl 'T1 => 'T2 . endm .
+  --- op dummy : -> Nat .
+  --- eq dummy = 0 .
 
 endfm
 
 --- TESTS
 
 load funblocks-syntax.maude
---- load vending-machine.maude
 
 --- reduce in FUNBLOCKS :
-    --- processModule(rl 'M:haah => 'M:Marking [none] .) .
-    --- addRule(rl 'M:type => 'M:type [none] .) .
-    --- upModule('FUNRULES, false) .
-    --- solveBubbles('case 'f '=> 'g,
-    ---   mod 'FUNRULES is nil sorts none . none none none none none endm ) .
-    --- getTerm(metaParse(upModule('FUNBLOCKS-SYNTAX, false),
-    ---       'f, anyType)) .
-    --- processTerm('f,
-    ---   mod 'FUNRULES is nil sorts none . none none none none none endm) .
-    --- metaParse(mod 'FUNRULES is nil sorts none . none none none none none endm ,
-    ---   downTerm('f, nil), anyType) .
-    --- downTerm('f, nil) .
-
-reduce in FUNBLOCKS :
-   processModule(
-     getTerm(metaParse(upModule('FUNBLOCKS-SYNTAX, false),
-      'case '$ 'f '=> '$ 'g , anyType)
-          --- ) .
-      )) .
-
---- reduce in FUNBLOCKS :
----   addRules(mod 'FUNRULES is nil sorts none . none none none none none endm, (rl 'f '=> 'g [none]) ) .
+---    solveBubbles(
+---      getTerm(metaParse(upModule('FUNBLOCKS-SYNTAX, false),
+---       tokenize("case f => g") , anyType)
+---           )) .
