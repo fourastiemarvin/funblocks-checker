@@ -1,0 +1,6 @@
+mod FUN-RULES is 
+ sort Term . 
+ op f : -> Term . 
+ op g : -> Term .
+rl f => g .
+endm 

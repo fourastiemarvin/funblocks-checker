@@ -56,7 +56,7 @@ fmod MINI-MAUDE is
   eq extractSignature(T, M) = M [owise] .
 
   ---- solveBubbles
-  --- parse bubbles in eq (see syntaxe), transform bubble in terms
+  --- parse bubbles in eq (see syntax), transform bubble in terms
   op solveBubbles : Term FModule ~> FModule .
   op solveBubblesAux : Term FModule ~> EquationSet .
 
@@ -99,7 +99,7 @@ fmod MINI-MAUDE is
 endfm
 
 load mini-maude-syntax.maude
-
+---
 reduce in MINI-MAUDE :
  processModule(
   getTerm(metaParse(upModule(

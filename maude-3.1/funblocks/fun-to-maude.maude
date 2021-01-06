@@ -29,24 +29,27 @@ mod FUN-TO-MAUDE is
   op myObj : -> Oid .
   ops in:_ out:_ : Maybe{Oid} -> Attribute .
   ops inFile:_ outFile:_ : String -> Attribute .
+  op isEnd:_ : Bool -> Attribute .
 
   op run : String String -> Configuration .
   vars Text Fun Maude : String .
-  vars FHIn FHOut : Oid .
+  vars FHIn FHOut AnyOutput : Oid .
   var  Attrs : AttributeSet .
 
-  op parsedRule : Oid Rule -> Msg .
+  var R : QidList .
+  var N : Nat .
+
+  --- op parsedRule : Oid Rule -> Msg .
+  op parsedRule : Oid QidList -> Msg .
 
   --- start: open input file on read mode
   eq run(Fun, Maude)
    = <>
      < myObj : myClass | in: null, inFile: Fun, out: null, outFile: Maude >
-     --- insertModule(MI, myObj, upModule('FUNBLOCKS-SYNTAX, true))
      openFile(fileManager, myObj, Fun, "r") .
 
   --- when input file opened, open output file on write mode
   rl < myObj : myClass | in: null, outFile: Maude, Attrs >
-     --- insertedModule(myObj, O)
      openedFile(myObj, fileManager, FHIn)
   => < myObj : myClass | in: FHIn, Attrs >
      openFile(fileManager, myObj, Maude, "w") .
@@ -55,7 +58,7 @@ mod FUN-TO-MAUDE is
   rl < myObj : myClass | in: FHIn, out: null, Attrs >
      openedFile(myObj, fileManager, FHOut)
   => < myObj : myClass | in: FHIn, out: FHOut, Attrs >
-     write(FHOut, myObj, "mod FUN-RULES is \n sort Term . \n op f : -> Term . \n op g : -> Term .") .
+     write(FHOut, myObj, "mod FUN-RULES is \n sort Term . \n op f : -> Term . \n op g : -> Term .\n") .
      --- getLine(FHIn, myObj) .
 
   --- when module decl wrote, get line of input file
@@ -66,29 +69,43 @@ mod FUN-TO-MAUDE is
 
   rl < myObj : myClass | in: FHIn, out: FHOut, Attrs >
      gotLine(myObj, FHIn, Text)
-  => < myObj : myClass | in: FHIn, out: FHOut, Attrs >
+  => --- < myObj : myClass | in: FHIn, out: FHOut, Attrs >
      if Text == ""
-     then closeFile(FHIn, myObj)
-          closeFile(FHOut, myObj)
-     else parsedRule(myObj,solveBubbles(
+     then < myObj : myClass | in: FHIn, out: FHOut, isEnd: true, Attrs >
+          write(FHOut, myObj, "endm \n")
+          --- closeFile(FHIn, myObj)
+          --- closeFile(FHOut, myObj)
+     else < myObj : myClass | in: FHIn, out: FHOut, Attrs >
+          parsedRule(myObj,solveBubbles(
             getTerm(metaParse(upModule('FUNBLOCKS-SYNTAX, false), tokenize(Text) , anyType))))
      fi .
 
   rl < myObj : myClass | in: FHIn, out: FHOut, Attrs >
-    parsedRule(myObj, solveBubbles(getTerm(noParse(0))))
+    parsedRule(myObj, solveBubbles(getTerm(noParse(N))))
   => < myObj : myClass | in: FHIn, out: FHOut, Attrs >
     write(stdout, myObj, "parse error \n") .
 
   rl < myObj : myClass | in: FHIn, out: FHOut, Attrs >
-     wrote(myObj, stdout)
+    parsedRule(myObj, R)
   => < myObj : myClass | in: FHIn, out: FHOut, Attrs >
-     closeFile(FHIn, myObj)
-     closeFile(FHOut, myObj) .
+    write(FHOut, myObj, printTokens(R '\n)) .
+    --- getLine(FHIn, myObj) .
 
   rl < myObj : myClass | in: FHIn, out: FHOut, Attrs >
+     wrote(myObj, AnyOutput)
+  => < myObj : myClass | in: FHIn, out: FHOut, Attrs >
+     getLine(FHIn, myObj) .
+
+  rl < myObj : myClass | in: FHIn, out: FHOut, isEnd: true, Attrs >
+     wrote(myObj, FHOut)
+  => < myObj : myClass | in: FHIn, out: FHOut, isEnd: true, Attrs >
+  closeFile(FHIn, myObj)
+  closeFile(FHOut, myObj) .
+
+  rl < myObj : myClass | in: FHIn, out: FHOut, isEnd: true, Attrs >
      closedFile(myObj, FHIn)
      closedFile(myObj, FHOut)
   => none .
 endm
 
-erew run("test.txt", "res.maude") .
+erew run("test.txt", "funrules.maude") .

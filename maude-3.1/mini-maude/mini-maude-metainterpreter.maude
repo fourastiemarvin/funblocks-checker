@@ -194,12 +194,12 @@ endm
 
 erew minimaude .
 
---- fmod NAT3 is
----    sort Nat3 .
----    op s_ : Nat3 -> Nat3 .
----    op 0 : -> Nat3 .
----    eq s s s 0 = 0 .
---- endfm
+fmod NAT3 is
+   sort Nat3 .
+   op s_ : Nat3 -> Nat3 .
+   op 0 : -> Nat3 .
+   eq s s s 0 = 0 .
+endfm
 
 --- reduce s s s s 0 .
 ---

@@ -69,6 +69,7 @@ mod FUNBLOCKS-META-INTERPRETER is
   rl < O : FunBlocks | mi: MI, st: 1, Atts >
      insertedModule(O, O')
   => < O : FunBlocks | mi: MI, st: 2, Atts >
+     --- write(stdout, o, "FUNBLOCKS-SYNTAX module inserted\n")
      getLine(stdin, O, "funblocks> ") .
 
   --- exit if "q" or "quit" typed, else parse input
@@ -81,6 +82,8 @@ mod FUNBLOCKS-META-INTERPRETER is
      --- else < O : FunBlocks | mi: MI, in: QIL, st: 2, Atts >
      ---      getLine(stdin, O, "funblocks> ")
      --- fi .
+     --- else < O : FunBlocks | mi: MI, in: QIL tokenize(Str), st: 4, Atts >
+     ---      parseTerm(MI, O, 'FUNBLOCKS-SYNTAX, none, QIL tokenize(Str), 'Input)
      else < O : FunBlocks | mi: MI, in: QIL tokenize(Str), st: 4, Atts >
           parseTerm(MI, O, 'FUNBLOCKS-SYNTAX, none, QIL tokenize(Str), 'Input)
      fi .
@@ -120,23 +123,29 @@ mod FUNBLOCKS-META-INTERPRETER is
     write(stdout, o, "Parse error\n") .
 
   --- Detect ambiguity
-  rl < O : FunBlocks | mi: MI, in: QIL, st: 4, Atts >
-     parsedTerm(O, MI, ambiguity({T, Ty}, {T', Ty'}))
-  => < O : FunBlocks | mi: MI, in: nil, st: 5, Atts >
-     write(stdout, o, "Ambiguous input\n") .
+  --- rl < O : FunBlocks | mi: MI, in: QIL, st: 4, Atts >
+  ---    parsedTerm(O, MI, ambiguity({T, Ty}, {T', Ty'}))
+  --- => < O : FunBlocks | mi: MI, in: nil, st: 5, Atts >
+  ---    write(stdout, o, "Ambiguous input\n") .
 
-  rl < O : FunBlocks | mi: MI, mn: QI?, st: 6, Atts >
+  rl < O : FunBlocks | mi: MI, mn: null, st: 6, Atts >
      processInput(O, 'case_=>_[T, T'])
-  => if extractSignature('case_=>_[T, T']) :: Module
+  => if processModule('case_=>_[T, T']) :: SModule
      then < O : FunBlocks | mi: MI, mn: 'FUNRULES, st: 7, Atts >
-          insertModule(MI, O, extractSignature('case_=>_[T, T']))
-     else < O : FunBlocks | mi: MI, mn: QI?, st: 5, Atts >
+          insertModule(MI, O, processModule('case_=>_[T, T']))
+     --- then < O : FunBlocks | mi: MI, mn: 'FUNRULES, st: 7, Atts >
+      --- insertModule( MI, O,
+      ---    processModule(
+      ---         getTerm(metaParse(upModule('FUNBLOCKS-SYNTAX, false),
+      ---          'case '$ 'f '=> '$ 'g , anyType)
+      ---          )))
+     else < O : FunBlocks | mi: MI, mn: null, st: 5, Atts >
           write(stdout, o, "Parse error\n")
      fi .
 
   rl < O : FunBlocks | mi: MI, mn: QI, st: 7, Atts >
      insertedModule(O, MI)
-  => < O : FunBlocks | mi: MI, st: 5, Atts >
+  => < O : FunBlocks | mi: MI, st: 8, Atts >
      write(stdout, O, "Module loaded successfully\n") .
 
   endm

@@ -60,17 +60,19 @@ fmod FUNBLOCKS-SYNTAX is
   --- op eq_=_. : Bubble Bubble -> Decl .
 
   op case_=>_ : Bubble Bubble -> Decl .
-  --- op case_=>_ : Term Term -> Decl .
+  --- op case_=>_ : Token Token -> Decl .
 
-  --- op f : -> Const .
-  --- op g : -> Const .
+  op f : -> Const .
+  op g : -> Const .
   --- op _ : Token -> Const .
   --- op _ : Qid -> Const .
   --- op _() : Bubble -> Term .
-  op $_ : Token -> Var .
+  --- op $_ : Token -> Var .
 
   --- op fmod_is_endfm : Token DeclList -> PreModule .
   --- op __ : DeclList DeclList -> DeclList [assoc gather(e E)] .
+
+  --- op reduce_. : Bubble -> Command .
 
 endfm
 

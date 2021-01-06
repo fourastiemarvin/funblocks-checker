@@ -31,26 +31,32 @@ fmod FUNBLOCKS is
   ---  = solveBubbles(T,
   ---       mod 'FUNRULES is nil sorts none . none none none none none endm ) .
 
-  op solveBubbles : Term ~> Rule .
+  --- op solveBubbles : Term ~> Rule .
+  op solveBubbles : Term ~> QidList .
   op solveBubblesAux : Term ~> Term .
 
   eq solveBubbles('case_=>_[T1, T2])
    --- = rl getTerm(processTerm(solveBubblesAux(T1)))
    ---      => getTerm(processTerm(solveBubblesAux(T2))) [none] . .
 
-  = rl getTerm(processTerm(T1)) => getTerm(processTerm(T2)) [none] . .
+  --- = 'rl getTerm(processTerm(T1)) '=> getTerm(processTerm(T2)) '. .
+  = 'rl getName(processTerm(T1)) '=> getName(processTerm(T2)) '. .
+  --- = 'rl getName(T1) '=> getName(T2) '. .
 
   eq solveBubblesAux('bubble['__[T1,T2]])
    = 'bubble[T2] .
 
 
- op processTerm : Term ~> ResultPair .
+ --- op processTerm : Term ~> ResultPair .
+ op processTerm : Term ~> Qid .
  eq processTerm('bubble[T])
  --- eq processTerm(T, M)
+  = getTerm(metaParse(upModule('FUNBLOCKS-SYNTAX, false), downTerm(T, nil), anyType)) .
   --- = metaParse(upModule('FUNBLOCKS-SYNTAX, false), downTerm(T, nil), anyType) .
-  = metaParse(upModule('FUNBLOCKS-SYNTAX, false), T, anyType) .
+  --- = metaParse(upModule('FUNBLOCKS-SYNTAX, false), T, anyType) .
   --- = metaParse(M, downTerm(T, nil), anyType) .
   --- = metaParse(M, T, anyType) .
+  --- = downTerm(T, nil) .
 
   --- op dummy : -> Nat .
   --- eq dummy = 0 .
