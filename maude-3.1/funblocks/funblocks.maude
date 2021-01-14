@@ -11,55 +11,41 @@ fmod FUNBLOCKS is
   var  F : Qid .        --- used in conditions of which parsed input we compute
   var  M : Module .  --- Module we currently building
   var R : Rule .
+  --- var D : Decl .
 
-  --- the following ones are used to build the module containing imports,
-  --- sorts, op, axioms and equation
-  var  I : Import .
-  vars IL : ImportList .
-  var  S : Sort .
-  vars SS : SortSet .
-  var  SsS : SubsortDeclSet .
-  var  OD : OpDecl .
-  var  ODS : OpDeclSet .
-  var  MbS : MembAxSet .
-  vars EqS EqS' : EquationSet .
-  var RlS : RuleSet .
+  op getCase : ResultPair ~> QidList .
+  eq getCase({'case_=>_[T1, T2], 'Decl})
+   = solveBubble(T1, T2) .
 
-  --- "root" function who parse the entire input T
-  --- op processModule : Term ~> Decl .
-  --- eq processModule(T)
-  ---  = solveBubbles(T,
-  ---       mod 'FUNRULES is nil sorts none . none none none none none endm ) .
+  op solveBubble : Term Term ~> QidList .
+  op solveBubbleAux : Term ~> QidList .
 
-  --- op solveBubbles : Term ~> Rule .
-  op solveBubbles : Term ~> QidList .
-  op solveBubblesAux : Term ~> Term .
+ --- redirect to getVar(), getConst() or getFunc()
+  eq solveBubble(T1, T2)
+   = solveBubbleAux(T1) solveBubbleAux(T2) . --- getRule(T1, T2) .
 
-  eq solveBubbles('case_=>_[T1, T2])
-   --- = rl getTerm(processTerm(solveBubblesAux(T1)))
-   ---      => getTerm(processTerm(solveBubblesAux(T2))) [none] . .
+  eq solveBubbleAux('bubble['__[''$.Qid, QI]])
+   = getVar(QI) .
 
-  --- = 'rl getTerm(processTerm(T1)) '=> getTerm(processTerm(T2)) '. .
-  = 'rl getName(processTerm(T1)) '=> getName(processTerm(T2)) '. .
-  --- = 'rl getName(T1) '=> getName(T2) '. .
+  --- eq solveBubbleAux('bubble['_[QI]])
+  ---  = getConst(QI) .
 
-  eq solveBubblesAux('bubble['__[T1,T2]])
-   = 'bubble[T2] .
+  --- eq solveBubbleAux('bubble['_(_)[QI1, QI2]])
+  ---  = getFunc(QI1, solveBubbleAux(QI2)) .
 
+  op getVar : Qid ~> QidList .
+  eq getVar(QI)
+   = 'var tokenize("$" + string(getName(QI))) ': 'Untyped '. '\n .
 
- --- op processTerm : Term ~> ResultPair .
- op processTerm : Term ~> Qid .
- eq processTerm('bubble[T])
- --- eq processTerm(T, M)
-  = getTerm(metaParse(upModule('FUNBLOCKS-SYNTAX, false), downTerm(T, nil), anyType)) .
-  --- = metaParse(upModule('FUNBLOCKS-SYNTAX, false), downTerm(T, nil), anyType) .
-  --- = metaParse(upModule('FUNBLOCKS-SYNTAX, false), T, anyType) .
-  --- = metaParse(M, downTerm(T, nil), anyType) .
-  --- = metaParse(M, T, anyType) .
-  --- = downTerm(T, nil) .
+  op getConst : Qid ~> QidList .
 
-  --- op dummy : -> Nat .
-  --- eq dummy = 0 .
+  op getFunc : Qid QidList ~> QidList .
+
+--- TODO
+  op getRule : Term Term ~> QidList .
+  eq getRule(T1, T2)
+   = 'rl T1 '=> T2 '. .
+
 
 endfm
 
@@ -67,8 +53,17 @@ endfm
 
 load funblocks-syntax.maude
 
+reduce in FUNBLOCKS :
+  --- solveBubble(tokenize("$ f")) .
+  getCase(metaParse(upModule('FUNBLOCKS-SYNTAX, false), tokenize("case $ f => $ g"), anyType)) .
+  --- getCase(metaParse(upModule('FUNBLOCKS-SYNTAX, false), tokenize("$ f"), anyType)) .
+
+
+
+   --- tokenize("case $f => $g")
+   --- solveBubbles(
+   ---   getTerm(metaParse(upModule('FUNBLOCKS-SYNTAX, false),
+   ---    tokenize("case $ f => $ g") , anyType)
+   ---        )) .
 --- reduce in FUNBLOCKS :
----    solveBubbles(
----      getTerm(metaParse(upModule('FUNBLOCKS-SYNTAX, false),
----       tokenize("case f => g") , anyType)
----           )) .
+---    getName(processTerm(solveBubblesAux('bubble[''f.Qid]))) .
