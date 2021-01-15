@@ -29,34 +29,33 @@ fmod FUNBLOCKS-SYNTAX is
   --- subsort Term State Rule < Expr .
   --- subsort Rule < RuleList .
 
-  sorts Const Decl DeclList PreModule Input Command .
-  sorts Term Var .
-  subsort Decl < DeclList .
-  subsort PreModule Command < Input .
+  --- sorts Const Decl DeclList PreModule Input Command .
+  sorts Term Var Const Func Decl .
+  subsort Var Func Const < Term .
+  --- subsort PreModule Command < Input .
 
   --- dist(point($x1, $y1), point($x2, $y2))
       --- => sqrt(add(sub($x1, $x2), sub($y1, $y2)))
 
 
-  op case_=>_ : Bubble Bubble -> Decl .
+  op case_=>_ : Term Term -> Decl .
 
-  --- op f : -> Const .
-  --- op g : -> Const .
+  --- op case_=>_ : Token Token -> Decl .
+
   op $_ : Token -> Var .
 
-  --- op fmod_is_endfm : Token DeclList -> PreModule .
-  --- op __ : DeclList DeclList -> DeclList [assoc gather(e E)] .
+  op _(_) : Token Token -> Func .
 
-  --- op reduce_. : Bubble -> Command .
+  op _(_) : Token Term -> Func .
+
+  --- op _ : Token -> Const .
 
 endfm
 
---- red in META-LEVEL :
----   getRls(upModule('FUNBLOCKS-SYNTAX, false)) .
 
---- reduce in META-LEVEL :
----   metaParse(upModule('FUNBLOCKS-SYNTAX, false),
----             'case '$ 'f '=> '$ 'g , 'Decl) .
+reduce in META-LEVEL :
+  metaParse(upModule('FUNBLOCKS-SYNTAX, false),
+            'case '$ 'f '=> 'f '`( '$ 'a '`) , anyType) .
 ---
 --- reduce in META-LEVEL :
 ---   metaParse(upModule('FUNBLOCKS-SYNTAX, false),
@@ -64,7 +63,7 @@ endfm
 ---
 --- reduce in META-LEVEL :
 ---   metaParse(upModule('FUNBLOCKS-SYNTAX, false),
----     'f '`( 'a '`) , anyType) .
+---     'case 'f '`( 'a '`) '=> 'a , anyType) .
 ---
 --- reduce in META-LEVEL :
 ---   metaParse(upModule('FUNBLOCKS-SYNTAX, false),
@@ -72,4 +71,4 @@ endfm
 ---
 --- reduce in META-LEVEL :
 ---   metaParse(upModule('FUNBLOCKS-SYNTAX, false),
----     '$ 'x , 'Var) .
+---     'a , anyType) .
