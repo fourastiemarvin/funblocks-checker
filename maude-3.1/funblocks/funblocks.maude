@@ -6,8 +6,8 @@ fmod FUNBLOCKS is
 
   vars T T1 T2 T3 : Term . --- terms for declaration (module, eq,...)
   vars TL TL' : TermList . --- to get the list of tokens
-  var  QI : Qid .        ---Qid used in solveBubbles to interprete parsed input
-  var  QIL : QidList .
+  vars  QI QI1 QI2 : Qid .        ---Qid used in solveBubbles to interprete parsed input
+  var  QIL1 QIL2 : QidList .
   var  F : Qid .        --- used in conditions of which parsed input we compute
   var  M : Module .  --- Module we currently building
   var R : Rule .
@@ -22,30 +22,33 @@ fmod FUNBLOCKS is
 
  --- redirect to getVar(), getConst() or getFunc()
   eq solveBubble(T1, T2)
-   = solveBubbleAux(T1) solveBubbleAux(T2) . --- getRule(T1, T2) .
+   = getDecl(T1) getDecl(T2) getRule(redTerm(T1), redTerm(T2)) .
 
-  eq solveBubbleAux('bubble['__[''$.Qid, QI]])
-   = getVar(QI) .
-
-  --- eq solveBubbleAux('bubble['_[QI]])
-  ---  = getConst(QI) .
-
-  --- eq solveBubbleAux('bubble['_(_)[QI1, QI2]])
-  ---  = getFunc(QI1, solveBubbleAux(QI2)) .
-
-  op getVar : Qid ~> QidList .
-  eq getVar(QI)
-   = 'var tokenize("$" + string(getName(QI))) ': 'Untyped '. '\n .
+--- Maude declaration for a variable
+  op getDecl : Term ~> QidList .
+  eq getDecl('$_['token[QI]])
+   = 'var redTerm('$_['token[QI]]) ': 'Untyped '. '\n .
 
   op getConst : Qid ~> QidList .
 
-  op getFunc : Qid QidList ~> QidList .
+--- Maude declaration for a function
+--- TODO: general case (n-ary, nested functions)
+  op getDecl : Term ~> QidList .
+  eq getDecl('_`(_`)['token[QI1], 'token[QI2]])
+   =  'op getName(QI1) ': 'Untyped '-> 'Untyped '. '\n .
 
---- TODO
-  op getRule : Term Term ~> QidList .
-  eq getRule(T1, T2)
-   = 'rl T1 '=> T2 '. .
+--- get the QidList of a variable
+  op redTerm : Term ~> QidList .
+  eq redTerm('$_['token[QI]])
+   = tokenize("$" + string(getName(QI))) .
 
+--- get the QidList of a function
+  eq redTerm('_`(_`)['token[QI1], 'token[QI2]])
+   = getName(QI1) '`( getName(QI2) '`) .
+
+  op getRule : QidList QidList ~> QidList .
+  eq getRule(QIL1, QIL2)
+   = 'rl QIL1 '=> QIL2 '. .
 
 endfm
 
@@ -55,8 +58,8 @@ load funblocks-syntax.maude
 
 reduce in FUNBLOCKS :
   --- solveBubble(tokenize("$ f")) .
-  getCase(metaParse(upModule('FUNBLOCKS-SYNTAX, false), tokenize("case $ f => $ g"), anyType)) .
-  --- getCase(metaParse(upModule('FUNBLOCKS-SYNTAX, false), tokenize("$ f"), anyType)) .
+  --- getCase(metaParse(upModule('FUNBLOCKS-SYNTAX, false), tokenize("case $ f => $ g"), anyType)) .
+  getCase(metaParse(upModule('FUNBLOCKS-SYNTAX, false), tokenize("case $ a => h(f)"), anyType)) .
 
 
 

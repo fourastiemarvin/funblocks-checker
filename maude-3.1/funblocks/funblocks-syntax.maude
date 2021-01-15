@@ -1,6 +1,7 @@
 fmod FUNBLOCKS-SYNTAX is
   protecting QID-LIST .
   sorts Token Bubble NeTokenList .
+
   op token : Qid -> Token
        [special
           (id-hook Bubble        (1 1)
@@ -19,15 +20,6 @@ fmod FUNBLOCKS-SYNTAX is
            op-hook qidListSymbol (__ : QidList QidList ~> QidList)
            op-hook qidSymbol     (<Qids> : ~> Qid)
            id-hook Exclude       (->))] .
-
-  --- sorts Decl DeclList PreModule Input Command .
-  --- subsort Decl < DeclList .
-  --- subsorts PreModule Command < Input .
-
-  --- sorts Term Func Var Const State Rule RuleList Expr Input Command  .
-  --- subsorts Const Var Func < Term .
-  --- subsort Term State Rule < Expr .
-  --- subsort Rule < RuleList .
 
   --- sorts Const Decl DeclList PreModule Input Command .
   sorts Term Var Const Func Decl .
@@ -53,9 +45,9 @@ fmod FUNBLOCKS-SYNTAX is
 endfm
 
 
-reduce in META-LEVEL :
-  metaParse(upModule('FUNBLOCKS-SYNTAX, false),
-            'case '$ 'f '=> 'f '`( '$ 'a '`) , anyType) .
+--- reduce in META-LEVEL :
+---   metaParse(upModule('FUNBLOCKS-SYNTAX, false),
+---             'case '$ 'f '=> 'f '`( '$ 'a '`) , anyType) .
 ---
 --- reduce in META-LEVEL :
 ---   metaParse(upModule('FUNBLOCKS-SYNTAX, false),
@@ -63,7 +55,7 @@ reduce in META-LEVEL :
 ---
 --- reduce in META-LEVEL :
 ---   metaParse(upModule('FUNBLOCKS-SYNTAX, false),
----     'case 'f '`( 'a '`) '=> 'a , anyType) .
+---     'f '`( 'g '`( '$ 'a '`) '`) , anyType) .
 ---
 --- reduce in META-LEVEL :
 ---   metaParse(upModule('FUNBLOCKS-SYNTAX, false),
