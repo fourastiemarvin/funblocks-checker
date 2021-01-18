@@ -1,6 +1,6 @@
 mod FUN-RULES is 
- sort Term . 
- op f : -> Term . 
- op g : -> Term .
-rl f => g .
+var $'x : Untyped .
+op 'id : Untyped -> Untyped .
+op 'a : -> Untyped .
+rl $'x => 'id('a) .
 endm 

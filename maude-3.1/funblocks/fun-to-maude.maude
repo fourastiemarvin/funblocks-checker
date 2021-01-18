@@ -58,8 +58,8 @@ mod FUN-TO-MAUDE is
   rl < myObj : myClass | in: FHIn, out: null, Attrs >
      openedFile(myObj, fileManager, FHOut)
   => < myObj : myClass | in: FHIn, out: FHOut, Attrs >
-     write(FHOut, myObj, "mod FUN-RULES is \n sort Term . \n op f : -> Term . \n op g : -> Term .\n") .
-     --- getLine(FHIn, myObj) .
+     write(FHOut, myObj,
+        "mod FUN-RULES is \n") .
 
   --- when module decl wrote, get line of input file
   rl < myObj : myClass | in: FHIn, out: FHOut, Attrs >
@@ -76,12 +76,12 @@ mod FUN-TO-MAUDE is
           --- closeFile(FHIn, myObj)
           --- closeFile(FHOut, myObj)
      else < myObj : myClass | in: FHIn, out: FHOut, Attrs >
-          parsedRule(myObj,solveBubbles(
-            getTerm(metaParse(upModule('FUNBLOCKS-SYNTAX, false), tokenize(Text) , anyType))))
+          parsedRule(myObj,getCase(
+            metaParse(upModule('FUNBLOCKS-SYNTAX, false), tokenize(Text) , anyType)))
      fi .
 
   rl < myObj : myClass | in: FHIn, out: FHOut, Attrs >
-    parsedRule(myObj, solveBubbles(getTerm(noParse(N))))
+    parsedRule(myObj, getCase(noParse(N)))
   => < myObj : myClass | in: FHIn, out: FHOut, Attrs >
     write(stdout, myObj, "parse error \n") .
 

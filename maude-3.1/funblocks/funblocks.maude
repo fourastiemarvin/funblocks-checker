@@ -29,13 +29,16 @@ fmod FUNBLOCKS is
   eq getDecl('$_['token[QI]])
    = 'var redTerm('$_['token[QI]]) ': 'Untyped '. '\n .
 
-  op getConst : Qid ~> QidList .
+  --- op getDecl : Term ~> QidList .
+  --- eq getConst()
+  ---  = 'op QI ': '-> 'Untyped '. '\n .
 
 --- Maude declaration for a function
 --- TODO: general case (n-ary, nested functions)
   op getDecl : Term ~> QidList .
   eq getDecl('_`(_`)['token[QI1], 'token[QI2]])
-   =  'op getName(QI1) ': 'Untyped '-> 'Untyped '. '\n .
+   = 'op getName(QI1) ': 'Untyped '-> 'Untyped '. '\n
+     'op getName(QI2) ': '-> 'Untyped '. '\n .
 
 --- get the QidList of a variable
   op redTerm : Term ~> QidList .
@@ -56,10 +59,10 @@ endfm
 
 load funblocks-syntax.maude
 
-reduce in FUNBLOCKS :
+--- reduce in FUNBLOCKS :
   --- solveBubble(tokenize("$ f")) .
   --- getCase(metaParse(upModule('FUNBLOCKS-SYNTAX, false), tokenize("case $ f => $ g"), anyType)) .
-  getCase(metaParse(upModule('FUNBLOCKS-SYNTAX, false), tokenize("case $ a => h(f)"), anyType)) .
+  --- getCase(metaParse(upModule('FUNBLOCKS-SYNTAX, false), tokenize("case $ x => id( a)"), anyType)) .
 
 
 
