@@ -19,35 +19,30 @@ fmod FUNBLOCKS-SYNTAX is
           (id-hook Bubble        (1 -1)
            op-hook qidListSymbol (__ : QidList QidList ~> QidList)
            op-hook qidSymbol     (<Qids> : ~> Qid)
-           id-hook Exclude       (->))] .
+           id-hook Exclude       (=>))] .
 
-  --- sorts Const Decl DeclList PreModule Input Command .
-  sorts Term Var Const Func Decl .
-  subsort Var Func Const < Term .
-  --- subsort PreModule Command < Input .
-
-  --- dist(point($x1, $y1), point($x2, $y2))
-      --- => sqrt(add(sub($x1, $x2), sub($y1, $y2)))
+  sorts Term Var SubTerm Func Decl .
+  subsort Var Func Token SubTerm < Term .
 
 
   op case_=>_ : Term Term -> Decl .
 
-  --- op case_=>_ : Token Token -> Decl .
+  op $_ : Token -> Var [prec 11] .
 
-  op $_ : Token -> Var .
+  op _(_) : Token Token -> Func [prec 22] .
 
-  op _(_) : Token Token -> Func .
+  op _(_) : Token Term -> Func [prec 33] .
 
-  op _(_) : Token Term -> Func .
-
-  --- op _ : Token -> Const .
+  op _,_ : Term Term -> Term [gather (E e)] .
 
 endfm
 
+--- TESTS
 
 --- reduce in META-LEVEL :
 ---   metaParse(upModule('FUNBLOCKS-SYNTAX, false),
----             'case '$ 'f '=> 'f '`( '$ 'a '`) , anyType) .
+            --- 'case '$ 'f '=> 'f '`( 'g '`( '$ 'p '`, 'y '`) '`, 'h '`, 'l '`, '$ 'l '`) , anyType) .
+            --- 'case '$ 'f '=> 'f '`( 'g '`, 'h '`) , anyType) .
 ---
 --- reduce in META-LEVEL :
 ---   metaParse(upModule('FUNBLOCKS-SYNTAX, false),

@@ -14,10 +14,6 @@ view Oid from TRIV to CONFIGURATION is
   sort Elt to Oid .
 endv
 
---- view Module from TRIV to META-MODULE is
----   sort Elt to Module .
---- endv
-
 mod FUN-TO-MAUDE is
   inc FILE .
   pr MAYBE{Oid} .
@@ -39,7 +35,6 @@ mod FUN-TO-MAUDE is
   var R : QidList .
   var N : Nat .
 
-  --- op parsedRule : Oid Rule -> Msg .
   op parsedRule : Oid QidList -> Msg .
 
   --- start: open input file on read mode
@@ -69,12 +64,9 @@ mod FUN-TO-MAUDE is
 
   rl < myObj : myClass | in: FHIn, out: FHOut, Attrs >
      gotLine(myObj, FHIn, Text)
-  => --- < myObj : myClass | in: FHIn, out: FHOut, Attrs >
-     if Text == ""
+  => if Text == ""
      then < myObj : myClass | in: FHIn, out: FHOut, isEnd: true, Attrs >
           write(FHOut, myObj, "endm \n")
-          --- closeFile(FHIn, myObj)
-          --- closeFile(FHOut, myObj)
      else < myObj : myClass | in: FHIn, out: FHOut, Attrs >
           parsedRule(myObj,getCase(
             metaParse(upModule('FUNBLOCKS-SYNTAX, false), tokenize(Text) , anyType)))
@@ -89,7 +81,6 @@ mod FUN-TO-MAUDE is
     parsedRule(myObj, R)
   => < myObj : myClass | in: FHIn, out: FHOut, Attrs >
     write(FHOut, myObj, printTokens(R '\n)) .
-    --- getLine(FHIn, myObj) .
 
   rl < myObj : myClass | in: FHIn, out: FHOut, Attrs >
      wrote(myObj, AnyOutput)
