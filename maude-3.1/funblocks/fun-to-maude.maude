@@ -75,7 +75,7 @@ mod FUN-TO-MAUDE is
   rl < myObj : myClass | in: FHIn, out: FHOut, Attrs >
     parsedRule(myObj, getCase(noParse(N)))
   => < myObj : myClass | in: FHIn, out: FHOut, Attrs >
-    write(stdout, myObj, "parse error \n") .
+    write(stdout, myObj, "syntax error \n") .
 
   rl < myObj : myClass | in: FHIn, out: FHOut, Attrs >
     parsedRule(myObj, R)
@@ -90,8 +90,8 @@ mod FUN-TO-MAUDE is
   rl < myObj : myClass | in: FHIn, out: FHOut, isEnd: true, Attrs >
      wrote(myObj, FHOut)
   => < myObj : myClass | in: FHIn, out: FHOut, isEnd: true, Attrs >
-  closeFile(FHIn, myObj)
-  closeFile(FHOut, myObj) .
+     closeFile(FHIn, myObj)
+     closeFile(FHOut, myObj) .
 
   rl < myObj : myClass | in: FHIn, out: FHOut, isEnd: true, Attrs >
      closedFile(myObj, FHIn)

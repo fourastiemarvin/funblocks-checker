@@ -1,27 +1,18 @@
-mod FUN-RULES is 
-var $'x : Untyped .
-op 'id : Untyped -> Untyped .
-op 'a : -> Untyped .
-rl $'x => 'id('a) .
-var $'x : Untyped .
-op 'id : Untyped -> Untyped .
-op 'g : Untyped -> Untyped .
-op 'a : -> Untyped .
-rl $'x => 'id('g('a)) .
-op 'dist : Untyped -> Untyped .
-op 'point : Untyped -> Untyped .
-var $'x1 : Untyped .
-var $'y1 : Untyped .
-op 'point : Untyped -> Untyped .
-var $'x2 : Untyped .
-op 'a : -> Untyped .
-op 'sqrt : Untyped -> Untyped .
-op 'add : Untyped -> Untyped .
-op 'sub : Untyped -> Untyped .
-var $'x1 : Untyped .
-var $'x2 : Untyped .
-op 'sub : Untyped -> Untyped .
-var $'y1 : Untyped .
-var $'y2 : Untyped .
-rl 'dist('point($'x1, $'y1), 'point($'x2, 'a)) => 'sqrt('add('sub($'x1, $'x2), 'sub($'y1, $'y2))) .
-endm 
+mod FUN-RULES is
+var $x : Untyped .
+op id : Untyped -> Untyped .
+op a : -> Untyped .
+rl $x => id(a) .
+op g : Untyped -> Untyped .
+rl $x => id(g(a)) .
+op dist : Untyped -> Untyped .
+op point : Untyped -> Untyped .
+var $x1 : Untyped .
+var $y1 : Untyped .
+var $x2 : Untyped .
+op sqrt : Untyped -> Untyped .
+op add : Untyped -> Untyped .
+op sub : Untyped -> Untyped .
+var $y2 : Untyped .
+rl dist(point($x1, $y1), point($x2, a)) => sqrt(add(sub($x1, $x2), sub($y1, $y2))) .
+endm

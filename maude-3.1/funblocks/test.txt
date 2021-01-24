@@ -6,6 +6,6 @@ case $ x => id( g(a))
 
 case dist(point($ x1, $ y1), point($ x2, a)) => sqrt(add(sub($ x1, $ x2), sub($ y1, $ y2)))
 
-#op dist(point($x1, $y1), point($x2, $y2)) : -> Term .
-#op sqrt(add(sub($x1, $x2), sub($y1, $y2))) : -> Term .
-#rl dist(point($x1, $y1), point($x2, $y2)) => sqrt(add(sub($x1, $x2), sub($y1, $y2))) .
+#op dist(point($ x1, $ y1), point($ x2, $ y2)) : -> Term .
+#op sqrt(add(sub($ x1, $   x2), sub($   y1, $   y2))) : -> Term .
+#rl dist(point($   x1, $   y1), point($   x2, $   y2)) => sqrt(add(sub($   x1, $   x2), sub($   y1, $   y2))) .
