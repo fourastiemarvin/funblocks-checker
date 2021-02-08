@@ -8,6 +8,7 @@ fmod FUNBLOCKS is
   var  QIL QIL1 QIL2 : QidList .  --- List of Qid which represent left term and right term
   var  F : Qid .              --- used in conditions of which parsed input we compute
   var  M : Module .           --- Module we currently building
+  var ARY : QidList .
 
 --- root function
   op getCase : ResultPair ~> QidList .
@@ -15,7 +16,7 @@ fmod FUNBLOCKS is
    = solveBubble(T1, T2) .
 
   op solveBubble : Term Term ~> QidList .
-  op solveBubbleAux : Term ~> QidList .
+  --- op solveBubbleAux : Term ~> QidList .
 
  --- redirect to getVar(), getConst() or getFunc()
   eq solveBubble(T1, T2)
@@ -24,16 +25,19 @@ fmod FUNBLOCKS is
 --- Maude declaration for a variable
   op getDecl : Term ~> QidList .
   eq getDecl('$_['token[QI]])
-   = 'var redTerm('$_['token[QI]]) ': 'Untyped '. '\n .
+   = 'var redTerm('$_['token[QI]]) ': 'Generic '. '\n .
 
 --- Maude declaration for a constant
   eq getDecl('token[QI])
-   = 'op getName(QI) ': '-> 'Untyped '. '\n .
+   = 'op getName(QI) ': '-> 'Generic '. '\n .
+
+  --- op getD : Term ~> QidList .
+  eq getDecl('bubble[T])
+   = 'op downTerm(T, nil) ': '-> 'Generic '. '\n .
 
 --- Maude declaration for a function
-  eq getDecl('_`(_`)['token[QI1], T2])
-   = 'op getName(QI1) ': 'Untyped '-> 'Untyped '. '\n
-      getDecl(T2) .
+  eq getDecl('_`(_`)['token[QI1], T])
+   = getDecl(T) .
 
 --- get declaration for subterms in n-ary functions
   eq getDecl('_`,_[T1, T2])
@@ -52,9 +56,13 @@ fmod FUNBLOCKS is
   eq redTerm('_`(_`)['token[QI1], T2])
    = getName(QI1) '`( redTerm(T2) '`) .
 
---- reduce subterms of n-ary functions
+--- reduce consecutive terms
   eq redTerm('_`,_[T1, T2])
    = redTerm(T1) '`, redTerm(T2) .
+
+--- reduce co-domain of a rule
+  eq redTerm('bubble[T])
+   = downTerm(T,nil) .
 
 --- get the rule declaration
   op getRule : QidList QidList ~> QidList .
@@ -68,6 +76,6 @@ endfm
 --- load funblocks-syntax.maude
 
 --- reduce in FUNBLOCKS :
----   getCase(metaParse(upModule('FUNBLOCKS-SYNTAX, false), tokenize("case $ f => $ g"), anyType))
+  --- getCase(metaParse(upModule('FUNBLOCKS-SYNTAX, false), tokenize("case $ f => $ g"), anyType)) .
 ---   getCase(metaParse(upModule('FUNBLOCKS-SYNTAX, false), tokenize("case $ x => id( g(a))"), anyType)) .
   --- getCase(metaParse(upModule('FUNBLOCKS-SYNTAX, false), tokenize("case $ f => f ( g , h , l , $ l )"), anyType)) .
