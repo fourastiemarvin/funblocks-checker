@@ -2,7 +2,7 @@
 # and process the output (maude module) to delete the annoying caracters after
 # the parsing
 
-import os
+import ast
 
 # add space after the '$' for variable
 def pre(filename):
@@ -12,6 +12,21 @@ def pre(filename):
 
     with open(filename, 'w') as file :
         file.write(filedata)
+
+# init the module write declarations of function in funrules.maude
+def init_module(data):
+    decl = ""
+    d = ast.literal_eval(data)
+    # iterate over keys k and values v
+    for k, v in d.items():
+        if len(v) == 1:
+            decl = decl + "op " + k + " : " + "-> " + v[-1][-1] + " . \n"
+        else:
+            dom = ' '.join([t[-1] for t in v[0:len(v)]])
+            decl = decl + "op " + k + " : " + dom + " -> " + v[-1][-1] + " . \n"
+    with open("funrules.maude", 'w') as file :
+        file.write("mod FUNRULES is \n")
+        file.write(decl)
 
 # delete ' caracter and identical lines
 def post(filename):
@@ -29,5 +44,10 @@ def post(filename):
         file.write(filedata)
     os.remove("tmp.txt")
 
+
+# TEST
+
+# data = '{ "ajoute": [ ("TypeVarRef", "Generic"), ("TypeDeclRef", "List"), ("TypeDeclRef", "List")]}'
 # pre("./test.txt")
-post("./funrules.maude")
+# post("./funrules.maude")
+# init_module(data)

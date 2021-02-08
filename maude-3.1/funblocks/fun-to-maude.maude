@@ -47,18 +47,13 @@ mod FUN-TO-MAUDE is
   rl < myObj : myClass | in: null, outFile: Maude, Attrs >
      openedFile(myObj, fileManager, FHIn)
   => < myObj : myClass | in: FHIn, Attrs >
-     openFile(fileManager, myObj, Maude, "w") .
+     openFile(fileManager, myObj, Maude, "a") .
 
-  --- when output file opened, write the module decl in output file
+        --- include funtypes
+
+  --- when module file opened, get line of input file
   rl < myObj : myClass | in: FHIn, out: null, Attrs >
      openedFile(myObj, fileManager, FHOut)
-  => < myObj : myClass | in: FHIn, out: FHOut, Attrs >
-     write(FHOut, myObj,
-        "mod FUN-RULES is \n") .
-
-  --- when module decl wrote, get line of input file
-  rl < myObj : myClass | in: FHIn, out: FHOut, Attrs >
-     wrote(myObj, FHOut)
   => < myObj : myClass | in: FHIn, out: FHOut, Attrs >
      getLine(FHIn, myObj) .
 
