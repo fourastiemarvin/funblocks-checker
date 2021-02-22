@@ -1,0 +1,13 @@
+fmod TERMINATION-CHECKER is
+  pr STRING .
+
+  op termCheck : String String String ~> String
+       [ctor
+        special (id-hook TerminationCheckerSymbol (checktermination)
+                 op-hook stringSymbol (<Strings> : ~> String))].
+
+  op writeToFile : String String String ~> String
+       [ctor
+        special (id-hook TerminationCheckerSymbol (writelog)
+                 op-hook stringSymbol (<Strings> : ~> String))].
+endfm

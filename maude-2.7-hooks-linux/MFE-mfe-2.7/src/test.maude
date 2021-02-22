@@ -1,0 +1,43 @@
+(mod TEST1 is
+  sort Nat Generic String .
+  subsort Nat < Generic .
+  op f : Nat Nat -> Nat .
+  op g : Nat -> Nat .
+  var x : Nat .
+  op a : -> Nat .
+  op b : -> Nat .
+  op c : -> Nat .
+  eq f(x,x) = a .
+  eq f(x, g(x)) = b .
+  eq c = g(c) .
+endm)
+
+(mod TEST2 is
+  sort Nat Generic String Any .
+  subsort Nat String < Generic .
+  op id : Nat -> Nat .
+  --- var x : Nat .
+  op b : -> Nat .
+  op a : -> Nat .
+  eq id(a) = b .
+  eq id(a) = a .
+endm
+)
+
+(mod TEST3 is
+  sort Nat Generic String .
+  subsort Nat String < Generic .
+  op id : Nat -> Nat .
+  var x : Nat .
+  eq id(x) = x .
+endm
+)
+
+(mod TEST4 is
+  sort Generic .
+  --- subsort Nat String < Generic .
+  op id : Generic -> Generic .
+  var x : Generic .
+  eq id(x) = x .
+endm
+)

@@ -1,0 +1,134 @@
+MTT -> AProVE: 
+( VAR A B C M N X X@@@ )   ( THEORY     ( AC @underscore@and@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ )     ( AC @underscore@or@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ )     ( AC @underscore@xor@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ )   )     ( RULES     @underscore@<=@underscore@-@osb@Nat@csb@-@osb@Nat@csb@ ( 0 ,   N ) -> true     @underscore@<=@underscore@-@osb@Nat@csb@-@osb@Nat@csb@ ( M ,   s@underscore@-@osb@Nat@csb@ ( M ) ) -> true     @underscore@<=@underscore@-@osb@Nat@csb@-@osb@Nat@csb@ ( s@underscore@-@osb@Nat@csb@ ( M ) ,   0 ) -> false     @underscore@<=@underscore@-@osb@Nat@csb@-@osb@Nat@csb@ ( s@underscore@-@osb@Nat@csb@ ( M ) ,   M ) -> false     @underscore@<=@underscore@-@osb@Nat@csb@-@osb@Nat@csb@ ( s@underscore@-@osb@Nat@csb@ ( M ) ,   s@underscore@-@osb@Nat@csb@ ( N ) ) -> @underscore@<=@underscore@-@osb@Nat@csb@-@osb@Nat@csb@ ( M ,   N )     @underscore@<@underscore@-@osb@Nat@csb@-@osb@Nat@csb@ ( M ,   N ) -> not@underscore@-@osb@Bool@csb@ ( @underscore@<=@underscore@-@osb@Nat@csb@-@osb@Nat@csb@ ( N ,   M ) )     @underscore@<@underscore@-@osb@Nat@csb@-@osb@Nat@csb@ ( M ,   s@underscore@-@osb@Nat@csb@ ( M ) ) -> true     @underscore@<@underscore@-@osb@Nat@csb@-@osb@Nat@csb@ ( s@underscore@-@osb@Nat@csb@ ( M ) ,   M ) -> false     @underscore@and@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( A ,   A ) -> A     @underscore@and@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( A ,   @underscore@xor@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( B ,   C ) ) -> @underscore@xor@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( @underscore@and@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( A ,   B ) ,   @underscore@and@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( A ,   C ) )     @underscore@and@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( false ,   A ) -> false     @underscore@and@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( true ,   A ) -> A     @underscore@and@underscore@-@osb@Bool@csb@-@osb@Bool@csb@-@osb@Bool@csb@ ( A ,   A ,   X@@@ ) -> @underscore@and@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( A ,   X@@@ )     @underscore@and@underscore@-@osb@Bool@csb@-@osb@Bool@csb@-@osb@Bool@csb@ ( A ,   X@@@ ,   @underscore@xor@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( B ,   C ) ) -> @underscore@and@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( X@@@ ,   @underscore@xor@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( @underscore@and@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( A ,   B ) ,   @underscore@and@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( A ,   C ) ) )     @underscore@and@underscore@-@osb@Bool@csb@-@osb@Bool@csb@-@osb@Bool@csb@ ( false ,   A ,   X@@@ ) -> @underscore@and@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( false ,   X@@@ )     @underscore@and@underscore@-@osb@Bool@csb@-@osb@Bool@csb@-@osb@Bool@csb@ ( true ,   A ,   X@@@ ) -> @underscore@and@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( A ,   X@@@ )     @underscore@implies@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( A ,   B ) -> not@underscore@-@osb@Bool@csb@ ( @underscore@xor@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( A ,   @underscore@and@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( A ,   B ) ) )     @underscore@or@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( A ,   B ) -> @underscore@xor@underscore@-@osb@Bool@csb@-@osb@Bool@csb@-@osb@Bool@csb@ ( A ,   B ,   @underscore@and@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( A ,   B ) )     @underscore@or@underscore@-@osb@Bool@csb@-@osb@Bool@csb@-@osb@Bool@csb@ ( A ,   B ,   X@@@ ) -> @underscore@or@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( X@@@ ,   @underscore@xor@underscore@-@osb@Bool@csb@-@osb@Bool@csb@-@osb@Bool@csb@ ( A ,   B ,   @underscore@and@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( A ,   B ) ) )     @underscore@xor@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( A ,   A ) -> false     @underscore@xor@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( false ,   A ) -> A     @underscore@xor@underscore@-@osb@Bool@csb@-@osb@Bool@csb@-@osb@Bool@csb@ ( A ,   A ,   X@@@ ) -> @underscore@xor@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( false ,   X@@@ )     @underscore@xor@underscore@-@osb@Bool@csb@-@osb@Bool@csb@-@osb@Bool@csb@ ( false ,   A ,   X@@@ ) -> @underscore@xor@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( A ,   X@@@ )     U11 ( tt ) -> true     U21 ( tt ) -> true     aux-@osb@State@csb@ ( <@underscore@-comma-@underscore@-comma-@underscore@-comma-@underscore@>-@osb@Mode@csb@-@osb@Nat@csb@-@osb@Mode@csb@-@osb@Nat@csb@ ( crit ,   M ,   crit ,   N ) ) -> false     aux-@osb@State@csb@ ( <@underscore@-comma-@underscore@-comma-@underscore@-comma-@underscore@>-@osb@Mode@csb@-@osb@Nat@csb@-@osb@Mode@csb@-@osb@Nat@csb@ ( crit ,   M ,   sleep ,   N ) ) -> true     aux-@osb@State@csb@ ( <@underscore@-comma-@underscore@-comma-@underscore@-comma-@underscore@>-@osb@Mode@csb@-@osb@Nat@csb@-@osb@Mode@csb@-@osb@Nat@csb@ ( crit ,   M ,   wait ,   N ) ) -> U11 ( equal-@osb@Bool@csb@-@osb@Bool@csb@ ( @underscore@<=@underscore@-@osb@Nat@csb@-@osb@Nat@csb@ ( M ,   N ) ,   true ) )     aux-@osb@State@csb@ ( <@underscore@-comma-@underscore@-comma-@underscore@-comma-@underscore@>-@osb@Mode@csb@-@osb@Nat@csb@-@osb@Mode@csb@-@osb@Nat@csb@ ( sleep ,   M ,   crit ,   N ) ) -> true     aux-@osb@State@csb@ ( <@underscore@-comma-@underscore@-comma-@underscore@-comma-@underscore@>-@osb@Mode@csb@-@osb@Nat@csb@-@osb@Mode@csb@-@osb@Nat@csb@ ( sleep ,   M ,   sleep ,   N ) ) -> true     aux-@osb@State@csb@ ( <@underscore@-comma-@underscore@-comma-@underscore@-comma-@underscore@>-@osb@Mode@csb@-@osb@Nat@csb@-@osb@Mode@csb@-@osb@Nat@csb@ ( sleep ,   M ,   wait ,   N ) ) -> true     aux-@osb@State@csb@ ( <@underscore@-comma-@underscore@-comma-@underscore@-comma-@underscore@>-@osb@Mode@csb@-@osb@Nat@csb@-@osb@Mode@csb@-@osb@Nat@csb@ ( wait ,   M ,   crit ,   N ) ) -> U21 ( equal-@osb@Bool@csb@-@osb@Bool@csb@ ( @underscore@<@underscore@-@osb@Nat@csb@-@osb@Nat@csb@ ( N ,   M ) ,   true ) )     aux-@osb@State@csb@ ( <@underscore@-comma-@underscore@-comma-@underscore@-comma-@underscore@>-@osb@Mode@csb@-@osb@Nat@csb@-@osb@Mode@csb@-@osb@Nat@csb@ ( wait ,   M ,   sleep ,   N ) ) -> true     aux-@osb@State@csb@ ( <@underscore@-comma-@underscore@-comma-@underscore@-comma-@underscore@>-@osb@Mode@csb@-@osb@Nat@csb@-@osb@Mode@csb@-@osb@Nat@csb@ ( wait ,   M ,   wait ,   N ) ) -> true     equal-@osb@Bool@csb@-@osb@Bool@csb@ ( X ,   X ) -> tt     init-@osb@State@csb@ ( <@underscore@-comma-@underscore@-comma-@underscore@-comma-@underscore@>-@osb@Mode@csb@-@osb@Nat@csb@-@osb@Mode@csb@-@osb@Nat@csb@ ( sleep ,   0 ,   sleep ,   0 ) ) -> true     mutex-@osb@State@csb@ ( <@underscore@-comma-@underscore@-comma-@underscore@-comma-@underscore@>-@osb@Mode@csb@-@osb@Nat@csb@-@osb@Mode@csb@-@osb@Nat@csb@ ( crit ,   M ,   crit ,   N ) ) -> false     mutex-@osb@State@csb@ ( <@underscore@-comma-@underscore@-comma-@underscore@-comma-@underscore@>-@osb@Mode@csb@-@osb@Nat@csb@-@osb@Mode@csb@-@osb@Nat@csb@ ( crit ,   M ,   sleep ,   N ) ) -> true     mutex-@osb@State@csb@ ( <@underscore@-comma-@underscore@-comma-@underscore@-comma-@underscore@>-@osb@Mode@csb@-@osb@Nat@csb@-@osb@Mode@csb@-@osb@Nat@csb@ ( crit ,   M ,   wait ,   N ) ) -> true     mutex-@osb@State@csb@ ( <@underscore@-comma-@underscore@-comma-@underscore@-comma-@underscore@>-@osb@Mode@csb@-@osb@Nat@csb@-@osb@Mode@csb@-@osb@Nat@csb@ ( sleep ,   M ,   crit ,   N ) ) -> true     mutex-@osb@State@csb@ ( <@underscore@-comma-@underscore@-comma-@underscore@-comma-@underscore@>-@osb@Mode@csb@-@osb@Nat@csb@-@osb@Mode@csb@-@osb@Nat@csb@ ( sleep ,   M ,   sleep ,   N ) ) -> true     mutex-@osb@State@csb@ ( <@underscore@-comma-@underscore@-comma-@underscore@-comma-@underscore@>-@osb@Mode@csb@-@osb@Nat@csb@-@osb@Mode@csb@-@osb@Nat@csb@ ( sleep ,   M ,   wait ,   N ) ) -> true     mutex-@osb@State@csb@ ( <@underscore@-comma-@underscore@-comma-@underscore@-comma-@underscore@>-@osb@Mode@csb@-@osb@Nat@csb@-@osb@Mode@csb@-@osb@Nat@csb@ ( wait ,   M ,   crit ,   N ) ) -> true     mutex-@osb@State@csb@ ( <@underscore@-comma-@underscore@-comma-@underscore@-comma-@underscore@>-@osb@Mode@csb@-@osb@Nat@csb@-@osb@Mode@csb@-@osb@Nat@csb@ ( wait ,   M ,   sleep ,   N ) ) -> true     mutex-@osb@State@csb@ ( <@underscore@-comma-@underscore@-comma-@underscore@-comma-@underscore@>-@osb@Mode@csb@-@osb@Nat@csb@-@osb@Mode@csb@-@osb@Nat@csb@ ( wait ,   M ,   wait ,   N ) ) -> true     not@underscore@-@osb@Bool@csb@ ( A ) -> @underscore@xor@underscore@-@osb@Bool@csb@-@osb@Bool@csb@ ( true ,   A )   )   
+
+AProVE -> MTT: 
+YES
+Term Rewriting System R:
+
+   [N, M, A, B, C, X@@@, X]
+   AC [_and_-`[Bool`]-`[Bool`], _or_-`[Bool`]-`[Bool`], _xor_-`[Bool`]-`[Bool`]]
+   _<=_-`[Nat`]-`[Nat`](0, N) -> true
+   _<=_-`[Nat`]-`[Nat`](M, s_-`[Nat`](M)) -> true
+   _<=_-`[Nat`]-`[Nat`](s_-`[Nat`](M), 0) -> false
+   _<=_-`[Nat`]-`[Nat`](s_-`[Nat`](M), M) -> false
+   _<=_-`[Nat`]-`[Nat`](s_-`[Nat`](M), s_-`[Nat`](N)) -> _<=_-`[Nat`]-`[Nat`](M, N)
+   _<_-`[Nat`]-`[Nat`](M, N) -> not_-`[Bool`](_<=_-`[Nat`]-`[Nat`](N, M))
+   _<_-`[Nat`]-`[Nat`](M, s_-`[Nat`](M)) -> true
+   _<_-`[Nat`]-`[Nat`](s_-`[Nat`](M), M) -> false
+   _and_-`[Bool`]-`[Bool`](A, A) -> A
+   _and_-`[Bool`]-`[Bool`](A, _xor_-`[Bool`]-`[Bool`](B, C)) -> _xor_-`[Bool`]-`[Bool`](_and_-`[Bool`]-`[Bool`](A, B), _and_-`[Bool`]-`[Bool`](A, C))
+   _and_-`[Bool`]-`[Bool`](false, A) -> false
+   _and_-`[Bool`]-`[Bool`](true, A) -> A
+   _and_-`[Bool`]-`[Bool`]-`[Bool`](A, A, X@@@) -> _and_-`[Bool`]-`[Bool`](A, X@@@)
+   _and_-`[Bool`]-`[Bool`]-`[Bool`](A, X@@@, _xor_-`[Bool`]-`[Bool`](B, C)) -> _and_-`[Bool`]-`[Bool`](X@@@, _xor_-`[Bool`]-`[Bool`](_and_-`[Bool`]-`[Bool`](A, B), _and_-`[Bool`]-`[Bool`](A, C)))
+   _and_-`[Bool`]-`[Bool`]-`[Bool`](false, A, X@@@) -> _and_-`[Bool`]-`[Bool`](false, X@@@)
+   _and_-`[Bool`]-`[Bool`]-`[Bool`](true, A, X@@@) -> _and_-`[Bool`]-`[Bool`](A, X@@@)
+   _implies_-`[Bool`]-`[Bool`](A, B) -> not_-`[Bool`](_xor_-`[Bool`]-`[Bool`](A, _and_-`[Bool`]-`[Bool`](A, B)))
+   _or_-`[Bool`]-`[Bool`](A, B) -> _xor_-`[Bool`]-`[Bool`]-`[Bool`](A, B, _and_-`[Bool`]-`[Bool`](A, B))
+   _or_-`[Bool`]-`[Bool`]-`[Bool`](A, B, X@@@) -> _or_-`[Bool`]-`[Bool`](X@@@, _xor_-`[Bool`]-`[Bool`]-`[Bool`](A, B, _and_-`[Bool`]-`[Bool`](A, B)))
+   _xor_-`[Bool`]-`[Bool`](A, A) -> false
+   _xor_-`[Bool`]-`[Bool`](false, A) -> A
+   _xor_-`[Bool`]-`[Bool`]-`[Bool`](A, A, X@@@) -> _xor_-`[Bool`]-`[Bool`](false, X@@@)
+   _xor_-`[Bool`]-`[Bool`]-`[Bool`](false, A, X@@@) -> _xor_-`[Bool`]-`[Bool`](A, X@@@)
+   U11(tt) -> true
+   U21(tt) -> true
+   aux-`[State`](<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`](crit, M, crit, N)) -> false
+   aux-`[State`](<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`](crit, M, sleep, N)) -> true
+   aux-`[State`](<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`](crit, M, wait, N)) -> U11(equal-`[Bool`]-`[Bool`](_<=_-`[Nat`]-`[Nat`](M, N), true))
+   aux-`[State`](<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`](sleep, M, crit, N)) -> true
+   aux-`[State`](<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`](sleep, M, sleep, N)) -> true
+   aux-`[State`](<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`](sleep, M, wait, N)) -> true
+   aux-`[State`](<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`](wait, M, crit, N)) -> U21(equal-`[Bool`]-`[Bool`](_<_-`[Nat`]-`[Nat`](N, M), true))
+   aux-`[State`](<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`](wait, M, sleep, N)) -> true
+   aux-`[State`](<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`](wait, M, wait, N)) -> true
+   equal-`[Bool`]-`[Bool`](X, X) -> tt
+   init-`[State`](<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`](sleep, 0, sleep, 0)) -> true
+   mutex-`[State`](<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`](crit, M, crit, N)) -> false
+   mutex-`[State`](<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`](crit, M, sleep, N)) -> true
+   mutex-`[State`](<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`](crit, M, wait, N)) -> true
+   mutex-`[State`](<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`](sleep, M, crit, N)) -> true
+   mutex-`[State`](<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`](sleep, M, sleep, N)) -> true
+   mutex-`[State`](<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`](sleep, M, wait, N)) -> true
+   mutex-`[State`](<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`](wait, M, crit, N)) -> true
+   mutex-`[State`](<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`](wait, M, sleep, N)) -> true
+   mutex-`[State`](<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`](wait, M, wait, N)) -> true
+   not_-`[Bool`](A) -> _xor_-`[Bool`]-`[Bool`](true, A)
+
+Termination of R to be shown.
+
+
+
+
+
+   R     ->Direct Termination
+
+
+
+Direct Termination proof successful with the following AC-Compatible Recursive Path Order with Status:
+
+Precedence:
+_and_-`[Bool`]-`[Bool`]-`[Bool`] > _and_-`[Bool`]-`[Bool`] > _xor_-`[Bool`]-`[Bool`] > false
+_implies_-`[Bool`]-`[Bool`] > not_-`[Bool`] > true
+_implies_-`[Bool`]-`[Bool`] > not_-`[Bool`] > _xor_-`[Bool`]-`[Bool`] > false
+_implies_-`[Bool`]-`[Bool`] > _and_-`[Bool`]-`[Bool`] > _xor_-`[Bool`]-`[Bool`] > false
+_or_-`[Bool`]-`[Bool`]-`[Bool`] > _or_-`[Bool`]-`[Bool`] > _and_-`[Bool`]-`[Bool`] > _xor_-`[Bool`]-`[Bool`] > false
+_or_-`[Bool`]-`[Bool`]-`[Bool`] > _or_-`[Bool`]-`[Bool`] > _xor_-`[Bool`]-`[Bool`]-`[Bool`] > _xor_-`[Bool`]-`[Bool`] > false
+aux-`[State`] > _<_-`[Nat`]-`[Nat`] > _<=_-`[Nat`]-`[Nat`] > true
+aux-`[State`] > _<_-`[Nat`]-`[Nat`] > _<=_-`[Nat`]-`[Nat`] > false
+aux-`[State`] > _<_-`[Nat`]-`[Nat`] > not_-`[Bool`] > true
+aux-`[State`] > _<_-`[Nat`]-`[Nat`] > not_-`[Bool`] > _xor_-`[Bool`]-`[Bool`] > false
+aux-`[State`] > U21 > true
+aux-`[State`] > equal-`[Bool`]-`[Bool`] > tt
+<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`] > _<=_-`[Nat`]-`[Nat`] > true
+<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`] > _<=_-`[Nat`]-`[Nat`] > false
+<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`] > U11 > true
+<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`] > equal-`[Bool`]-`[Bool`] > tt
+
+
+Status:
+_<=_-`[Nat`]-`[Nat`]: no status
+0: no status
+true: no status
+s_-`[Nat`]: no status
+false: no status
+_<_-`[Nat`]-`[Nat`]: no status
+not_-`[Bool`]: no status
+_and_-`[Bool`]-`[Bool`]: flat status
+_xor_-`[Bool`]-`[Bool`]: flat status
+_and_-`[Bool`]-`[Bool`]-`[Bool`]: no status
+_implies_-`[Bool`]-`[Bool`]: no status
+_or_-`[Bool`]-`[Bool`]: flat status
+_xor_-`[Bool`]-`[Bool`]-`[Bool`]: no status
+_or_-`[Bool`]-`[Bool`]-`[Bool`]: no status
+U11: no status
+tt: no status
+U21: no status
+aux-`[State`]: no status
+<_-comma-_-comma-_-comma-_>-`[Mode`]-`[Nat`]-`[Mode`]-`[Nat`]: no status
+crit: no status
+sleep: no status
+wait: no status
+equal-`[Bool`]-`[Bool`]: no status
+init-`[State`]: no status
+mutex-`[State`]: no status
+
+Removing all rules.
+
+
+   R     ->Direct
+
+       ->TRS2
+         ->Dependency Pair Analysis
+
+
+
+R contains no Dependency Pairs  and therefore no SCCs.
+
+
+Termination of R successfully shown.
+
+Duration: 
+0:01 minutes
+
+
+

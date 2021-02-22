@@ -1,0 +1,25 @@
+load eqEnrich.maude
+
+fmod EqE-BANNER is
+  pr STRING .
+  op eqe-banner : -> String .
+  eq eqe-banner = "Equality Enrichments 0.99 - July 2011" .
+endfm
+
+fmod EqE-HELP is
+  pr META-LEVEL .
+
+  op eqe-help : -> QidList .
+  eq eqe-help = 'TODO .
+endfm
+
+fmod EqE-SIGN is
+  including FULL-MAUDE-SIGN .
+  op ee_. : @ModExp@ -> @Command@ [ctor] .
+  op ee+_. : @ModExp@ -> @Command@ [ctor] .
+  op EqE help . : -> @Command@ [ctor] .
+  op show state . : -> @Command@ [ctor] .
+  op submit . : -> @Command@ [ctor] .
+  op trust . : -> @Command@ [ctor] .
+  op EqE select_. : @ModExp@  -> @Command@ [ctor] .
+endfm
