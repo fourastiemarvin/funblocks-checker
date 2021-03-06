@@ -1,6 +1,5 @@
-(mod TEST1 is
-  sort Nat Generic String .
-  subsort Nat < Generic .
+(fmod TEST1 is
+  sort Nat .
   op f : Nat Nat -> Nat .
   op g : Nat -> Nat .
   var x : Nat .
@@ -10,34 +9,17 @@
   eq f(x,x) = a .
   eq f(x, g(x)) = b .
   eq c = g(c) .
-endm)
+endfm)
 
-(mod TEST2 is
-  sort Nat Generic String Any .
-  subsort Nat String < Generic .
-  op id : Nat -> Nat .
-  --- var x : Nat .
-  op b : -> Nat .
+(fmod TEST2 is
+  sort Nat .
+  vars x y : Nat .
   op a : -> Nat .
-  eq id(a) = b .
-  eq id(a) = a .
-endm
-)
+  op b : -> Nat .
+  op f : Nat Nat Nat -> Nat .
+  op g : Nat Nat -> Nat .
 
-(mod TEST3 is
-  sort Nat Generic String .
-  subsort Nat String < Generic .
-  op id : Nat -> Nat .
-  var x : Nat .
-  eq id(x) = x .
-endm
-)
-
-(mod TEST4 is
-  sort Generic .
-  --- subsort Nat String < Generic .
-  op id : Generic -> Generic .
-  var x : Generic .
-  eq id(x) = x .
-endm
-)
+  eq f(a,b,x) = f(x,x,x) .
+  eq g(x,y) = x .
+  eq g(x,y) = y .
+endfm)
