@@ -1,23 +1,25 @@
---- view Oid from TRIV to NAT is
----   sort Elt to Nat .
---- endv
+fmod L{X :: TRIV} is
+  sort L{X} .
+  op empty : -> L{X} .
+  op cons : X$Elt L{X} -> L{X} .
+endfm
 
-fmod MY-LIST{T :: TRIV} is
+fmod MY-LIST is
 
-  protecting LIST{T} .
-  protecting NAT .
+  --- protecting LIST{T} .
+  --- protecting NAT .
   protecting QID .
 
-  --- sorts List{X$Elt} .
-  subsort Qid < T$Elt < List{T} .
-  --- subsort Nat < Y$Elt < List{Y$Elt} .
-  vars $x $y : T$Elt .
-  vars $tail : List{T} .
+  including L{T} .
+  sort T .
+  subsort T < Qid .
+
+
+  vars $x $y : T .
+  var $tail : L{T} .
 
 --- constructed with 'type'
-  op empty : -> List{T} .
-  op ajoute : T$Elt List{T} -> List{T} .
-  op cons : T$Elt List{T} -> List{T} .
+  op ajoute : T L{T} -> L{T} .
 
 --- constructed with 'case'
   eq ajoute($x, cons($y, $tail)) = cons($y, ajoute($x, $tail)) .
@@ -25,10 +27,12 @@ fmod MY-LIST{T :: TRIV} is
 
 endfm
 
-red in MY-LIST :
+--- red in MY-LIST :
   --- reverse(0 1 2 3 4 5 6) .
   --- ajoute('el, empty) .
-  ajoute('el, cons('first, 'tail)) .
+  --- ajoute('el, cons('first, 'tail)) .
+  --- cons('a, empty) .
+  --- empty .
 
 --- type List $T :: empty | cons $T (List $T)
 --- case ajoute($x, cons($y, $tail)) => cons($y, ajoute($x, $tail))
