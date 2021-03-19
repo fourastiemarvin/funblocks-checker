@@ -1,0 +1,115 @@
+{
+  "initialState": {
+    "_objectType": "Expr",
+    "id": "expr/zt0ow9xon-tf",
+    "label": "tf",
+    "parent": null,
+    "subterms": [
+      {
+        "_objectType": "Expr",
+        "id": "expr/5skfeotl7-true",
+        "label": "true",
+        "parent": "expr/zt0ow9xon-tf",
+        "subterms": []
+      },
+      {
+        "_objectType": "Expr",
+        "id": "expr/f8cmglco2-3",
+        "label": "3",
+        "parent": "expr/zt0ow9xon-tf",
+        "subterms": []
+      },
+      {
+        "_objectType": "Expr",
+        "id": "expr/yub3nuadv-3",
+        "label": "3",
+        "parent": "expr/zt0ow9xon-tf",
+        "subterms": []
+      }
+    ]
+  },
+  "ruleCases": [
+    {
+      "_objectType": "Rule",
+      "id": "rule/7ryxq1v0e",
+      "left": {
+        "_objectType": "Expr",
+        "id": "expr/ka7rvrcwx-if",
+        "label": "if",
+        "parent": null,
+        "subterms": [
+          {
+            "_objectType": "Expr",
+            "id": "expr/iqk6tbd4z-id",
+            "label": "id",
+            "parent": "expr/ka7rvrcwx-if",
+            "subterms": [
+              {
+                "_objectType": "Expr",
+                "id": "expr/0jyzuvi90-true",
+                "label": "true",
+                "parent": "expr/iqk6tbd4z-id",
+                "subterms": []
+              }
+            ]
+          },
+          {
+            "_objectType": "VarRef",
+            "id": "var/6nfht9cba-x",
+            "label": "x",
+            "parent": "expr/ka7rvrcwx-if"
+          },
+          {
+            "_objectType": "VarRef",
+            "id": "var/ltptorgfr-y",
+            "label": "y",
+            "parent": "expr/ka7rvrcwx-if"
+          }
+        ]
+      },
+      "right": {
+        "_objectType": "VarRef",
+        "id": "var/aw2xbi2pz-x",
+        "label": "x",
+        "parent": null
+      }
+    },
+    {
+      "_objectType": "Rule",
+      "id": "rule/5o0486d16",
+      "left": {
+        "_objectType": "Expr",
+        "id": "expr/y4a6h4ll9-if",
+        "label": "if",
+        "parent": null,
+        "subterms": [
+          {
+            "_objectType": "Expr",
+            "id": "expr/xfa6ttahv-false",
+            "label": "false",
+            "parent": "expr/y4a6h4ll9-if",
+            "subterms": []
+          },
+          {
+            "_objectType": "VarRef",
+            "id": "var/k2jtwh4ef-x",
+            "label": "x",
+            "parent": "expr/y4a6h4ll9-if"
+          },
+          {
+            "_objectType": "VarRef",
+            "id": "var/ukjn289fe-y",
+            "label": "y",
+            "parent": "expr/y4a6h4ll9-if"
+          }
+        ]
+      },
+      "right": {
+        "_objectType": "VarRef",
+        "id": "var/et05rlwmc-y",
+        "label": "y",
+        "parent": null
+      }
+    }
+  ]
+}
