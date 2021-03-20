@@ -1,24 +1,28 @@
+--- type definition
 fmod L{X :: TRIV} is
   sort L{X} .
   op empty : -> L{X} .
   op cons : X$Elt L{X} -> L{X} .
 endfm
 
+--- generic type name
+view T from TRIV to QID is
+  sort Elt to Qid .
+endv
+
+
 fmod MY-LIST is
 
-  --- protecting LIST{T} .
-  --- protecting NAT .
   protecting QID .
-
   including L{T} .
+
   sort T .
   subsort T < Qid .
-
 
   vars $x $y : T .
   var $tail : L{T} .
 
---- constructed with 'type'
+--- constructed with typedList
   op ajoute : T L{T} -> L{T} .
 
 --- constructed with 'case'
@@ -27,11 +31,11 @@ fmod MY-LIST is
 
 endfm
 
---- red in MY-LIST :
+red in MY-LIST :
   --- reverse(0 1 2 3 4 5 6) .
-  --- ajoute('el, empty) .
+  --- ajoute('5, empty) .
   --- ajoute('el, cons('first, 'tail)) .
-  --- cons('a, empty) .
+  cons('a, empty) .
   --- empty .
 
 --- type List $T :: empty | cons $T (List $T)
