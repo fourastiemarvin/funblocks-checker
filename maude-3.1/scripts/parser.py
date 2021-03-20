@@ -16,7 +16,12 @@ varDeclList = []
 opDeclList = []
 # contains typed terms
 typedList = []
+# contains elements for eq declaration
+eqDeclList = []
+# contains elements for type declaration (aka parametrized module)
+typeDeclList = []
 
+# FIXME: the type of the right term is not inferred (typed as any)
 # entrypoint, parse each case
 def parseCase(prog):
     global opDeclList
@@ -70,7 +75,7 @@ def varDecl(term, parent=None, pos=None):
 
 # build an element of opDeclList: [label, dom1, dom2,... , co-domain]
 # NOTE: opDecl returns an item with an unspecified type.
-#       If the type is specified, this item won't be appened in opDeclList
+#       If the type is specified, this item won't be append in opDeclList
 def opDecl(label, arity, parent=None, pos=None):
     opList = []
     opList.append(label)
@@ -84,9 +89,32 @@ def opDecl(label, arity, parent=None, pos=None):
     opList.append("any")
     return opList
 
-# TODO
+# var = [['x', 'any'], ['y', 'any']]
+# op = [['false', 'T'], ['id', 'any', 'T'], ['if', 'T', 'List', 'List'], ['true', 'any']]
+# typed = [['ajoute', 'T', 'List', 'List'], ['aj', 'T', 'List', 'List']]
+
+# build eq for the maude module using eqDeclList
 def eqDecl():
-    pass
+    global eqDeclList
+    newEqDeclList = []
+    with open('prog.txt', 'r') as prog:
+        eqDeclList = [w[0:-1] for w in prog if "case" == w[0:4]]
+    for case in eqDeclList:
+        case = case.replace("case", "eq")
+        case = case.replace("=>", "=")
+        newEqDeclList.append(case + " .")
+    eqDeclList = newEqDeclList
+
+# build list to declare type
+def typeDecl():
+    global typeDeclList
+    with open('prog.txt', 'r') as prog:
+        typeDeclList = [w[0:-1] for w in prog if "type" == w[0:4]]
+    for type in typeDeclList:
+        t = type.split("|")
+        first = t[0].split("::")
+        first = [s.replace("type", "") for s in first]
+        typeDeclList = first + t[1:len(t)]
 
 # build list of typed terms
 def getType(typeDict):
@@ -101,6 +129,7 @@ def getType(typeDict):
             for t in v[0:len(v)]:
                 curRuleList.append(t[-1])
             typedList.append(curRuleList)
+
 
 # init the module write declarations of function in funrules.maude
 # def init_module(data):
@@ -120,12 +149,17 @@ def getType(typeDict):
 
 #############################   TESTS ###########################################
 # data = '{ "ajoute": [ ("TypeVarRef", "T7"), ("TypeDeclRef", "List"), ("TypeDeclRef", "List")]}'
-data = '{ "if" : [ ( "TypeVarRef" , "T" ) , ( "TypeDeclRef" , "List" ) , ( "TypeDeclRef" , "List" ) ],"aj" : [ ( "TypeVarRef" , "T" ) , ( "TypeDeclRef" , "List" ) , ( "TypeDeclRef" , "List" ) ] }'
-getType(data)
-parseCase(parsed)
-print(varDeclList)
-# [['x', 'any'], ['y', 'any']]
-print(opDeclList)
-# [['if', 'any', 'any', 'any'], ['id', 'any'], ['true'], ['false']]
-print(typedList)
+# data = '{ "if" : [ ( "TypeVarRef" , "T" ) , ( "TypeDeclRef" , "List" ) , ( "TypeDeclRef" , "List" ) ],"aj" : [ ( "TypeVarRef" , "T" ) , ( "TypeDeclRef" , "List" ) , ( "TypeDeclRef" , "List" ) ] }'
+# data = '{ "depth" : [ ( "TypeDeclRef" , "Tree" ) , ( "TypeDeclRef" , "Nat" ) ] }'
+# getType(data)
+# parseCase(parsed)
+# print("var: ", varDeclList)
+# # [['x', 'any'], ['y', 'any']]
+# print("op: ", opDeclList)
+# # [['if', 'any', 'any', 'any'], ['id', 'any'], ['true'], ['false']]
+# print("typed: ", typedList)
 # [['ajoute', 'T', 'List', 'List'], ['aj', 'T', 'List', 'List']]
+# eqDecl()
+# print("eq: ", eqDeclList)
+# typeDecl()
+# print("type: ", typeDeclList)
