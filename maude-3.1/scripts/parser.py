@@ -107,6 +107,7 @@ def eqDecl():
 
 # build list to declare type
 def typeDecl():
+    newTypeDeclList = []
     global typeDeclList
     with open('prog.txt', 'r') as prog:
         typeDeclList = [w[0:-1] for w in prog if "type" == w[0:4]]
@@ -114,7 +115,9 @@ def typeDecl():
         t = type.split("|")
         first = t[0].split("::")
         first = [s.replace("type", "") for s in first]
-        typeDeclList = first + t[1:len(t)]
+        # typeDeclList = first + t[1:len(t)]
+        newTypeDeclList.append(first + t[1:len(t)])
+    typeDeclList = newTypeDeclList
 
 # build list of typed terms
 def getType(typeDict):
@@ -130,22 +133,65 @@ def getType(typeDict):
                 curRuleList.append(t[-1])
             typedList.append(curRuleList)
 
+# return declaration of the view and the module for the given type
+def initType():
+    global typeDeclList
+    viewDecl = ""
+    typeMod = "fmod "
+    for t in typeDeclList:
+        nameList = t[0].split(" ")
+        for item in nameList:
+            if item == "":
+                nameList.remove(item)
+        typeMod += nameList[0] + "{ X :: TRIV } is \n sort " + nameList[0] + "{ X } . \n"
+        viewDecl += "view " + nameList[-1] + " from TRIV to QID is sort Elt to Qid . endv \n"
+        for ctor in t[1:]:
+            func = ctor.split(" ")
+            for item in func:
+                if item == "":
+                    func.remove(item)
+            if len(func) == 1:
+                typeMod += " op " + func[0] + " : -> " + nameList[0] + "{ X } . \n"
+            else:
+                dom = ""
+                for type in func[1:]:
+                    if (nameList[-1] in type) and (")" not in type):
+                        dom += "X$Elt "
+                    elif nameList[0] in type:
+                        dom += nameList[0] + "{ X } "
+                typeMod += " op " + func[0] + " : " + dom + " -> " + nameList[0] + "{ X } . \n"
+        typeMod += "endfm \n"
+        return viewDecl, typeMod
 
 # init the module write declarations of function in funrules.maude
-# def init_module(data):
-#     decl = ""
-#     d = ast.literal_eval(data)
-#     # iterate over keys k and values v
-#     for k, v in d.items():
-#         if len(v) == 1:
-#             decl = decl + "op " + k + " : " + "-> " + v[-1][-1] + " . \n"
-#         else:
-#             dom = ' '.join([t[-1] for t in v[0:len(v)]])
-#             decl = decl + "op " + k + " : " + dom + " -> " + v[-1][-1] + " . \n"
-#     with open("funrules.maude", 'w') as file :
-#         file.write("fmod FUNRULES is \n")
-#         file.write(decl)
+def buildModule():
+    # contains elements for var declaration
+    global varDeclList
+    # contains elements for op declaration
+    global opDeclList
+    # contains typed terms
+    global typedList
+    # contains elements for eq declaration
+    global eqDeclList
+    # contains elements for type declaration (aka parametrized module)
+    global typeDeclList
+    decl = ""
+    # d = ast.literal_eval(data)
+    # iterate over keys k and values v
+    # for k, v in d.items():
+    #     if len(v) == 1:
+    #         decl = decl + "op " + k + " : " + "-> " + v[-1][-1] + " . \n"
+    #     else:
+    #         dom = ' '.join([t[-1] for t in v[0:len(v)]])
+    #         decl = decl + "op " + k + " : " + dom + " -> " + v[-1][-1] + " . \n"
+    with open("../funblocks/funrules.maude", 'w') as file :
+        file.write(initType()[0] + "\n")
+        file.write(initType()[1] + "\n")
+        file.write("fmod FUNRULES is \n")
+        file.write(decl)
 
+typeDecl()
+buildModule()
 
 #############################   TESTS ###########################################
 # data = '{ "ajoute": [ ("TypeVarRef", "T7"), ("TypeDeclRef", "List"), ("TypeDeclRef", "List")]}'
@@ -163,3 +209,4 @@ def getType(typeDict):
 # print("eq: ", eqDeclList)
 # typeDecl()
 # print("type: ", typeDeclList)
+# # [' Tree $T ', ' empty ', ' leaf $T ', ' node (Tree $T) (Tree $T)']
