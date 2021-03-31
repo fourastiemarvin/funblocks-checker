@@ -25,7 +25,8 @@ includeList = []
 
 sortList = []
 
-# FIXME: the type of the right term is not inferred (typed as any)
+# FIXME: the type of the right term is not inferred (typed as Any)
+
 # entrypoint, parse each case
 def parseCase(prog):
     global opDeclList
@@ -74,7 +75,7 @@ def varDecl(term, parent=None, pos=None):
             varList.append(t[pos])
             return varList
     # co-domain put as last item of the varList
-    varList.append("any")
+    varList.append("Any")
     return varList
 
 # build an element of opDeclList: [label, dom1, dom2,... , co-domain]
@@ -84,14 +85,14 @@ def opDecl(label, arity, parent=None, pos=None):
     opList = []
     opList.append(label)
     for i in range(arity):
-        opList.append("any")
+        opList.append("Any")
     # the last element is the co-domain (to be infered)
     # print(typedList)
     for t in typedList:
         if parent == t[0]:
             opList.append(t[pos])
             return opList
-    opList.append("any")
+    opList.append("Any")
     return opList
 
 # build eq for the maude module using eqDeclList
@@ -142,13 +143,13 @@ def initType():
     global includeList
     global sortList
     viewDecl = ""
-    typeMod = "fmod "
+    typeMod = ""
     for t in typeDeclList:
         nameList = t[0].split(" ")
         for item in nameList:
             if item == "":
                 nameList.remove(item)
-        typeMod += nameList[0] + "{ X :: TRIV } is \n sort " + nameList[0] + "{ X } . \n"
+        typeMod += "fmod " + nameList[0] + "{ X :: TRIV } is \n sort " + nameList[0] + "{ X } . \n"
         includeList.append(nameList[0] + "{" + nameList[-1] + "}")
         if nameList[0] in sortList:
             sortList.remove(nameList[0])
@@ -177,7 +178,7 @@ def initType():
                         dom += nameList[0] + "{ X } "
                 typeMod += " op " + func[0] + " : " + dom + " -> " + nameList[0] + "{ X } . \n"
         typeMod += "endfm \n"
-        return viewDecl, typeMod
+    return viewDecl, typeMod
 
 # init the module write declarations of function in funrules.maude
 def buildModule():
@@ -188,12 +189,12 @@ def buildModule():
     global typeDeclList
     global includeList
     global sortList
-    decl = "fmod FUNRULES is \n protecting QID . \n sort any . \n"
+    decl = "fmod FUNRULES is \n protecting QID . \n sort Any . \n"
     for s in includeList:
         decl += "including " + s + " . \n"
-        decl += "subsort any < " + s + " . \n"
+        decl += "subsort " + s + " < Any . \n"
     for s in sortList:
-        decl += "sort " + s + " . \n subsort any < "  + s + " < Qid . \n"
+        decl += "sort " + s + " . \n subsort "  + s + " < Qid < Any . \n"
     for v in varDeclList:
         decl += "var $" + v[0] + " : " + v[-1] + " . \n"
     for op in opDeclList:
