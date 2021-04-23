@@ -1,0 +1,21 @@
+
+(fmod MY-NAT is
+ sort MY-NAT .
+ op zero : -> MY-NAT .
+ op succ : MY-NAT -> MY-NAT .
+endfm)
+
+(fmod FUNRULES is
+
+ including MY-NAT .
+ var $x : MY-NAT .
+ var $y : MY-NAT .
+ op add : MY-NAT MY-NAT -> MY-NAT .
+ eq add($x, zero) = $x .
+ eq add($x, succ($y)) = succ(add($x, $y)) .
+ --- eq succ($x) = succ(succ($x)) .
+ --- eq add($x, $y) = zero .
+endfm)
+
+(reduce in FUNRULES :
+  add(succ(zero), zero) .)

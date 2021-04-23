@@ -1,0 +1,172 @@
+MTT -> AProVE: 
+( VAR $a $b $x $y )       ( RULES     add-@osb@MY-NAT@csb@-@osb@MY-NAT@csb@ ( $x ,   zero ) -> $x     add-@osb@MY-NAT@csb@-@osb@MY-NAT@csb@ ( $x ,   succ-@osb@MY-NAT@csb@ ( $y ) ) -> succ-@osb@MY-NAT@csb@ ( add-@osb@MY-NAT@csb@-@osb@MY-NAT@csb@ ( $x ,   $y ) )     depth-@osb@MY-TREEocb-$T-ccb@csb@ ( empty ) -> zero     depth-@osb@MY-TREEocb-$T-ccb@csb@ ( node-@osb@MY-TREEocb-$T-ccb@csb@-@osb@MY-TREEocb-$T-ccb@csb@ ( $a ,   $b ) ) -> succ-@osb@MY-NAT@csb@ ( maxi-@osb@MY-NAT@csb@-@osb@MY-NAT@csb@ ( depth-@osb@MY-TREEocb-$T-ccb@csb@ ( $a ) ,   depth-@osb@MY-TREEocb-$T-ccb@csb@ ( $b ) ) )   )   
+
+AProVE -> MTT: 
+YES
+Term Rewriting System R:
+
+   [$x, $y, $a, $b]
+   add-`[MY-NAT`]-`[MY-NAT`]($x, zero) -> $x
+   add-`[MY-NAT`]-`[MY-NAT`]($x, succ-`[MY-NAT`]($y)) -> succ-`[MY-NAT`](add-`[MY-NAT`]-`[MY-NAT`]($x, $y))
+   depth-`[MY-TREEocb-$T-ccb`](empty) -> zero
+   depth-`[MY-TREEocb-$T-ccb`](node-`[MY-TREEocb-$T-ccb`]-`[MY-TREEocb-$T-ccb`]($a, $b)) -> succ-`[MY-NAT`](maxi-`[MY-NAT`]-`[MY-NAT`](depth-`[MY-TREEocb-$T-ccb`]($a), depth-`[MY-TREEocb-$T-ccb`]($b)))
+
+Termination of R to be shown.
+
+
+
+
+
+   R     ->Removing Redundant Rules
+
+
+
+Removing the following rules from R which fullfill a polynomial ordering: 
+
+   add-`[MY-NAT`]-`[MY-NAT`]($x, zero) -> $x
+
+where the Polynomial interpretation:
+POL(maxi-`[MY-NAT`]-`[MY-NAT`](x_1, x_2)) = x_1 + x_2
+POL(add-`[MY-NAT`]-`[MY-NAT`](x_1, x_2)) = x_1 + x_2
+POL(node-`[MY-TREEocb-$T-ccb`]-`[MY-TREEocb-$T-ccb`](x_1, x_2)) = x_1 + x_2
+POL(empty) = 1
+POL(succ-`[MY-NAT`](x_1)) = x_1
+POL(depth-`[MY-TREEocb-$T-ccb`](x_1)) = x_1
+POL(zero) = 1
+was used. 
+
+
+
+Not all Rules of R can be deleted, so we still have to regard a part of R.
+
+
+
+   R     ->RRRPolo
+
+       ->TRS2
+         ->Removing Redundant Rules
+
+
+
+Removing the following rules from R which fullfill a polynomial ordering: 
+
+   add-`[MY-NAT`]-`[MY-NAT`]($x, succ-`[MY-NAT`]($y)) -> succ-`[MY-NAT`](add-`[MY-NAT`]-`[MY-NAT`]($x, $y))
+
+where the Polynomial interpretation:
+POL(maxi-`[MY-NAT`]-`[MY-NAT`](x_1, x_2)) = x_1 + x_2
+POL(node-`[MY-TREEocb-$T-ccb`]-`[MY-TREEocb-$T-ccb`](x_1, x_2)) = 1 + x_1 + x_2
+POL(add-`[MY-NAT`]-`[MY-NAT`](x_1, x_2)) = x_1 + 2*x_2
+POL(empty) = 0
+POL(succ-`[MY-NAT`](x_1)) = 1 + x_1
+POL(depth-`[MY-TREEocb-$T-ccb`](x_1)) = x_1
+POL(zero) = 0
+was used. 
+
+
+
+Not all Rules of R can be deleted, so we still have to regard a part of R.
+
+
+
+   R     ->RRRPolo
+
+       ->TRS2
+         ->RRRPolo
+
+           ->TRS3
+             ->Removing Redundant Rules
+
+
+
+Removing the following rules from R which fullfill a polynomial ordering: 
+
+   depth-`[MY-TREEocb-$T-ccb`](empty) -> zero
+
+where the Polynomial interpretation:
+POL(maxi-`[MY-NAT`]-`[MY-NAT`](x_1, x_2)) = x_1 + x_2
+POL(node-`[MY-TREEocb-$T-ccb`]-`[MY-TREEocb-$T-ccb`](x_1, x_2)) = x_1 + x_2
+POL(empty) = 1
+POL(succ-`[MY-NAT`](x_1)) = x_1
+POL(depth-`[MY-TREEocb-$T-ccb`](x_1)) = x_1
+POL(zero) = 0
+was used. 
+
+
+
+Not all Rules of R can be deleted, so we still have to regard a part of R.
+
+
+
+   R     ->RRRPolo
+
+       ->TRS2
+         ->RRRPolo
+
+           ->TRS3
+             ->RRRPolo
+             ...
+
+               ->TRS4
+                 ->Removing Redundant Rules
+
+
+
+Removing the following rules from R which fullfill a polynomial ordering: 
+
+   depth-`[MY-TREEocb-$T-ccb`](node-`[MY-TREEocb-$T-ccb`]-`[MY-TREEocb-$T-ccb`]($a, $b)) -> succ-`[MY-NAT`](maxi-`[MY-NAT`]-`[MY-NAT`](depth-`[MY-TREEocb-$T-ccb`]($a), depth-`[MY-TREEocb-$T-ccb`]($b)))
+
+where the Polynomial interpretation:
+POL(maxi-`[MY-NAT`]-`[MY-NAT`](x_1, x_2)) = x_1 + x_2
+POL(node-`[MY-TREEocb-$T-ccb`]-`[MY-TREEocb-$T-ccb`](x_1, x_2)) = 1 + x_1 + x_2
+POL(succ-`[MY-NAT`](x_1)) = x_1
+POL(depth-`[MY-TREEocb-$T-ccb`](x_1)) = x_1
+was used. 
+
+
+
+All Rules of R can be deleted.
+
+
+
+   R     ->RRRPolo
+
+       ->TRS2
+         ->RRRPolo
+
+           ->TRS3
+             ->RRRPolo
+             ...
+
+               ->TRS5
+                 ->Non-Overlappingness Check
+
+
+
+This program has no overlaps, so it is sufficient to show innermost termination. 
+
+
+
+   R     ->RRRPolo
+
+       ->TRS2
+         ->RRRPolo
+
+           ->TRS3
+             ->RRRPolo
+             ...
+
+               ->TRS6
+                 ->Dependency Pair Analysis
+
+
+
+R contains no Dependency Pairs  and therefore no SCCs.
+
+
+Termination of R successfully shown.
+
+Duration: 
+0:00 minutes
+
+
+
