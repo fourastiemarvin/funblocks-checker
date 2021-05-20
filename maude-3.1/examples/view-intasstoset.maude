@@ -1,7 +1,0 @@
-  ---- from the book All About Maude
-  ---- from the Maude Manual
-  ---- by the Maude team
-
-  view IntAsStoset from STOSET to INT is
-    sort Elt to Int .
-  endv

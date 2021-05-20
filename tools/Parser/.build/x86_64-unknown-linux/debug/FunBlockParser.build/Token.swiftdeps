@@ -1,0 +1,73 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "Token"
+provides-nominal:
+- "14FunBlockParser5TokenV"
+- "14FunBlockParser5TokenV4KindO"
+provides-member:
+- ["14FunBlockParser5TokenV", ""]
+- ["14FunBlockParser5TokenV4KindO", ""]
+depends-top-level:
+- "=="
+- !private "FloatLiteralType"
+- !private "IntegerLiteralType"
+- "Substring"
+- "Token"
+depends-member:
+- ["SQ", "=="]
+- ["SQ", ""]
+- ["SQ", "_rawHashValue"]
+- ["SQ", "hash"]
+- ["SQ", "hashValue"]
+- ["SH", "=="]
+- ["SH", ""]
+- ["SH", "_rawHashValue"]
+- ["SH", "hash"]
+- ["SH", "hashValue"]
+- !private ["s6HasherV", "combine"]
+- ["14FunBlockParser5TokenV4KindO", "=="]
+- ["14FunBlockParser5TokenV4KindO", "__derived_enum_equals"]
+- ["14FunBlockParser5TokenV4KindO", "_rawHashValue"]
+- ["14FunBlockParser5TokenV4KindO", "arrow"]
+- ["14FunBlockParser5TokenV4KindO", "case_"]
+- ["14FunBlockParser5TokenV4KindO", "colon"]
+- ["14FunBlockParser5TokenV4KindO", "comma"]
+- ["14FunBlockParser5TokenV4KindO", "deinit"]
+- ["14FunBlockParser5TokenV4KindO", "doubleColon"]
+- ["14FunBlockParser5TokenV4KindO", "eof"]
+- ["14FunBlockParser5TokenV4KindO", "equal"]
+- ["14FunBlockParser5TokenV4KindO", "error"]
+- ["14FunBlockParser5TokenV4KindO", "hash"]
+- ["14FunBlockParser5TokenV4KindO", "hashValue"]
+- ["14FunBlockParser5TokenV4KindO", "identifier"]
+- ["14FunBlockParser5TokenV4KindO", "init_"]
+- ["14FunBlockParser5TokenV4KindO", "leftParen"]
+- ["14FunBlockParser5TokenV4KindO", "newline"]
+- ["14FunBlockParser5TokenV4KindO", "pipe"]
+- ["14FunBlockParser5TokenV4KindO", "rightParen"]
+- ["14FunBlockParser5TokenV4KindO", "rule"]
+- ["14FunBlockParser5TokenV4KindO", "semicolon"]
+- ["14FunBlockParser5TokenV4KindO", "thickArrow"]
+- ["14FunBlockParser5TokenV4KindO", "type"]
+- ["14FunBlockParser5TokenV4KindO", "variableIdentifier"]
+- ["14FunBlockParser5TokenV", "Kind"]
+- ["14FunBlockParser5TokenV", "Substring"]
+- ["14FunBlockParser5TokenV", "init"]
+- ["14FunBlockParser5TokenV", "kind"]
+- ["14FunBlockParser5TokenV", "value"]
+depends-nominal:
+- "SQ"
+- "SH"
+- !private "s6HasherV"
+- "14FunBlockParser5TokenV4KindO"
+- "14FunBlockParser5TokenV"
+depends-dynamic-lookup:
+depends-external:
+- "/home/marvinf/swift-5.1-RELEASE-ubuntu18.04/usr/lib/swift/linux/x86_64/Glibc.swiftmodule"
+- "/home/marvinf/swift-5.1-RELEASE-ubuntu18.04/usr/lib/swift/linux/x86_64/Dispatch.swiftmodule"
+- "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/Diesel.swiftmodule"
+- "/home/marvinf/swift-5.1-RELEASE-ubuntu18.04/usr/lib/swift/linux/x86_64/Foundation.swiftmodule"
+- "/home/marvinf/swift-5.1-RELEASE-ubuntu18.04/usr/lib/swift/linux/x86_64/Swift.swiftmodule"
+- "/home/marvinf/swift-5.1-RELEASE-ubuntu18.04/usr/lib/swift/linux/x86_64/SwiftOnoneSupport.swiftmodule"
+- "/home/marvinf/swift-5.1-RELEASE-ubuntu18.04/usr/lib/swift/linux/x86_64/glibc.modulemap"
+interface-hash: "9d95711220cb6d006591d51b30b688fb"

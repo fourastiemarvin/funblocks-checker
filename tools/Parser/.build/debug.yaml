@@ -1,0 +1,65 @@
+client:
+  name: basic
+tools: {}
+targets:
+  "main": ["/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.swiftmodule","<FunBlockParser-debug.exe>","<FunBlockParser-debug.module>"]
+  "test": ["/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.swiftmodule","<FunBlockParser-debug.exe>","<FunBlockParser-debug.module>"]
+  "Diesel-debug.module": ["/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/Diesel.swiftmodule","<Diesel-debug.module>"]
+  "FunBlockParser-debug.exe": ["/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser","<FunBlockParser-debug.exe>"]
+  "FunBlockParser-debug.module": ["/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.swiftmodule","<FunBlockParser-debug.module>"]
+default: "main"
+commands: 
+  "<C.Diesel-debug.module>":
+    tool: phony
+    inputs: ["/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/Diesel.swiftmodule"]
+    outputs: ["<Diesel-debug.module>"]
+
+  "<C.FunBlockParser-debug.exe>":
+    tool: phony
+    inputs: ["/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser"]
+    outputs: ["<FunBlockParser-debug.exe>"]
+
+  "<C.FunBlockParser-debug.module>":
+    tool: phony
+    inputs: ["/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.swiftmodule"]
+    outputs: ["<FunBlockParser-debug.module>"]
+
+  "C.Diesel-debug.module":
+    tool: swift-compiler
+    executable: "/home/marvinf/swift-5.1-RELEASE-ubuntu18.04/usr/bin/swiftc"
+    module-name: "Diesel"
+    module-output-path: "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/Diesel.swiftmodule"
+    inputs: ["/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/checkouts/Diesel/Sources/Diesel/Parser+Common.swift","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/checkouts/Diesel/Sources/Diesel/Parser.swift"]
+    outputs: ["/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/Diesel.build/Parser+Common.swift.o","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/Diesel.build/Parser.swift.o","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/Diesel.swiftmodule"]
+    import-paths: ["/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug"]
+    temps-path: "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/Diesel.build"
+    objects: ["/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/Diesel.build/Parser+Common.swift.o","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/Diesel.build/Parser.swift.o"]
+    other-args: ["-target","x86_64-unknown-linux","-swift-version","5","-enable-batch-mode","-index-store-path","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/index/store","-sdk","/","-Onone","-g","-enable-testing","-j4","-DSWIFT_PACKAGE","-DDEBUG","-module-cache-path","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/ModuleCache","-parseable-output","-Xfrontend","-color-diagnostics"]
+    sources: ["/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/checkouts/Diesel/Sources/Diesel/Parser+Common.swift","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/checkouts/Diesel/Sources/Diesel/Parser.swift"]
+    is-library: true
+    enable-whole-module-optimization: false
+    num-threads: "4"
+
+  "C.FunBlockParser-debug.exe":
+    tool: shell
+    description: "Linking /home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser"
+    inputs: ["/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/Diesel.build/Parser+Common.swift.o","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/Diesel.build/Parser.swift.o","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/AST.swift.o","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/Lexer.swift.o","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/Parser.swift.o","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/Token.swift.o","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/main.swift.o"]
+    outputs: ["/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser"]
+    args: ["/home/marvinf/swift-5.1-RELEASE-ubuntu18.04/usr/bin/swiftc","-sdk","/","-g","-L","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug","-o","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser","-module-name","FunBlockParser","-emit-executable","-Xlinker","-rpath=$ORIGIN","@/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.product/Objects.LinkFileList","-target","x86_64-unknown-linux","-L","/home/marvinf/swift-5.1-RELEASE-ubuntu18.04/usr/lib"]
+
+  "C.FunBlockParser-debug.module":
+    tool: swift-compiler
+    executable: "/home/marvinf/swift-5.1-RELEASE-ubuntu18.04/usr/bin/swiftc"
+    module-name: "FunBlockParser"
+    module-output-path: "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.swiftmodule"
+    inputs: ["/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/Diesel.swiftmodule","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/Sources/FunBlockParser/AST.swift","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/Sources/FunBlockParser/Lexer.swift","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/Sources/FunBlockParser/Parser.swift","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/Sources/FunBlockParser/Token.swift","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/Sources/FunBlockParser/main.swift"]
+    outputs: ["/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/AST.swift.o","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/Lexer.swift.o","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/Parser.swift.o","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/Token.swift.o","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/main.swift.o","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.swiftmodule"]
+    import-paths: ["/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug"]
+    temps-path: "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build"
+    objects: ["/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/AST.swift.o","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/Lexer.swift.o","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/Parser.swift.o","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/Token.swift.o","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/main.swift.o"]
+    other-args: ["-target","x86_64-unknown-linux","-swift-version","5","-enable-batch-mode","-index-store-path","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/index/store","-sdk","/","-Onone","-g","-enable-testing","-j4","-DSWIFT_PACKAGE","-DDEBUG","-module-cache-path","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/ModuleCache","-parseable-output","-Xfrontend","-color-diagnostics"]
+    sources: ["/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/Sources/FunBlockParser/AST.swift","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/Sources/FunBlockParser/Lexer.swift","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/Sources/FunBlockParser/Parser.swift","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/Sources/FunBlockParser/Token.swift","/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/Sources/FunBlockParser/main.swift"]
+    is-library: false
+    enable-whole-module-optimization: false
+    num-threads: "4"
+

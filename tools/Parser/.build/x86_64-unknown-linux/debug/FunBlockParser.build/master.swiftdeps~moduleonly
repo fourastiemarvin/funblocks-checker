@@ -1,0 +1,9 @@
+version: "Swift version 5.1 (swift-5.1-RELEASE)"
+options: "0db626d1c23cef8467a25d1757127e1c"
+build_time: [1621503882, 213016259]
+inputs:
+  "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/Sources/FunBlockParser/AST.swift": [1621503649, 859787000]
+  "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/Sources/FunBlockParser/Lexer.swift": [1619186014, 424262000]
+  "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/Sources/FunBlockParser/Parser.swift": [1619186014, 424262000]
+  "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/Sources/FunBlockParser/Token.swift": [1619186014, 424262000]
+  "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/Sources/FunBlockParser/main.swift": [1621503357, 736011000]

@@ -1,0 +1,368 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "FunBlockParser"
+provides-nominal:
+- "14FunBlockParserAAO"
+provides-member:
+- ["14FunBlockParserAAO", ""]
+depends-top-level:
+- "+"
+- !private "=="
+- "??"
+- "AST"
+- "AnyParser"
+- "ArraySlice"
+- "ArrowTypeSign"
+- "CastingPrecedence"
+- "Collection"
+- "ElementParser"
+- "Expr"
+- !private "FloatLiteralType"
+- "ForwardParser"
+- "FunBlockParser"
+- "InitStateDecl"
+- !private "IntegerLiteralType"
+- "Parser"
+- "RuleDecl"
+- "RuleDef"
+- "String"
+- !private "StringLiteralType"
+- "Term"
+- "Token"
+- "TypeCons"
+- "TypeDecl"
+- "TypeDeclRef"
+- "TypeRef"
+- "TypeSign"
+- "TypeVarRef"
+- "VarRef"
+- !private "element"
+- "parenthesized"
+- !private "print"
+- "token"
+- !private "tokens"
+depends-member:
+- ["14FunBlockParser3ASTP", "init"]
+- !private ["6Diesel9AnyParserV", "else"]
+- !private ["6Diesel9AnyParserV", "init"]
+- !private ["6Diesel9AnyParserV", "optional"]
+- ["6Diesel9AnyParserV", "then"]
+- !private ["s10ArraySliceV", "first"]
+- !private ["s10ArraySliceV", "init"]
+- ["14FunBlockParser13ArrowTypeSignV", "deinit"]
+- !private ["14FunBlockParser13ArrowTypeSignV", "init"]
+- ["SK", "dropFirst"]
+- !private ["SK", "first"]
+- ["SK", "init"]
+- ["Sl", "dropFirst"]
+- !private ["Sl", "first"]
+- ["Sl", "init"]
+- ["6Diesel13CombineParserV", "many"]
+- ["6Diesel13CombineParserV", "map"]
+- ["6Diesel13CombineParserV", "optional"]
+- ["6Diesel13CombineParserV", "then"]
+- ["SL", "dropFirst"]
+- ["SL", "init"]
+- !private ["10Foundation15ContiguousBytesP", "first"]
+- !private ["10Foundation15ContiguousBytesP", "init"]
+- ["s28CustomDebugStringConvertibleP", "dropFirst"]
+- !private ["s28CustomDebugStringConvertibleP", "first"]
+- ["s28CustomDebugStringConvertibleP", "init"]
+- ["s17CustomReflectableP", "dropFirst"]
+- !private ["s17CustomReflectableP", "first"]
+- ["s17CustomReflectableP", "init"]
+- !private ["s23CustomStringConvertibleP", "appendInterpolation"]
+- !private ["s23CustomStringConvertibleP", "appendLiteral"]
+- ["s23CustomStringConvertibleP", "dropFirst"]
+- !private ["s23CustomStringConvertibleP", "first"]
+- ["s23CustomStringConvertibleP", "init"]
+- !private ["10Foundation12DataProtocolP", "first"]
+- !private ["10Foundation12DataProtocolP", "init"]
+- ["Se", "init"]
+- !private ["s26DefaultStringInterpolationV", "appendInterpolation"]
+- !private ["s26DefaultStringInterpolationV", "appendLiteral"]
+- ["6Diesel12EitherParserV", "else"]
+- ["6Diesel12EitherParserV", "map"]
+- ["6Diesel12EitherParserV", "then"]
+- ["6Diesel13ElementParserV", "else"]
+- ["6Diesel13ElementParserV", "many"]
+- ["6Diesel13ElementParserV", "map"]
+- ["6Diesel13ElementParserV", "surrounded"]
+- ["6Diesel13ElementParserV", "then"]
+- ["SE", "init"]
+- !private ["SQ", "arrow"]
+- ["SQ", "case_"]
+- ["SQ", "comma"]
+- ["SQ", "doubleColon"]
+- ["SQ", "dropFirst"]
+- ["SQ", "eof"]
+- !private ["SQ", "first"]
+- ["SQ", "identifier"]
+- ["SQ", "init"]
+- ["SQ", "init_"]
+- !private ["SQ", "leftParen"]
+- ["SQ", "newline"]
+- ["SQ", "pipe"]
+- !private ["SQ", "rightParen"]
+- ["SQ", "rule"]
+- ["SQ", "semicolon"]
+- ["SQ", "thickArrow"]
+- ["SQ", "type"]
+- ["SQ", "variableIdentifier"]
+- ["14FunBlockParser4ExprV", "deinit"]
+- !private ["14FunBlockParser4ExprV", "init"]
+- !private ["s25ExpressibleByArrayLiteralP", "first"]
+- !private ["s25ExpressibleByArrayLiteralP", "init"]
+- ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "dropFirst"]
+- ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "init"]
+- ["s32ExpressibleByStringInterpolationP", "dropFirst"]
+- ["s32ExpressibleByStringInterpolationP", "init"]
+- ["s26ExpressibleByStringLiteralP", "dropFirst"]
+- ["s26ExpressibleByStringLiteralP", "init"]
+- ["s33ExpressibleByUnicodeScalarLiteralP", "dropFirst"]
+- ["s33ExpressibleByUnicodeScalarLiteralP", "init"]
+- !private ["6Diesel13ForwardParserC", "define"]
+- ["6Diesel13ForwardParserC", "else"]
+- ["6Diesel13ForwardParserC", "init"]
+- ["6Diesel13ForwardParserC", "map"]
+- ["14FunBlockParserAAO", "AST"]
+- ["14FunBlockParserAAO", "ArraySlice"]
+- ["14FunBlockParserAAO", "ArrowTypeSign"]
+- ["14FunBlockParserAAO", "Collection"]
+- ["14FunBlockParserAAO", "Expr"]
+- ["14FunBlockParserAAO", "ForwardParser"]
+- ["14FunBlockParserAAO", "InitStateDecl"]
+- ["14FunBlockParserAAO", "RuleDecl"]
+- ["14FunBlockParserAAO", "RuleDef"]
+- ["14FunBlockParserAAO", "String"]
+- ["14FunBlockParserAAO", "Term"]
+- ["14FunBlockParserAAO", "Token"]
+- ["14FunBlockParserAAO", "TypeCons"]
+- ["14FunBlockParserAAO", "TypeDecl"]
+- ["14FunBlockParserAAO", "TypeDeclRef"]
+- ["14FunBlockParserAAO", "TypeRef"]
+- ["14FunBlockParserAAO", "TypeSign"]
+- ["14FunBlockParserAAO", "TypeVarRef"]
+- ["14FunBlockParserAAO", "VarRef"]
+- ["14FunBlockParserAAO", "arrowTypeSign"]
+- ["14FunBlockParserAAO", "defineArrowTypeSign"]
+- ["14FunBlockParserAAO", "defineExpr"]
+- ["14FunBlockParserAAO", "defineTypeDeclRef"]
+- ["14FunBlockParserAAO", "enumTypeBody"]
+- ["14FunBlockParserAAO", "expr"]
+- ["14FunBlockParserAAO", "initStateDecl"]
+- ["14FunBlockParserAAO", "initialize"]
+- ["14FunBlockParserAAO", "newline"]
+- ["14FunBlockParserAAO", "parenthesized"]
+- ["14FunBlockParserAAO", "parse"]
+- !private ["14FunBlockParserAAO", "print"]
+- ["14FunBlockParserAAO", "program"]
+- ["14FunBlockParserAAO", "ruleCase"]
+- ["14FunBlockParserAAO", "ruleDecl"]
+- ["14FunBlockParserAAO", "term"]
+- ["14FunBlockParserAAO", "termList"]
+- ["14FunBlockParserAAO", "terminator"]
+- ["14FunBlockParserAAO", "token"]
+- !private ["14FunBlockParserAAO", "tokens"]
+- ["14FunBlockParserAAO", "topLevelStmt"]
+- ["14FunBlockParserAAO", "typeArg"]
+- ["14FunBlockParserAAO", "typeArgList"]
+- ["14FunBlockParserAAO", "typeCons"]
+- ["14FunBlockParserAAO", "typeDecl"]
+- ["14FunBlockParserAAO", "typeDeclRef"]
+- ["14FunBlockParserAAO", "typeParamList"]
+- ["14FunBlockParserAAO", "typeRef"]
+- ["14FunBlockParserAAO", "typeSign"]
+- ["14FunBlockParserAAO", "typeVarRef"]
+- ["14FunBlockParserAAO", "varRef"]
+- !private ["SH", "arrow"]
+- ["SH", "case_"]
+- ["SH", "comma"]
+- ["SH", "doubleColon"]
+- ["SH", "dropFirst"]
+- ["SH", "eof"]
+- !private ["SH", "first"]
+- ["SH", "identifier"]
+- ["SH", "init"]
+- ["SH", "init_"]
+- !private ["SH", "leftParen"]
+- ["SH", "newline"]
+- ["SH", "pipe"]
+- !private ["SH", "rightParen"]
+- ["SH", "rule"]
+- ["SH", "semicolon"]
+- ["SH", "thickArrow"]
+- ["SH", "type"]
+- ["SH", "variableIdentifier"]
+- ["14FunBlockParser13InitStateDeclV", "deinit"]
+- ["14FunBlockParser13InitStateDeclV", "init"]
+- !private ["14FunBlockParser5TokenV4KindO", "arrow"]
+- ["14FunBlockParser5TokenV4KindO", "case_"]
+- ["14FunBlockParser5TokenV4KindO", "comma"]
+- !private ["14FunBlockParser5TokenV4KindO", "deinit"]
+- ["14FunBlockParser5TokenV4KindO", "doubleColon"]
+- ["14FunBlockParser5TokenV4KindO", "eof"]
+- ["14FunBlockParser5TokenV4KindO", "identifier"]
+- ["14FunBlockParser5TokenV4KindO", "init_"]
+- !private ["14FunBlockParser5TokenV4KindO", "leftParen"]
+- ["14FunBlockParser5TokenV4KindO", "newline"]
+- ["14FunBlockParser5TokenV4KindO", "pipe"]
+- !private ["14FunBlockParser5TokenV4KindO", "rightParen"]
+- ["14FunBlockParser5TokenV4KindO", "rule"]
+- ["14FunBlockParser5TokenV4KindO", "semicolon"]
+- ["14FunBlockParser5TokenV4KindO", "thickArrow"]
+- ["14FunBlockParser5TokenV4KindO", "type"]
+- ["14FunBlockParser5TokenV4KindO", "variableIdentifier"]
+- ["s25LosslessStringConvertibleP", "dropFirst"]
+- ["s25LosslessStringConvertibleP", "init"]
+- !private ["6Diesel10ManyParserV", "parse"]
+- ["6Diesel10ManyParserV", "then"]
+- ["s10MirrorPathP", "init"]
+- !private ["SM", "first"]
+- !private ["SM", "init"]
+- ["6Diesel11ParseResultO", "failure"]
+- ["6Diesel11ParseResultO", "success"]
+- !private ["6Diesel6ParserP", "define"]
+- ["6Diesel6ParserP", "else"]
+- ["6Diesel6ParserP", "init"]
+- ["6Diesel6ParserP", "many"]
+- ["6Diesel6ParserP", "map"]
+- ["6Diesel6ParserP", "optional"]
+- !private ["6Diesel6ParserP", "parse"]
+- ["6Diesel6ParserP", "surrounded"]
+- ["6Diesel6ParserP", "then"]
+- !private ["Sk", "first"]
+- !private ["Sk", "init"]
+- ["Sm", "dropFirst"]
+- !private ["Sm", "first"]
+- ["Sm", "init"]
+- ["14FunBlockParser8RuleDeclV", "deinit"]
+- ["14FunBlockParser8RuleDeclV", "init"]
+- ["14FunBlockParser7RuleDefV", "deinit"]
+- ["14FunBlockParser7RuleDefV", "init"]
+- ["ST", "dropFirst"]
+- !private ["ST", "first"]
+- ["ST", "init"]
+- ["SS", "init"]
+- !private ["s27StringInterpolationProtocolP", "appendInterpolation"]
+- !private ["s27StringInterpolationProtocolP", "appendLiteral"]
+- ["Sy", "dropFirst"]
+- ["Sy", "init"]
+- ["Ss", "dropFirst"]
+- ["14FunBlockParser4TermP", "init"]
+- !private ["s16TextOutputStreamP", "appendInterpolation"]
+- !private ["s16TextOutputStreamP", "appendLiteral"]
+- ["s16TextOutputStreamP", "dropFirst"]
+- ["s16TextOutputStreamP", "init"]
+- ["s20TextOutputStreamableP", "dropFirst"]
+- ["s20TextOutputStreamableP", "init"]
+- ["14FunBlockParser5TokenV", "Kind"]
+- !private ["14FunBlockParser5TokenV", "kind"]
+- ["14FunBlockParser5TokenV", "value"]
+- ["6Diesel15TransformParserV", "else"]
+- ["6Diesel15TransformParserV", "map"]
+- ["6Diesel15TransformParserV", "optional"]
+- ["6Diesel15TransformParserV", "then"]
+- ["14FunBlockParser8TypeConsV", "init"]
+- ["14FunBlockParser8TypeDeclV", "deinit"]
+- ["14FunBlockParser8TypeDeclV", "init"]
+- ["14FunBlockParser11TypeDeclRefV", "deinit"]
+- !private ["14FunBlockParser11TypeDeclRefV", "init"]
+- ["14FunBlockParser7TypeRefP", "init"]
+- ["14FunBlockParser8TypeSignP", "init"]
+- ["14FunBlockParser10TypeVarRefV", "deinit"]
+- ["14FunBlockParser10TypeVarRefV", "init"]
+- ["14FunBlockParser6VarRefV", "deinit"]
+- ["14FunBlockParser6VarRefV", "init"]
+- !private ["s14_ArrayProtocolP", "first"]
+- !private ["s14_ArrayProtocolP", "init"]
+- ["10Foundation13_CFBridgeableP", "init"]
+- ["s30_CustomPlaygroundQuickLookableP", "dropFirst"]
+- ["s30_CustomPlaygroundQuickLookableP", "init"]
+- !private ["s24_DestructorSafeContainerP", "first"]
+- !private ["s24_DestructorSafeContainerP", "init"]
+- ["s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP", "init"]
+- ["s34_ExpressibleByBuiltinStringLiteralP", "init"]
+- ["s41_ExpressibleByBuiltinUnicodeScalarLiteralP", "init"]
+- ["s19_HasContiguousBytesP", "dropFirst"]
+- ["s19_HasContiguousBytesP", "init"]
+- ["10Foundation13_NSBridgeableP", "init"]
+- ["s21_ObjectiveCBridgeableP", "init"]
+depends-nominal:
+- "14FunBlockParser3ASTP"
+- "6Diesel9AnyParserV"
+- !private "s10ArraySliceV"
+- "14FunBlockParser13ArrowTypeSignV"
+- "SK"
+- "Sl"
+- "6Diesel13CombineParserV"
+- "SL"
+- !private "10Foundation15ContiguousBytesP"
+- "s28CustomDebugStringConvertibleP"
+- "s17CustomReflectableP"
+- "s23CustomStringConvertibleP"
+- !private "10Foundation12DataProtocolP"
+- "Se"
+- !private "s26DefaultStringInterpolationV"
+- "6Diesel12EitherParserV"
+- "6Diesel13ElementParserV"
+- "SE"
+- "SQ"
+- "14FunBlockParser4ExprV"
+- !private "s25ExpressibleByArrayLiteralP"
+- "s43ExpressibleByExtendedGraphemeClusterLiteralP"
+- "s32ExpressibleByStringInterpolationP"
+- "s26ExpressibleByStringLiteralP"
+- "s33ExpressibleByUnicodeScalarLiteralP"
+- "6Diesel13ForwardParserC"
+- "14FunBlockParserAAO"
+- "SH"
+- "14FunBlockParser13InitStateDeclV"
+- "14FunBlockParser5TokenV4KindO"
+- "s25LosslessStringConvertibleP"
+- "6Diesel10ManyParserV"
+- "s10MirrorPathP"
+- !private "SM"
+- "6Diesel11ParseResultO"
+- "6Diesel6ParserP"
+- !private "Sk"
+- "Sm"
+- "14FunBlockParser8RuleDeclV"
+- "14FunBlockParser7RuleDefV"
+- "ST"
+- "SS"
+- !private "s27StringInterpolationProtocolP"
+- "Sy"
+- "Ss"
+- "14FunBlockParser4TermP"
+- "s16TextOutputStreamP"
+- "s20TextOutputStreamableP"
+- "14FunBlockParser5TokenV"
+- "6Diesel15TransformParserV"
+- "14FunBlockParser8TypeConsV"
+- "14FunBlockParser8TypeDeclV"
+- "14FunBlockParser11TypeDeclRefV"
+- "14FunBlockParser7TypeRefP"
+- "14FunBlockParser8TypeSignP"
+- "14FunBlockParser10TypeVarRefV"
+- "14FunBlockParser6VarRefV"
+- !private "s14_ArrayProtocolP"
+- "10Foundation13_CFBridgeableP"
+- "s30_CustomPlaygroundQuickLookableP"
+- !private "s24_DestructorSafeContainerP"
+- "s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP"
+- "s34_ExpressibleByBuiltinStringLiteralP"
+- "s41_ExpressibleByBuiltinUnicodeScalarLiteralP"
+- "s19_HasContiguousBytesP"
+- "10Foundation13_NSBridgeableP"
+- "s21_ObjectiveCBridgeableP"
+depends-dynamic-lookup:
+depends-external:
+- "/home/marvinf/swift-5.1-RELEASE-ubuntu18.04/usr/lib/swift/linux/x86_64/Glibc.swiftmodule"
+- "/home/marvinf/swift-5.1-RELEASE-ubuntu18.04/usr/lib/swift/linux/x86_64/Dispatch.swiftmodule"
+- "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/Diesel.swiftmodule"
+- "/home/marvinf/swift-5.1-RELEASE-ubuntu18.04/usr/lib/swift/linux/x86_64/Foundation.swiftmodule"
+- "/home/marvinf/swift-5.1-RELEASE-ubuntu18.04/usr/lib/swift/linux/x86_64/Swift.swiftmodule"
+- "/home/marvinf/swift-5.1-RELEASE-ubuntu18.04/usr/lib/swift/linux/x86_64/SwiftOnoneSupport.swiftmodule"
+- "/home/marvinf/swift-5.1-RELEASE-ubuntu18.04/usr/lib/swift/linux/x86_64/glibc.modulemap"
+interface-hash: "011c1ffbe58417a2afef46f4aeae1de4"

@@ -1,0 +1,35 @@
+{
+  "": {
+    "swift-dependencies": "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/master.swiftdeps"
+  },
+  "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/Sources/FunBlockParser/AST.swift": {
+    "dependencies": "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/AST.d",
+    "object": "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/AST.swift.o",
+    "swiftmodule": "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/AST~partial.swiftmodule",
+    "swift-dependencies": "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/AST.swiftdeps"
+  },
+  "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/Sources/FunBlockParser/Lexer.swift": {
+    "dependencies": "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/Lexer.d",
+    "object": "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/Lexer.swift.o",
+    "swiftmodule": "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/Lexer~partial.swiftmodule",
+    "swift-dependencies": "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/Lexer.swiftdeps"
+  },
+  "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/Sources/FunBlockParser/Parser.swift": {
+    "dependencies": "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/Parser.d",
+    "object": "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/Parser.swift.o",
+    "swiftmodule": "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/Parser~partial.swiftmodule",
+    "swift-dependencies": "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/Parser.swiftdeps"
+  },
+  "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/Sources/FunBlockParser/Token.swift": {
+    "dependencies": "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/Token.d",
+    "object": "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/Token.swift.o",
+    "swiftmodule": "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/Token~partial.swiftmodule",
+    "swift-dependencies": "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/Token.swiftdeps"
+  },
+  "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/Sources/FunBlockParser/main.swift": {
+    "dependencies": "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/main.d",
+    "object": "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/main.swift.o",
+    "swiftmodule": "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/main~partial.swiftmodule",
+    "swift-dependencies": "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/x86_64-unknown-linux/debug/FunBlockParser.build/main.swiftdeps"
+  }
+}

@@ -1,0 +1,303 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "ElementParser"
+- "element"
+- "element"
+- "element"
+- "element"
+- "PrefixParser"
+- "prefix"
+- "prefix"
+- "character"
+- "character"
+- "character"
+- "character"
+- "substring"
+- "substring"
+- "RegularExpressionParser"
+- "substring"
+- "substring"
+provides-nominal:
+- "6Diesel13ElementParserV"
+- "6Diesel12PrefixParserV"
+- "6Diesel23RegularExpressionParserV"
+provides-member:
+- ["6Diesel13ElementParserV", ""]
+- ["6Diesel12PrefixParserV", ""]
+- ["6Diesel23RegularExpressionParserV", ""]
+- ["6Diesel6ParserP", ""]
+- ["6Diesel6ParserP", "parse"]
+depends-top-level:
+- !private "=="
+- "AssignmentPrecedence"
+- "Bool"
+- "Character"
+- "Collection"
+- "ElementParser"
+- "Equatable"
+- "ParseResult"
+- "Parser"
+- "PrefixParser"
+- "RegularExpressionParser"
+- "String"
+- "Substring"
+- "character"
+- "element"
+- "prefix"
+- "substring"
+depends-member:
+- !private ["SK", "distance"]
+- !private ["SK", "dropFirst"]
+- !private ["SK", "init"]
+- !private ["SK", "lowerBound"]
+- !private ["SK", "range"]
+- !private ["SK", "startIndex"]
+- !private ["SK", "subscript"]
+- !private ["SK", "upperBound"]
+- !private ["Sl", "count"]
+- !private ["Sl", "distance"]
+- !private ["Sl", "dropFirst"]
+- !private ["Sl", "first"]
+- !private ["Sl", "init"]
+- !private ["Sl", "lowerBound"]
+- !private ["Sl", "range"]
+- !private ["Sl", "startIndex"]
+- !private ["Sl", "starts"]
+- !private ["Sl", "subscript"]
+- !private ["Sl", "upperBound"]
+- !private ["SL", "distance"]
+- !private ["SL", "dropFirst"]
+- !private ["SL", "init"]
+- !private ["SL", "range"]
+- !private ["SL", "startIndex"]
+- !private ["SL", "subscript"]
+- !private ["10Foundation8NSStringC14CompareOptionsV", "regularExpression"]
+- !private ["s28CustomDebugStringConvertibleP", "distance"]
+- !private ["s28CustomDebugStringConvertibleP", "dropFirst"]
+- !private ["s28CustomDebugStringConvertibleP", "init"]
+- !private ["s28CustomDebugStringConvertibleP", "lowerBound"]
+- !private ["s28CustomDebugStringConvertibleP", "range"]
+- !private ["s28CustomDebugStringConvertibleP", "startIndex"]
+- !private ["s28CustomDebugStringConvertibleP", "subscript"]
+- !private ["s28CustomDebugStringConvertibleP", "upperBound"]
+- !private ["s17CustomReflectableP", "distance"]
+- !private ["s17CustomReflectableP", "dropFirst"]
+- !private ["s17CustomReflectableP", "init"]
+- !private ["s17CustomReflectableP", "lowerBound"]
+- !private ["s17CustomReflectableP", "range"]
+- !private ["s17CustomReflectableP", "startIndex"]
+- !private ["s17CustomReflectableP", "subscript"]
+- !private ["s17CustomReflectableP", "upperBound"]
+- !private ["s23CustomStringConvertibleP", "distance"]
+- !private ["s23CustomStringConvertibleP", "dropFirst"]
+- !private ["s23CustomStringConvertibleP", "init"]
+- !private ["s23CustomStringConvertibleP", "lowerBound"]
+- !private ["s23CustomStringConvertibleP", "range"]
+- !private ["s23CustomStringConvertibleP", "startIndex"]
+- !private ["s23CustomStringConvertibleP", "subscript"]
+- !private ["s23CustomStringConvertibleP", "upperBound"]
+- !private ["Se", "lowerBound"]
+- !private ["Se", "upperBound"]
+- ["6Diesel13ElementParserV", "Bool"]
+- ["6Diesel13ElementParserV", "Element"]
+- ["6Diesel13ElementParserV", "ParseResult"]
+- ["6Diesel13ElementParserV", "Stream"]
+- ["6Diesel13ElementParserV", "_Default_Stream"]
+- ["6Diesel13ElementParserV", "deinit"]
+- ["6Diesel13ElementParserV", "init"]
+- !private ["6Diesel13ElementParserV", "onFailure"]
+- ["6Diesel13ElementParserV", "parse"]
+- !private ["6Diesel13ElementParserV", "predicate"]
+- !private ["SE", "lowerBound"]
+- !private ["SE", "upperBound"]
+- !private ["SQ", "distance"]
+- !private ["SQ", "dropFirst"]
+- !private ["SQ", "init"]
+- !private ["SQ", "lowerBound"]
+- !private ["SQ", "range"]
+- !private ["SQ", "regularExpression"]
+- !private ["SQ", "startIndex"]
+- !private ["SQ", "subscript"]
+- !private ["SQ", "upperBound"]
+- !private ["s25ExpressibleByArrayLiteralP", "regularExpression"]
+- !private ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "distance"]
+- !private ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "dropFirst"]
+- !private ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "init"]
+- !private ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "range"]
+- !private ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "startIndex"]
+- !private ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "subscript"]
+- !private ["s32ExpressibleByStringInterpolationP", "distance"]
+- !private ["s32ExpressibleByStringInterpolationP", "dropFirst"]
+- !private ["s32ExpressibleByStringInterpolationP", "init"]
+- !private ["s32ExpressibleByStringInterpolationP", "range"]
+- !private ["s32ExpressibleByStringInterpolationP", "startIndex"]
+- !private ["s32ExpressibleByStringInterpolationP", "subscript"]
+- !private ["s26ExpressibleByStringLiteralP", "distance"]
+- !private ["s26ExpressibleByStringLiteralP", "dropFirst"]
+- !private ["s26ExpressibleByStringLiteralP", "init"]
+- !private ["s26ExpressibleByStringLiteralP", "range"]
+- !private ["s26ExpressibleByStringLiteralP", "startIndex"]
+- !private ["s26ExpressibleByStringLiteralP", "subscript"]
+- !private ["s33ExpressibleByUnicodeScalarLiteralP", "distance"]
+- !private ["s33ExpressibleByUnicodeScalarLiteralP", "dropFirst"]
+- !private ["s33ExpressibleByUnicodeScalarLiteralP", "init"]
+- !private ["s33ExpressibleByUnicodeScalarLiteralP", "range"]
+- !private ["s33ExpressibleByUnicodeScalarLiteralP", "startIndex"]
+- !private ["s33ExpressibleByUnicodeScalarLiteralP", "subscript"]
+- !private ["SH", "distance"]
+- !private ["SH", "dropFirst"]
+- !private ["SH", "init"]
+- !private ["SH", "lowerBound"]
+- !private ["SH", "range"]
+- !private ["SH", "startIndex"]
+- !private ["SH", "subscript"]
+- !private ["SH", "upperBound"]
+- !private ["s25LosslessStringConvertibleP", "distance"]
+- !private ["s25LosslessStringConvertibleP", "dropFirst"]
+- !private ["s25LosslessStringConvertibleP", "init"]
+- !private ["s25LosslessStringConvertibleP", "range"]
+- !private ["s25LosslessStringConvertibleP", "startIndex"]
+- !private ["s25LosslessStringConvertibleP", "subscript"]
+- !private ["s9OptionSetP", "regularExpression"]
+- !private ["6Diesel11ParseResultO", "error"]
+- !private ["6Diesel11ParseResultO", "success"]
+- ["6Diesel6ParserP", "Element"]
+- ["6Diesel6ParserP", "ParseResult"]
+- ["6Diesel6ParserP", "Stream"]
+- ["6Diesel6ParserP", "String"]
+- ["6Diesel6ParserP", "Substring"]
+- ["6Diesel6ParserP", ""]
+- ["6Diesel6ParserP", "_Default_Stream"]
+- !private ["6Diesel6ParserP", "init"]
+- !private ["6Diesel6ParserP", "onFailure"]
+- ["6Diesel6ParserP", "parse"]
+- !private ["6Diesel6ParserP", "pattern"]
+- !private ["6Diesel6ParserP", "predicate"]
+- !private ["6Diesel6ParserP", "subject"]
+- ["6Diesel12PrefixParserV", "Element"]
+- ["6Diesel12PrefixParserV", "ParseResult"]
+- ["6Diesel12PrefixParserV", "Stream"]
+- ["6Diesel12PrefixParserV", "_Default_Stream"]
+- ["6Diesel12PrefixParserV", "deinit"]
+- ["6Diesel12PrefixParserV", "init"]
+- !private ["6Diesel12PrefixParserV", "onFailure"]
+- ["6Diesel12PrefixParserV", "parse"]
+- !private ["6Diesel12PrefixParserV", "subject"]
+- !private ["Sk", "lowerBound"]
+- !private ["Sk", "upperBound"]
+- !private ["Sn", "lowerBound"]
+- !private ["Sn", "upperBound"]
+- !private ["SX", "lowerBound"]
+- !private ["SX", "upperBound"]
+- !private ["Sm", "distance"]
+- !private ["Sm", "dropFirst"]
+- !private ["Sm", "init"]
+- !private ["Sm", "range"]
+- !private ["Sm", "startIndex"]
+- !private ["Sm", "subscript"]
+- !private ["SY", "regularExpression"]
+- ["6Diesel23RegularExpressionParserV", "Element"]
+- ["6Diesel23RegularExpressionParserV", "ParseResult"]
+- ["6Diesel23RegularExpressionParserV", "Stream"]
+- ["6Diesel23RegularExpressionParserV", "String"]
+- ["6Diesel23RegularExpressionParserV", "Substring"]
+- ["6Diesel23RegularExpressionParserV", "_Default_Stream"]
+- ["6Diesel23RegularExpressionParserV", "deinit"]
+- ["6Diesel23RegularExpressionParserV", "init"]
+- !private ["6Diesel23RegularExpressionParserV", "onFailure"]
+- ["6Diesel23RegularExpressionParserV", "parse"]
+- !private ["6Diesel23RegularExpressionParserV", "pattern"]
+- !private ["ST", "count"]
+- !private ["ST", "distance"]
+- !private ["ST", "dropFirst"]
+- !private ["ST", "first"]
+- !private ["ST", "init"]
+- !private ["ST", "lowerBound"]
+- !private ["ST", "range"]
+- !private ["ST", "startIndex"]
+- !private ["ST", "starts"]
+- !private ["ST", "subscript"]
+- !private ["ST", "upperBound"]
+- !private ["s10SetAlgebraP", "regularExpression"]
+- !private ["Sy", "distance"]
+- !private ["Sy", "dropFirst"]
+- !private ["Sy", "init"]
+- !private ["Sy", "range"]
+- !private ["Sy", "startIndex"]
+- !private ["Sy", "subscript"]
+- !private ["Ss", "distance"]
+- !private ["Ss", "dropFirst"]
+- !private ["Ss", "init"]
+- !private ["Ss", "range"]
+- !private ["Ss", "startIndex"]
+- !private ["Ss", "subscript"]
+- !private ["s16TextOutputStreamP", "distance"]
+- !private ["s16TextOutputStreamP", "dropFirst"]
+- !private ["s16TextOutputStreamP", "init"]
+- !private ["s16TextOutputStreamP", "range"]
+- !private ["s16TextOutputStreamP", "startIndex"]
+- !private ["s16TextOutputStreamP", "subscript"]
+- !private ["s20TextOutputStreamableP", "distance"]
+- !private ["s20TextOutputStreamableP", "dropFirst"]
+- !private ["s20TextOutputStreamableP", "init"]
+- !private ["s20TextOutputStreamableP", "range"]
+- !private ["s20TextOutputStreamableP", "startIndex"]
+- !private ["s20TextOutputStreamableP", "subscript"]
+- !private ["s30_CustomPlaygroundQuickLookableP", "distance"]
+- !private ["s30_CustomPlaygroundQuickLookableP", "dropFirst"]
+- !private ["s30_CustomPlaygroundQuickLookableP", "init"]
+- !private ["s30_CustomPlaygroundQuickLookableP", "range"]
+- !private ["s30_CustomPlaygroundQuickLookableP", "startIndex"]
+- !private ["s30_CustomPlaygroundQuickLookableP", "subscript"]
+- !private ["s19_HasContiguousBytesP", "distance"]
+- !private ["s19_HasContiguousBytesP", "dropFirst"]
+- !private ["s19_HasContiguousBytesP", "init"]
+- !private ["s19_HasContiguousBytesP", "range"]
+- !private ["s19_HasContiguousBytesP", "startIndex"]
+- !private ["s19_HasContiguousBytesP", "subscript"]
+depends-nominal:
+- !private "SK"
+- !private "Sl"
+- !private "SL"
+- !private "10Foundation8NSStringC14CompareOptionsV"
+- !private "s28CustomDebugStringConvertibleP"
+- !private "s17CustomReflectableP"
+- !private "s23CustomStringConvertibleP"
+- !private "Se"
+- "6Diesel13ElementParserV"
+- !private "SE"
+- !private "SQ"
+- !private "s25ExpressibleByArrayLiteralP"
+- !private "s43ExpressibleByExtendedGraphemeClusterLiteralP"
+- !private "s32ExpressibleByStringInterpolationP"
+- !private "s26ExpressibleByStringLiteralP"
+- !private "s33ExpressibleByUnicodeScalarLiteralP"
+- !private "SH"
+- !private "s25LosslessStringConvertibleP"
+- !private "s9OptionSetP"
+- !private "6Diesel11ParseResultO"
+- "6Diesel6ParserP"
+- "6Diesel12PrefixParserV"
+- !private "Sk"
+- !private "Sn"
+- !private "SX"
+- !private "Sm"
+- !private "SY"
+- "6Diesel23RegularExpressionParserV"
+- !private "ST"
+- !private "s10SetAlgebraP"
+- !private "Sy"
+- !private "Ss"
+- !private "s16TextOutputStreamP"
+- !private "s20TextOutputStreamableP"
+- !private "s30_CustomPlaygroundQuickLookableP"
+- !private "s19_HasContiguousBytesP"
+depends-dynamic-lookup:
+depends-external:
+- "/home/marvinf/swift-5.1-RELEASE-ubuntu18.04/usr/lib/swift/linux/x86_64/Glibc.swiftmodule"
+- "/home/marvinf/swift-5.1-RELEASE-ubuntu18.04/usr/lib/swift/linux/x86_64/Dispatch.swiftmodule"
+- "/home/marvinf/swift-5.1-RELEASE-ubuntu18.04/usr/lib/swift/linux/x86_64/Foundation.swiftmodule"
+- "/home/marvinf/swift-5.1-RELEASE-ubuntu18.04/usr/lib/swift/linux/x86_64/Swift.swiftmodule"
+- "/home/marvinf/swift-5.1-RELEASE-ubuntu18.04/usr/lib/swift/linux/x86_64/SwiftOnoneSupport.swiftmodule"
+- "/home/marvinf/swift-5.1-RELEASE-ubuntu18.04/usr/lib/swift/linux/x86_64/glibc.modulemap"
+interface-hash: "e41125c8881bbfb0d8a6082a70172eff"

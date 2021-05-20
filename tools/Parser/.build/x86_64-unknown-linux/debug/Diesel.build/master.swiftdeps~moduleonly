@@ -1,0 +1,6 @@
+version: "Swift version 5.1 (swift-5.1-RELEASE)"
+options: "ed731d680d84f461e839c0b26c7df55b"
+build_time: [1621503879, 552132152]
+inputs:
+  "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/checkouts/Diesel/Sources/Diesel/Parser+Common.swift": [1621503879, 331537994]
+  "/home/marvinf/Desktop/master_project/funblocks-checker/tools/Parser/.build/checkouts/Diesel/Sources/Diesel/Parser.swift": [1621503879, 339537984]

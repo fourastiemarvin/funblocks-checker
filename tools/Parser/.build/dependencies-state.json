@@ -1,0 +1,1 @@
+{"object": {"dependencies": [{"basedOn": null, "packageRef": {"identity": "diesel", "isLocal": false, "name": "Diesel", "path": "https://github.com/kyouko-taiga/Diesel.git"}, "state": {"checkoutState": {"branch": null, "revision": "2d9f37383e1f9c280ab62e0f8f63989193da168a", "version": "1.0.0"}, "name": "checkout"}, "subpath": "Diesel"}]}, "version": 2}

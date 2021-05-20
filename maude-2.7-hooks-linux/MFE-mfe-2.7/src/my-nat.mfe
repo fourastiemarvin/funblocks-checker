@@ -6,6 +6,16 @@ load my-nat.maude
 (select tool MTT .)
 (select external tool aprove .)
 (ct FUNRULES .)
+--- (show proof .)
+
 (select tool CRC .)
 (ccr FUNRULES .)
 (show cps .)
+(submit .)
+
+--- (select tool SCC .)
+--- (scc FUNRULES .)
+
+--- (select tool ChC .)
+--- (cch .)
+--- (submit .)

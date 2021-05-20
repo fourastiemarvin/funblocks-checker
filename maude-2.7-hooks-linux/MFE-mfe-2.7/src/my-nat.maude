@@ -11,11 +11,15 @@ endfm)
  var $x : MY-NAT .
  var $y : MY-NAT .
  op add : MY-NAT MY-NAT -> MY-NAT .
- eq add($x, zero) = $x .
- eq add($x, succ($y)) = succ(add($x, $y)) .
+ eq add($x, zero) = $x [label 1] .
+ eq add($x, succ($y)) = succ(add($x, $y)) [label 2] .
  --- eq succ($x) = succ(succ($x)) .
- --- eq add($x, $y) = zero .
+ eq add($x, $y) = zero .
 endfm)
 
-(reduce in FUNRULES :
-  add(succ(zero), zero) .)
+--- set trace on .
+--- set trace select on .
+--- trace select 1 2 .
+
+--- (reduce in FUNRULES :
+---   add(succ(zero), succ(zero)) .)

@@ -3,6 +3,7 @@ load r+w.maude
 (select tool MTT .)
 (select external tool aprove .)
 (ct R&W-SYNTAX .)
+(ct R&W .)
 (select tool CRC .)
 (ccr R&W-SYNTAX .)
 (select tool SCC .)

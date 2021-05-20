@@ -1,4 +1,0 @@
-type Tree $T :: empty | leaf $T | node (Tree $T) (Tree $T)
-rule depth $T :: Tree $T -> Nat
-case depth(empty) => zero
-case depth(node($a, $b)) => succ(maxi(depth($a),depth($b)))
