@@ -257,7 +257,7 @@ public struct VarRef: Term, CustomStringConvertible {
   }
 
   public var toMaude: String {
-    let result = "var $\(name): "
+    let result = "var $\(name) : "
     return result
   }
 }

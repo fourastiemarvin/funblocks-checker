@@ -7,7 +7,8 @@ let package = Package(
   name: "FunBlockParser",
   dependencies: [
     .package(url: "https://github.com/kyouko-taiga/Diesel.git", from: "1.0.0"),
+    .package(url: "https://github.com/JohnSundell/Files", from: "4.0.0"),
   ],
   targets: [
-    .target(name: "FunBlockParser", dependencies: ["Diesel"]),
+    .target(name: "FunBlockParser", dependencies: ["Diesel", "Files"]),
   ])

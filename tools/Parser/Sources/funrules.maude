@@ -1,0 +1,22 @@
+(fmod Nat is 
+ sort Nat . 
+op zero : -> Nat . 
+op succ : Nat -> Nat . 
+endfm) 
+(view $T from TRIV to Tree is sort Elt to Tree . endv) 
+(fmod Tree{$T :: TRIV} is 
+ sort Tree{$T} . 
+op empty : -> Tree{$T} . 
+op leaf : $T$Elt -> Tree{$T} . 
+op node : Tree{$T} Tree{$T} -> Tree{$T} . 
+endfm) 
+(fmod FUNRULES is 
+sort $T .
+op depth : Tree{$T} -> Nat .
+ op quicksort : List{$T} Int  -> List{Int} .
+ op add : Nat Nat  -> Nat .
+ var $x : Nat . 
+var $y : Nat . 
+eq add($x, add($y, zero)) = $x .eq depth(empty) = zero .var $z : Nat . 
+eq succ($z) = zero . 
+ endfm)

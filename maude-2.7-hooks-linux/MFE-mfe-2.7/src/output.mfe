@@ -1,0 +1,9 @@
+(set include BOOL off .)
+load output.maude
+(select tool ChC .)
+(cch FUNRULES .)
+(select tool MTT .)
+(select external tool aprove .)
+(ct FUNRULES .)
+(select tool CRC .)
+(ccr FUNRULES .)

@@ -1,3 +1,5 @@
+import Files
+
 var src =
 """
 // Type definitions
@@ -28,12 +30,6 @@ case if(false, $x, $y) => $y
 
 FunBlockParser.initialize()
 
-// let tokens = try tokenize(src)
-// let stmts = FunBlockParser.parse(tokens)
-// for stmt in stmts {
-//   print(stmt)
-// }
-
 let prog =
 """
 type Nat :: zero | succ Nat
@@ -48,17 +44,36 @@ case succ($z) => zero
 
 let tokens = try tokenize(prog)
 let stmts = FunBlockParser.parse(tokens)
-for stmt in stmts {
-  if let s = stmt as? TypeDecl {
-    print(s.toMaude)
+// print("\n TEST:")
+// print(signArray)
+
+let folder = try Folder(path: "../")
+let file = try folder.createFile(named: "funrules.maude")
+var module = ""
+
+func typeMaude() {
+  for stmt in stmts {
+    if let s = stmt as? TypeDecl {
+      module += s.toMaude
+    }
+    else {continue}
   }
-  else if let s = stmt as? RuleDecl {
-    print(s.toMaude)
-  }
-  else if let s = stmt as? RuleDef {
-    print(s.toMaude)
-  }
-  else {continue}
 }
-print("\n TEST:")
-print(signArray)
+
+func ruleMaude() {
+  module += "(fmod FUNRULES is \n"
+  for stmt in stmts {
+    if let s = stmt as? RuleDecl {
+      module += s.toMaude
+    }
+    else if let s = stmt as? RuleDef {
+      module += s.toMaude
+    }
+    else {continue}
+  }
+  module += " \n endfm)"
+}
+
+typeMaude()
+ruleMaude()
+try file.write(module)
