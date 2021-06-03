@@ -35,7 +35,7 @@ let prog =
 type Nat :: zero | succ Nat
 type Tree $T :: empty | leaf $T | node (Tree $T) (Tree $T)
 rule depth $T :: Tree $T => Nat
-rule quicksort :: List $T -> Int => List Int
+rule quicksort :: Tree $T -> Nat => Tree $T
 rule add :: Nat -> Nat => Nat
 case add($x, add($y, zero)) => $x
 case depth(empty) => zero
@@ -44,8 +44,6 @@ case succ($z) => zero
 
 let tokens = try tokenize(prog)
 let stmts = FunBlockParser.parse(tokens)
-// print("\n TEST:")
-// print(signArray)
 
 let folder = try Folder(path: "../")
 let file = try folder.createFile(named: "funrules.maude")
@@ -62,18 +60,25 @@ func typeMaude() {
 
 func ruleMaude() {
   module += "(fmod FUNRULES is \n"
+  for type in typeList {
+    module += "including \(type) .\n"
+  }
   for stmt in stmts {
     if let s = stmt as? RuleDecl {
-      module += s.toMaude
+      module += s.toMaude + "\n"
     }
     else if let s = stmt as? RuleDef {
-      module += s.toMaude
+      module += s.toMaude + "\n"
     }
     else {continue}
   }
-  module += " \n endfm)"
+  module += " endfm)"
 }
 
 typeMaude()
 ruleMaude()
 try file.write(module)
+
+// print("\n TESTS:")
+// print(signArray)
+// print(typeList)

@@ -2,6 +2,8 @@ public protocol AST {}
 
 var signArray: [String:[String]] = [:]
 
+var typeList: [String] = []
+
 public struct TypeDecl: AST, CustomStringConvertible {
 
   public let name: String
@@ -22,17 +24,22 @@ public struct TypeDecl: AST, CustomStringConvertible {
   public var toMaude: String {
     var result = ""
     var sortName = name
-    // TODO: use {} to avoid sort overriding ???
+    var paramList:[String] = []
     if !parameters.isEmpty {
       for p in parameters {
-        result += "(view \(p) from TRIV to \(name) is sort Elt to \(name) . endv) \n"
+        // FIXME: infer all types with diff names??
+        // result += "(view \(p) from TRIV to \(name) is sort Elt to \(name) . endv) \n"
+        result += "(view \(p) from TRIV to Nat is sort Elt to Nat . endv) \n"
+        paramList.append(p.name)
       }
-      let fmodName = parameters.map(String.init(describing:)).joined(separator: " :: TRIV, ") + " :: TRIV"
-      sortName = name + "{" + parameters.map(String.init(describing:)).joined(separator: ",") + "}"
+      let fmodName = paramList.joined(separator: " :: TRIV, ") + " :: TRIV"
+      sortName = name + "{" + paramList.joined(separator: ",") + "}"
+      typeList.append(name + "{" + parameters.map(String.init(describing:)).joined(separator: ",") + "}")
       result += "(fmod \(name){\(fmodName)} is \n sort \(sortName) . \n"
     }
     else {
       result += "(fmod \(name) is \n sort \(sortName) . \n"
+      typeList.append(sortName)
     }
     for c in cases {
       result += "op \(c.label) : "
@@ -44,7 +51,8 @@ public struct TypeDecl: AST, CustomStringConvertible {
             signArray[c.label]!.append(varElt.toMaude)
           }
           else if let declElt = arg as? TypeDeclRef {
-            result += declElt.toMaude + " "
+            let str = declElt.toMaude + " "
+            result += str.replacingOccurrences(of: "$", with: "")
             signArray[c.label]!.append(declElt.toMaude)
           }
         }
@@ -85,19 +93,14 @@ public struct RuleDecl: AST, CustomStringConvertible {
   }
   public var toMaude: String {
     var result = ""
-    if !arguments.isEmpty {
-      for arg in arguments {
-        result += "sort \(arg) .\n"
-      }
-    }
     signArray[name] = []
     let righth = right as! TypeDeclRef
     if let lefth = left as? ArrowTypeSign {
-      result += "op \(name) : \(lefth.toMaude) -> \(righth.toMaude) .\n "
+      result += "op \(name) : \(lefth.toMaude) -> \(righth.toMaude) . "
       signArray[name]! += lefth.toMaude.components(separatedBy: " ").filter(){$0 != ""}
     }
     else if let lefth = left as? TypeDeclRef {
-      result += "op \(name) : \(lefth.toMaude) -> \(righth.toMaude) .\n "
+      result += "op \(name) : \(lefth.toMaude) -> \(righth.toMaude) . "
       signArray[name]! += lefth.toMaude.components(separatedBy: " ").filter(){$0 != ""}
     }
     return result
@@ -200,7 +203,7 @@ public struct TypeVarRef: TypeRef, CustomStringConvertible {
   }
 
   public var toMaude: String {
-    "$" + name + "$Elt"
+    name + "$Elt"
   }
 
 }
