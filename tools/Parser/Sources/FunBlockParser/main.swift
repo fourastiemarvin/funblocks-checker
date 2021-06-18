@@ -30,19 +30,67 @@ case if(false, $x, $y) => $y
 
 FunBlockParser.initialize()
 
-let prog =
+// let prog =
+// """
+// type Nat :: zero | succ Nat
+// type Tree $T :: empty | leaf $T | node (Tree $T) (Tree $T)
+// rule depth $T :: Tree $T => Nat
+// rule add :: Nat -> Nat => Nat
+// case add($x, add($y, zero)) => $x
+// case depth(empty) => zero
+// case succ($z) => zero
+// """
+
+// let prog1 =
+// """
+// type Nat :: a | b | succ Nat
+// rule f :: Nat -> Nat -> Nat => Nat
+// rule g :: Nat -> Nat => Nat
+// case f(a,b,$x) => f($x,$x,$x)
+// case g($x,$y) => $x
+// case g($x,$y) => $y
+// """
+
+
+let prog2 =
 """
-type Nat :: zero | succ Nat
-type Tree $T :: empty | leaf $T | node (Tree $T) (Tree $T)
-rule depth $T :: Tree $T => Nat
-rule quicksort :: Tree $T -> Nat => Tree $T
-rule add :: Nat -> Nat => Nat
-case add($x, add($y, zero)) => $x
-case depth(empty) => zero
-case succ($z) => zero
+type Bool :: true | false
+type Rel :: zero | succ Rel | minus Rel
+type List $T :: empty | cons (List $T) $T
+rule size :: List $T => Rel
+rule isEmpty :: List $T => Bool
+case size(empty) => zero
+case size(cons(empty, $x)) => succ(zero)
+case isEmpty(empty) => true
 """
 
-let tokens = try tokenize(prog)
+// let prog3 =
+// """
+// type Nat :: a | b | c | zero | succ Nat
+// rule f :: Nat -> Nat => Nat
+// rule g :: Nat => Nat
+// case f($x, $x) => a
+// case f($x, g($x)) => b
+// case c => g(c)
+// """
+
+// let prog4 =
+// """
+// type Nat :: zero | succ Nat
+// type Tree $T :: empty | leaf $T | node (Tree $T) (Tree $T)
+// rule depth $T :: Tree $T => Nat
+// rule quicksort :: Tree $T -> Nat => Tree $T
+// rule add :: Nat -> Nat => Nat
+// case add($x, add($y, zero)) => $x
+// case depth(empty) => zero
+// case succ($z) => zero
+// """
+
+// let tokens = try tokenize(prog)
+let tokens = try tokenize(prog2)
+// let tokens = try tokenize(prog3)
+// let tokens = try tokenize(prog4)
+
 let stmts = FunBlockParser.parse(tokens)
 
 let folder = try Folder(path: "../")
@@ -79,6 +127,6 @@ typeMaude()
 ruleMaude()
 try file.write(module)
 
-// print("\n TESTS:")
-// print(signArray)
-// print(typeList)
+print("\n TESTS:")
+print(signArray)
+print(typeList)

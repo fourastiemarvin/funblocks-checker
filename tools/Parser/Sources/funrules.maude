@@ -1,25 +1,29 @@
-(fmod Nat is 
- sort Nat . 
-op zero : -> Nat . 
-op succ : Nat -> Nat . 
-endfm) 
-(view $T from TRIV to Nat is sort Elt to Nat . endv) 
-(fmod Tree{T :: TRIV} is 
- sort Tree{T} . 
-op empty : -> Tree{T} . 
-op leaf : T$Elt -> Tree{T} . 
-op node : Tree{T} Tree{T} -> Tree{T} . 
-endfm) 
-(fmod FUNRULES is 
-including Nat .
-including Tree{$T} .
-op depth : Tree{$T} -> Nat . 
-op quicksort : Tree{$T} Nat  -> Tree{$T} . 
-op add : Nat Nat  -> Nat . 
-var $x : Nat . 
-var $y : Nat . 
-eq add($x, add($y, zero)) = $x .
-eq depth(empty) = zero .
-var $z : Nat . 
-eq succ($z) = zero .
+(fmod Bool is
+ sort Bool .
+op true : -> Bool .
+op false : -> Bool .
+endfm)
+(fmod Rel is
+ sort Rel .
+op zero : -> Rel .
+op succ : Rel -> Rel .
+op minus : Rel -> Rel .
+endfm)
+(view $T from TRIV to Rel is sort Elt to Rel . endv)
+(fmod List{T :: TRIV} is
+ sort List{T} .
+op empty : -> List{T} .
+op cons : List{T} T$Elt -> List{T} .
+endfm)
+(fmod FUNRULES is
+including Bool .
+including Rel .
+including List{$T} .
+op size : List{$T} -> Rel .
+op isEmpty : List{$T} -> Bool .
+eq size(empty) = zero .
+var $x : Rel .
+eq size(cons(empty, $x)) = succ(zero) .
+--- eq succ($x) = succ(succ($x)) .
+eq isEmpty(empty) = true .
  endfm)

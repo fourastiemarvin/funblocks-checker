@@ -1,0 +1,22 @@
+(set include BOOL off .)
+
+(fmod OvConsOS is
+   sorts Nat NatList NatIList .
+   subsort NatList < NatIList .
+   op 0 : -> Nat .
+   op s : Nat -> Nat .
+   op zeros : -> NatIList .
+   op nil : -> NatList .
+   op cons : Nat NatIList -> NatIList [strat (1 0)] .
+   op cons : Nat NatList -> NatList [strat (1 0)] .
+   op take : Nat NatIList -> NatList .
+   op length : NatList -> Nat .
+   vars M N : Nat .
+   var  IL : NatIList .
+   var  L : NatList .
+   eq zeros = cons(0,zeros) .
+   eq take(0, IL) = nil .
+   eq take(s(M), cons(N, IL)) = cons(N, take(M, IL)) .
+   eq length(nil) = 0 .
+   eq length(cons(N, L)) = s(length(L)) .
+ endfm)

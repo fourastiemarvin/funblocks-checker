@@ -1,0 +1,38 @@
+MTT -> AProVE: 
+( VAR $x )       ( RULES     size-@osb@Listocb-$T-ccb@csb@ ( empty ) -> zero     size-@osb@Listocb-$T-ccb@csb@ ( cons-@osb@Listocb-$T-ccb@csb@-@osb@Rel@csb@ ( empty ,   $x ) ) -> succ-@osb@Rel@csb@ ( zero )     succ-@osb@Rel@csb@ ( $x ) -> succ-@osb@Rel@csb@ ( succ-@osb@Rel@csb@ ( $x ) )   )   
+
+AProVE -> MTT: 
+NO
+<HTML><HEAD><TITLE>Termination Proof using AProVE</TITLE></HEAD><BODY><B>Term Rewriting System</B> <I>R</I>:
+<BR><B>[<FONT COLOR=#CC8888><I>$x</I></FONT>]<BR>
+<FONT COLOR=#000088>size-`[Listocb-$T-ccb`]</FONT>(<FONT COLOR=#666600>empty</FONT>) -&gt; <FONT COLOR=#666600>zero</FONT><BR>
+<FONT COLOR=#000088>size-`[Listocb-$T-ccb`]</FONT>(<FONT COLOR=#666600>cons-`[Listocb-$T-ccb`]-`[Rel`]</FONT>(<FONT COLOR=#666600>empty</FONT>, <FONT COLOR=#CC8888><I>$x</I></FONT>)) -&gt; <FONT COLOR=#000088>succ-`[Rel`]</FONT>(<FONT COLOR=#666600>zero</FONT>)<BR>
+<FONT COLOR=#000088>succ-`[Rel`]</FONT>(<FONT COLOR=#CC8888><I>$x</I></FONT>) -&gt; <FONT COLOR=#000088>succ-`[Rel`]</FONT>(<FONT COLOR=#000088>succ-`[Rel`]</FONT>(<FONT COLOR=#CC8888><I>$x</I></FONT>))<BR>
+</B><BR><B>Termination</B> of <I>R</I> to be shown.
+<BR><P><BR><BR><pre>   R</pre><pre>     &#8627<FONT COLOR=#cc0000><B><A NAME="/tmp/fileY1XBWP.trs.R0RRRPolo1"></A>Removing Redundant Rules</B></font></pre><BR><BR><BR>Removing the following rules from <I>R</I> which fullfill a polynomial ordering: <BR><BLOCKQUOTE><BR><FONT COLOR=#000088>size-`[Listocb-$T-ccb`]</FONT>(<FONT COLOR=#666600>empty</FONT>) -&gt; <FONT COLOR=#666600>zero</FONT>
+<BR><FONT COLOR=#000088>size-`[Listocb-$T-ccb`]</FONT>(<FONT COLOR=#666600>cons-`[Listocb-$T-ccb`]-`[Rel`]</FONT>(<FONT COLOR=#666600>empty</FONT>, <FONT COLOR=#CC8888><I>$x</I></FONT>)) -&gt; <FONT COLOR=#000088>succ-`[Rel`]</FONT>(<FONT COLOR=#666600>zero</FONT>)</BLOCKQUOTE><BR>where the Polynomial interpretation:
+<blockquote><table border=0>
+<tr><td><sub>&nbsp;</sub><sup>&nbsp;</sup>POL(<b>succ-`[Rel`](x<sub>1</sub>)</b>)</td><td>= &nbsp;x<sub>1</sub><sub>&nbsp;</sub><sup>&nbsp;</sup></td></tr>
+<tr><td><sub>&nbsp;</sub><sup>&nbsp;</sup>POL(<b>size-`[Listocb-$T-ccb`](x<sub>1</sub>)</b>)</td><td>= &nbsp;x<sub>1</sub><sub>&nbsp;</sub><sup>&nbsp;</sup></td></tr>
+<tr><td><sub>&nbsp;</sub><sup>&nbsp;</sup>POL(<b>empty</b>)</td><td>= &nbsp;1<sub>&nbsp;</sub><sup>&nbsp;</sup></td></tr>
+<tr><td><sub>&nbsp;</sub><sup>&nbsp;</sup>POL(<b>cons-`[Listocb-$T-ccb`]-`[Rel`](x<sub>1</sub>, x<sub>2</sub>)</b>)</td><td>= &nbsp;x<sub>1</sub> + x<sub>2</sub><sub>&nbsp;</sub><sup>&nbsp;</sup></td></tr>
+<tr><td><sub>&nbsp;</sub><sup>&nbsp;</sup>POL(<b>zero</b>)</td><td>= &nbsp;0<sub>&nbsp;</sub><sup>&nbsp;</sup></td></tr>
+</table></blockquote>was used. 
+<BR><BR>Not all Rules of <I>R</I> can be deleted, so we still have to regard a part of <I>R</I>.
+<BR><BR><BR><pre>   R</pre><pre>     &#8627<A HREF="#/tmp/fileY1XBWP.trs.R0RRRPolo1">RRRPolo</A></pre><pre>       &#8594TRS2</pre><pre>         &#8627<FONT COLOR=#cc0000><B><A NAME="/tmp/fileY1XBWP.trs.R0RRRPolo1TRS1NOC0"></A>Non-Overlappingness Check</B></font></pre>
+<BR><BR><BR>This program has no overlaps, so it is sufficient to show innermost termination. 
+<BR><BR><BR><pre>   R</pre><pre>     &#8627<A HREF="#/tmp/fileY1XBWP.trs.R0RRRPolo1">RRRPolo</A></pre><pre>       &#8594TRS2</pre><pre>         &#8627<A HREF="#/tmp/fileY1XBWP.trs.R0RRRPolo1TRS1NOC0">NOC</A></pre><pre>           &#8594TRS3</pre><pre>             &#8627<FONT COLOR=#cc0000><B><A NAME="/tmp/fileY1XBWP.trs.R0RRRPolo1TRS1NOC0TRS1DPs0"></A>Dependency Pair Analysis</B></font></pre>
+
+<BR><BR><BR><I>R</I> contains the following <I>Dependency Pairs: 
+</I><BR><BLOCKQUOTE><BR><FONT COLOR=#006666>SUCC-@OSB@REL@CSB@</FONT>(<FONT COLOR=#CC8888><I>$x</I></FONT>) -&gt; <FONT COLOR=#006666>SUCC-@OSB@REL@CSB@</FONT>(<FONT COLOR=#000088>succ-`[Rel`]</FONT>(<FONT COLOR=#CC8888><I>$x</I></FONT>))
+<BR><FONT COLOR=#006666>SUCC-@OSB@REL@CSB@</FONT>(<FONT COLOR=#CC8888><I>$x</I></FONT>) -&gt; <FONT COLOR=#006666>SUCC-@OSB@REL@CSB@</FONT>(<FONT COLOR=#CC8888><I>$x</I></FONT>)</BLOCKQUOTE><BR>Furthermore, <I>R</I> contains one SCC.
+<BR><BR><BR><pre>   R</pre><pre>     &#8627<A HREF="#/tmp/fileY1XBWP.trs.R0RRRPolo1">RRRPolo</A></pre><pre>       &#8594TRS2</pre><pre>         &#8627<A HREF="#/tmp/fileY1XBWP.trs.R0RRRPolo1TRS1NOC0">NOC</A></pre><pre>           &#8594TRS3</pre><pre>             &#8627<A HREF="#/tmp/fileY1XBWP.trs.R0RRRPolo1TRS1NOC0TRS1DPs0">DPs</A></pre><pre>             ...<pre>               &#8594DP Problem 1</pre><pre>                 &#8627<FONT COLOR=#cc0000><B><A NAME="/tmp/fileY1XBWP.trs.R0RRRPolo1TRS1NOC0TRS1DPs0DP Problem 1NonTerm0"></A>Non Termination</B></font></pre>
+
+
+<BR><BR><B>Dependency Pairs:</B><BR><p style="margin-left: 25pt"><B><FONT COLOR=#006666>SUCC-@OSB@REL@CSB@</FONT>(<FONT COLOR=#CC8888><I>$x</I></FONT>) -&gt; <FONT COLOR=#006666>SUCC-@OSB@REL@CSB@</FONT>(<FONT COLOR=#CC8888><I>$x</I></FONT>)</B><BR><B><FONT COLOR=#006666>SUCC-@OSB@REL@CSB@</FONT>(<FONT COLOR=#CC8888><I>$x</I></FONT>) -&gt; <FONT COLOR=#006666>SUCC-@OSB@REL@CSB@</FONT>(<FONT COLOR=#000088>succ-`[Rel`]</FONT>(<FONT COLOR=#CC8888><I>$x</I></FONT>))</B></p><BR><B>Rule:</B><BR><p style="margin-left: 25pt"><BLOCKQUOTE><BR><FONT COLOR=#000088>succ-`[Rel`]</FONT>(<FONT COLOR=#CC8888><I>$x</I></FONT>) -&gt; <FONT COLOR=#000088>succ-`[Rel`]</FONT>(<FONT COLOR=#000088>succ-`[Rel`]</FONT>(<FONT COLOR=#CC8888><I>$x</I></FONT>))</BLOCKQUOTE></p><BR><B>Strategy:</B><BR><p style="margin-left: 25pt">innermost</p><BR><BR><BR>Found an infinite P-chain over R:
+<BR>P =<BLOCKQUOTE><BR><FONT COLOR=#006666>SUCC-@OSB@REL@CSB@</FONT>(<FONT COLOR=#CC8888><I>$x</I></FONT>) -&gt; <FONT COLOR=#006666>SUCC-@OSB@REL@CSB@</FONT>(<FONT COLOR=#CC8888><I>$x</I></FONT>)
+<BR><FONT COLOR=#006666>SUCC-@OSB@REL@CSB@</FONT>(<FONT COLOR=#CC8888><I>$x</I></FONT>) -&gt; <FONT COLOR=#006666>SUCC-@OSB@REL@CSB@</FONT>(<FONT COLOR=#000088>succ-`[Rel`]</FONT>(<FONT COLOR=#CC8888><I>$x</I></FONT>))</BLOCKQUOTE><BR>R = <BLOCKQUOTE><BR><FONT COLOR=#000088>succ-`[Rel`]</FONT>(<FONT COLOR=#CC8888><I>$x</I></FONT>) -&gt; <FONT COLOR=#000088>succ-`[Rel`]</FONT>(<FONT COLOR=#000088>succ-`[Rel`]</FONT>(<FONT COLOR=#CC8888><I>$x</I></FONT>))</BLOCKQUOTE><BR>s = <FONT COLOR=#006666>SUCC-@OSB@REL@CSB@</FONT>(<FONT COLOR=#CC8888><I>$x'</I></FONT>)<BR> evaluates to  t =<FONT COLOR=#006666>SUCC-@OSB@REL@CSB@</FONT>(<FONT COLOR=#CC8888><I>$x'</I></FONT>)<BR><BR>Thus, s starts an infinite chain.<BR><BR><FONT COLOR=#cc0000><B>Non-Termination</B> of <I>R</I> could be shown.
+</font><BR>Duration: <BR>0:00 minutes
+</BODY></HTML>
+
+

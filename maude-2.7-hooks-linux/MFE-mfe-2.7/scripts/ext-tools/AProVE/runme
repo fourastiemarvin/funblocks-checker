@@ -10,4 +10,5 @@
 # java -jar ./aprove.jar -u cli -t $2 -p plain -m wst $1
 
 
-java -jar /home/marvinf/Desktop/master_project/funblocks-checker/maude-2.7-hooks-linux/MFE-mfe-2.7/scripts/ext-tools/AProVE/aprove.jar -u cli -t $2 -p plain -m wst $1
+# java -jar /home/marvinf/Desktop/master_project/funblocks-checker/maude-2.7-hooks-linux/MFE-mfe-2.7/scripts/ext-tools/AProVE/aprove.jar -u cli -t $2 -p plain -m wst $1
+java -jar /home/marvinf/Desktop/master_project/funblocks-checker/maude-2.7-hooks-linux/MFE-mfe-2.7/scripts/ext-tools/AProVE/aprove.jar -u cli -t $2 -p html -m wst $1

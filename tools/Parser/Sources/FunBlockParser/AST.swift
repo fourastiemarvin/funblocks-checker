@@ -20,7 +20,8 @@ public struct TypeDecl: AST, CustomStringConvertible {
     result += " :: " + cases.map(String.init(describing:)).joined(separator: " | ")
     return result
   }
-
+  // FIXME: fix paramtrized types with several arguments
+  // FIXME: cast subterms
   public var toMaude: String {
     var result = ""
     var sortName = name

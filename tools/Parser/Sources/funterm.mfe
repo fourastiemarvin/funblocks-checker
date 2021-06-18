@@ -1,0 +1,5 @@
+(set include BOOL off .)
+load funrules.maude
+(select tool MTT .)
+(select external tool aprove .)
+(ct FUNRULES .)
