@@ -1,9 +1,0 @@
-(set include BOOL off .)
-load test.maude
-(select tool ChC .)
-(cch TEST2 .)
-(select tool MTT .)
-(select external tool aprove .)
-(ct TEST2 .)
-(select tool CRC .)
-(ccr TEST2 .)

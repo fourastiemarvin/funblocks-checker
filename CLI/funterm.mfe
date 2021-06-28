@@ -1,5 +1,6 @@
 (set include BOOL off .)
-load funrules.maude
+set trace off .
+load ../tmp/funrules.maude
 (select tool MTT .)
 (select external tool aprove .)
 (ct FUNRULES .)

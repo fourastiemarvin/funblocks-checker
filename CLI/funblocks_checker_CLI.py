@@ -18,7 +18,7 @@ from shutil import copyfile
 
 def init(args):
     filename = args['FILENAME']
-    copyfile(filename, "tools/Parser/Sources/FunBlockParser/prog.txt")
+    copyfile(filename, "tmp/prog.txt")
     subprocess.run(["./CLI/callMaude.sh" , "init"])
     print("FunBlocks program ready to be checked !")
 
@@ -31,15 +31,18 @@ def conf():
     subprocess.run(["./CLI/callMaude.sh" , "conf"])
 
 def main():
-    args = docopt(__doc__)
-    if args['init']:
-        init(args)
-    elif args['ct'] or args['check_termination']:
-        term(log=args['--log'])
-    elif args['cf'] or args['check_confluence']:
-        conf()
-    else:
-        print("Invalid command")
+    try:
+        args = docopt(__doc__)
+        if args['init']:
+            init(args)
+        elif args['ct'] or args['check_termination']:
+            term(log=args['--log'])
+        elif args['cf'] or args['check_confluence']:
+            conf()
+        else:
+            print("Invalid command")
+    except Exception as e:
+        print("Please move to funblocks-checker directory")
 
 if __name__ == '__main__':
     main()

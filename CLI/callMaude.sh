@@ -10,24 +10,26 @@ case $1 in
                 {
                   ./maude-2.7-hooks-linux/maude++ \
                   maude-2.7-hooks-linux/MFE-mfe-2.7/src/mfe.maude \
-                  tools/Parser/Sources/funterm.mfe
+                  CLI/funterm.mfe
                 } > tmp.txt << EOF
 EOF
                 cat tmp.txt
-                rm tmp.txt
+                rm -f tmp.txt
+                rm -f CLI/log.txt
                 if [[ $2 == "log" ]]
                 then
-                  xdg-open tools/Parser/Sources/proof.html
+                  xdg-open tmp/proof.html
                 fi
                 ;;
         "conf")
                 {
                   ./maude-2.7-hooks-linux/maude++ \
                   maude-2.7-hooks-linux/MFE-mfe-2.7/src/mfe.maude \
-                  tools/Parser/Sources/funconf.mfe
+                  CLI/funconf.mfe
                 } > tmp.txt << EOF
 EOF
                 cat tmp.txt
-                rm tmp.txt
+                rm -f tmp.txt
+                rm -f CLI/log.txt
                 ;;
 esac

@@ -6,7 +6,7 @@ with open("requirements.txt", "r") as fh:
 
 setup(
    name = 'FunBlocks checker CLI',
-   author = 'Marvin',
+   author = 'MarvinF',
    description = 'CLI for FunBlocks checker',
    version = '0.1.0',
    packages = ['CLI'],

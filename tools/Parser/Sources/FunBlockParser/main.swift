@@ -1,101 +1,20 @@
+import Foundation
 import Files
-
-var src =
-"""
-// Type definitions
-type List $T :: empty | cons $T (List $T)
-
-// Initial state
-init cons(1, cons(2, empty))
-
-// Quicksort
-rule sort :: List Int => List Int
-case sort(empty) => empty
-case sort(cons($x, $y)) => cat(filter_lt($x, $y), cons($x, sort(filter_gt($x, $y))))
-
-// Filters
-rule filter_lt :: Int -> List Int => List Int
-case filter_lt($x, empty) => empty
-case filter_lt($x, cons($y, $z)) => if(lt($y, $x), cons($y, filter_lt($z)), filter_lt($z))
-
-rule filter_gt :: Int -> List Int => List Int
-case filter_gt($x, empty) => empty
-case filter_gt($x, cons($y, $z)) => if(gt($y, $x), cons($y, filter_gt($z)), filter_gt($z))
-
-// Conditional expressions
-rule if $T :: Bool -> $T -> $T => $T
-case if(true, $x, $y) => $x
-case if(false, $x, $y) => $y
-"""
 
 FunBlockParser.initialize()
 
-// let prog =
-// """
-// type Nat :: zero | succ Nat
-// type Tree $T :: empty | leaf $T | node (Tree $T) (Tree $T)
-// rule depth $T :: Tree $T => Nat
-// rule add :: Nat -> Nat => Nat
-// case add($x, add($y, zero)) => $x
-// case depth(empty) => zero
-// case succ($z) => zero
-// """
+let funprog = try File(path: "../../../../tmp/prog.txt")
+let prog = try funprog.readAsString()
 
-// let prog1 =
-// """
-// type Nat :: a | b | succ Nat
-// rule f :: Nat -> Nat -> Nat => Nat
-// rule g :: Nat -> Nat => Nat
-// case f(a,b,$x) => f($x,$x,$x)
-// case g($x,$y) => $x
-// case g($x,$y) => $y
-// """
-
-
-let prog2 =
-"""
-type Bool :: true | false
-type Rel :: zero | succ Rel | minus Rel
-type List $T :: empty | cons (List $T) $T
-rule size :: List $T => Rel
-rule isEmpty :: List $T => Bool
-case size(empty) => zero
-case size(cons(empty, $x)) => succ(zero)
-case isEmpty(empty) => true
-"""
-
-// let prog3 =
-// """
-// type Nat :: a | b | c | zero | succ Nat
-// rule f :: Nat -> Nat => Nat
-// rule g :: Nat => Nat
-// case f($x, $x) => a
-// case f($x, g($x)) => b
-// case c => g(c)
-// """
-
-// let prog4 =
-// """
-// type Nat :: zero | succ Nat
-// type Tree $T :: empty | leaf $T | node (Tree $T) (Tree $T)
-// rule depth $T :: Tree $T => Nat
-// rule quicksort :: Tree $T -> Nat => Tree $T
-// rule add :: Nat -> Nat => Nat
-// case add($x, add($y, zero)) => $x
-// case depth(empty) => zero
-// case succ($z) => zero
-// """
-
-// let tokens = try tokenize(prog)
-let tokens = try tokenize(prog2)
-// let tokens = try tokenize(prog3)
-// let tokens = try tokenize(prog4)
+let tokens = try tokenize(prog)
 
 let stmts = FunBlockParser.parse(tokens)
 
-let folder = try Folder(path: "../")
-let file = try folder.createFile(named: "funrules.maude")
+let folder = try Folder(path: "../../../../.")
+try folder.createSubfolder(named: "tmp")
+let file = try folder.createFile(named: "tmp/funrules.maude")
 var module = ""
+
 
 func typeMaude() {
   for stmt in stmts {
@@ -127,6 +46,8 @@ typeMaude()
 ruleMaude()
 try file.write(module)
 
-print("\n TESTS:")
-print(signArray)
-print(typeList)
+
+// TESTS:
+// print("\n TESTS:")
+// print(signArray)
+// print(typeList)
